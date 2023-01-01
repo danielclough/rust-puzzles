@@ -1,6 +1,7 @@
 mod quizes;
 use crate::quizes::plus_minus;
 use crate::quizes::mini_max_sum;
+use crate::quizes::time_conversion;
 
 pub fn test(quiz: Quiz) {
     println!("Quiz:\n\t{}", &quiz.name);
@@ -8,6 +9,7 @@ pub fn test(quiz: Quiz) {
     match quiz.name.as_str() {
         "plus_minus" => plus_minus::test(&quiz.input),
         "mini_max_sum" => mini_max_sum::test(&quiz.input),
+        "time_conversion" => time_conversion::test(&quiz.input),
         _ => println!("Need to add match!"),
     }
 }
