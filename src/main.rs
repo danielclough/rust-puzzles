@@ -7,7 +7,8 @@ fn main() {
     // check .env and args for current path
     dotenv().expect("Failed to load .env file");
     let name_from_dotenv = env::var("CURRENT_FILE").unwrap();
-    let path_from_dotenv = "input/week1/".to_owned() + &name_from_dotenv;
+    let week_from_dotenv = env::var("CURRENT_WEEK").unwrap();
+    let path_from_dotenv = format!("input/{week_from_dotenv}/{name_from_dotenv}");
 
     let args: Vec<String> = env::args().collect();
 
