@@ -14,9 +14,11 @@ fn main() {
     let args: Vec<String> = env::args().collect();
     if args.len() < 2 {
         dotenv().expect("Failed to load .env file");
-        name = env::var("CURRENT_FILE").unwrap();
+        let filename = env::var("CURRENT_FILE").unwrap();
+        let filename_parts: Vec<&str> = filename.split('.').collect();
+        name = filename_parts[0].to_owned().clone();
         week = env::var("CURRENT_WEEK").unwrap();
-    path = format!("input/{week}/{name}");
+        path = format!("input/{week}/{name}.txt");
     } else {
         path = args[1].to_owned();
         let path_parts: Vec<&str> = path.split('/').collect();
