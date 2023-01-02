@@ -22,9 +22,9 @@ But, Hacker Rank implents the setup for each problem on their backend and in the
 ## Use 
 
 ### CLI path
-eg: `cargo run input/week1/plus_minus.txt`
+`cargo run input/week1/plus_minus.txt`
 
-### Example .env
+### .env path
 ```
 CURRENT_WEEK="week1"
 CURRENT_FILE="plus_minus.txt"

@@ -1,7 +1,7 @@
 mod quizes;
-use crate::quizes::plus_minus;
-use crate::quizes::mini_max_sum;
-use crate::quizes::time_conversion;
+use crate::quizes::week1::plus_minus;
+use crate::quizes::week1::mini_max_sum;
+use crate::quizes::week1::time_conversion;
 
 pub fn test(quiz: Quiz) {
     println!("Quiz:\n\t{}", &quiz.name);
@@ -14,17 +14,18 @@ pub fn test(quiz: Quiz) {
     }
 }
 
-
 pub struct Quiz {
+    pub week: String,
     pub name: String,
     pub input: String,
 }
 
 impl Quiz {
-    pub fn new(path: &String, input: &String) -> Quiz {
+    pub fn new(path: &String, input: &String, week: &String) -> Quiz {
         let name = path.clone();
         Quiz {
             name,
+            week: week.clone(),
             input: input.clone(),
         }
     }

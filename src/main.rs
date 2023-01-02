@@ -4,30 +4,34 @@ use dotenv::dotenv;
 use puzzles::{test, Quiz};
 
 fn main() {
-    // check .env and args for current path
-    dotenv().expect("Failed to load .env file");
-    let name_from_dotenv = env::var("CURRENT_FILE").unwrap();
-    let week_from_dotenv = env::var("CURRENT_WEEK").unwrap();
-    let path_from_dotenv = format!("input/{week_from_dotenv}/{name_from_dotenv}");
-
-    let args: Vec<String> = env::args().collect();
-
     let input;
-    let path: &str;
+    let week: String;
+    let path: String;
+    let name: String;
+    
+    // check args for current path
+    // check .env if not found
+    let args: Vec<String> = env::args().collect();
     if args.len() < 2 {
-        path = &path_from_dotenv;
+        dotenv().expect("Failed to load .env file");
+        name = env::var("CURRENT_FILE").unwrap();
+        week = env::var("CURRENT_WEEK").unwrap();
+    path = format!("input/{week}/{name}");
     } else {
-        path = &args[1];
+        path = args[1].to_owned();
+        let path_parts: Vec<&str> = path.split('/').collect();
+        week = path_parts[1].to_owned();
+        let filename = filename(&path).to_str().expect("to_str");
+        let filename_parts: Vec<&str> = filename.split('.').collect();
+        name = filename_parts[0].to_owned().clone();
     }
     println!("{}", path);
-    input = fs::read_to_string(&path).expect("Should have been able to read the file");
 
-    let filename = filename(&path).to_str().expect("to_str");
-    let parts: Vec<&str> = filename.split('.').collect();
-    let name = parts[0].to_owned().clone();
+    // load file or panic
+    input = fs::read_to_string(&path).expect("Should have been able to read the file");
    
 
-    let quiz = Quiz::new(&name, &input);
+    let quiz = Quiz::new(&name, &input, &week);
     test(quiz);
 }
 
