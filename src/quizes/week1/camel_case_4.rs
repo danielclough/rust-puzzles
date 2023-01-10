@@ -29,7 +29,7 @@ fn camel_case_4(lines: Vec<String>) {
         // let str_final: &str;
         
         // line_parts[2] is the words required vecs are below
-        let mut words: Vec<&str> = vec![];
+        let words: Vec<&str>;
         let word_str = line_parts[2].to_owned();
 
         // line_parts[0] is either S or C
@@ -60,7 +60,7 @@ fn camel_case_4(lines: Vec<String>) {
             // create arr for mutating
             let mut word_arr = vec![];
             // create str for final
-            let mut combined = String::from("");
+            let mut combined:String;
             // split space seperated words
             words = line_parts[2].split(' ').collect();
             // V variable
@@ -125,7 +125,7 @@ fn split_on_upper(mut str: String) -> String {
 
 fn make_lower(str: &str) -> String {
     let mut new = String::from("");
-    for (i,c) in str.chars().enumerate() {
+    for (_i,c) in str.chars().enumerate() {
         if c.is_uppercase() {
             let correct = c.to_lowercase().to_string();
             new = str.replace(c, &correct);

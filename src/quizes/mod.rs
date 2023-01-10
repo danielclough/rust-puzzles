@@ -5,7 +5,7 @@ use crate::quizes::week1::time_conversion;
 use crate::quizes::week1::breaking_the_records;
 use crate::quizes::week1::camel_case_4;
 use crate::quizes::week1::divisible_sum_pairs;
-// use crate::quizes::week1::
+use crate::quizes::week1::sparse_arrays;
 // use crate::quizes::week1::
 
 pub mod week1;
@@ -20,7 +20,7 @@ pub fn match_quiz(quiz: Quiz) {
         "breaking_the_records" => breaking_the_records::test(&quiz.input),
         "camel_case_4" => camel_case_4::test(&quiz.input),
         "divisible_sum_pairs" => divisible_sum_pairs::test(&quiz.input),
-        // "" => ::test(&quiz.input),
+        "sparse_arrays" => sparse_arrays::test(&quiz.input),
         // "" => ::test(&quiz.input),
         _ => println!("Need to add match!"),
     }
