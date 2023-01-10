@@ -102,9 +102,7 @@ fn camel_case_4(lines: Vec<String>) {
                 println!("{}", combined);
             } 
         }
-        // println!("{}", str_final)
     }
-    // str_final
     
 }
 
@@ -125,7 +123,7 @@ fn split_on_upper(mut str: String) -> String {
     str.to_owned()
 }
 
-fn make_lower(mut str: &str) -> String {
+fn make_lower(str: &str) -> String {
     let mut new = String::from("");
     for (i,c) in str.chars().enumerate() {
         if c.is_uppercase() {
