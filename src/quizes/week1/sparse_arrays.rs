@@ -23,7 +23,7 @@ pub fn test(arr: &str) {
                 left_in_cycle = -2;
             }
         }
-        if left_in_cycle == -2 {
+        else if left_in_cycle == -2 {
             q = line.parse::<i32>().expect("i32 here");
             left_in_cycle = q;
         }
@@ -34,6 +34,8 @@ pub fn test(arr: &str) {
                 left_in_cycle = -1;
                 // call function at end of cycle
                 matchingStrings(&strings, &queries);
+                strings = vec![];
+                queries = vec![];
             }
         }
     }
@@ -42,6 +44,16 @@ pub fn test(arr: &str) {
 
 #[allow (non_snake_case)]
 fn matchingStrings(strings: &[String], queries: &[String]) -> Vec<i32> {
-    println!("{:?}{:?}",strings, queries);
-    vec![0, 5]
+    let length = queries.len();
+    let mut return_vec:Vec<i32> = vec![0; length];
+    for (i, q) in queries.iter().enumerate() {
+        for s in strings {
+            if q == s {
+                return_vec[i] += 1;
+                // println!("{:?}{:?} {} {}",q, s, i, j);
+            }                        
+        }
+    }
+    println!("{:?}",return_vec);
+    return_vec
 }
