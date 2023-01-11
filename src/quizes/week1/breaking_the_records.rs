@@ -1,5 +1,10 @@
 pub fn test(arr: &str) {
+    _ = the_thing_itself(arr);
+}
+
+fn the_thing_itself(arr: &str) -> Vec<Vec<i32>> {
     let lines: Vec<&str> = arr.split("\n").collect();
+    let mut output: Vec<Vec<i32>> = vec![];
     
     for (i, line) in lines.iter().enumerate() {
         let str_arr: Vec<&str> = line.split(' ').collect();
@@ -9,10 +14,10 @@ pub fn test(arr: &str) {
         };
 
         if i%2 == 1 {
-            breakingRecords(&i32_arr);
+            output.push(breakingRecords(&i32_arr));
         }
     }
-
+    output
 }
 
 #[allow(non_snake_case)]
@@ -45,4 +50,24 @@ fn breakingRecords(scores: &[i32]) -> Vec<i32> {
     println!("{:?}",return_vec);
     return_vec
 
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::fs;
+
+    #[test]
+    fn does_it_work() {
+        let answer: Vec<Vec<i32>> = vec![
+            vec![2, 4],
+            vec![4, 0],
+        ];
+        
+        // load file or panic
+        let path = String::from("input/week1/breaking_the_records.txt");
+        let input = fs::read_to_string(&path).expect("Should have been able to read the file");
+
+        assert_eq!(answer, the_thing_itself(&input));
+    }
 }

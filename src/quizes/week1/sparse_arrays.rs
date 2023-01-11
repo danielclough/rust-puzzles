@@ -3,8 +3,8 @@ pub fn test(arr: &str) {
 }
 
 fn the_thing_itself(arr: &str) -> Vec<Vec<i32>> {
-    let input_arr = read_input(arr);
-    let mut output: Vec<Vec<i32>> = vec![];
+        let input_arr = read_input(arr);
+        let mut output: Vec<Vec<i32>> = vec![];
     for input in input_arr {
         output.push(matchingStrings(&input.strings, &input.queries));
     };
