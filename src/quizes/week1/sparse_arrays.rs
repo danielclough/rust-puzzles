@@ -1,4 +1,22 @@
 pub fn test(arr: &str) {
+    _ = the_thing_itself(arr);
+}
+
+fn the_thing_itself(arr: &str) -> Vec<Vec<i32>> {
+    let input_arr = read_input(arr);
+    let mut output: Vec<Vec<i32>> = vec![];
+    for input in input_arr {
+        output.push(matchingStrings(&input.strings, &input.queries));
+    };
+    output
+}
+
+struct Input {
+    strings: Vec<String>,
+    queries: Vec<String>,
+}
+
+fn read_input(arr: &str) -> Vec<Input> {
     let lines: Vec<&str> = arr.split("\n").collect();
     //  var to indicate beginning of series
     let mut left_in_cycle = -1;
@@ -10,7 +28,8 @@ pub fn test(arr: &str) {
     // vecs to hold strings and queries
     let mut strings: Vec<String> = vec![];
     let mut queries: Vec<String> = vec![];
-
+    // strut for input
+    let mut input_arr: Vec<Input> = vec![];
     for line in lines {
         if left_in_cycle == -1 {
             n = line.parse::<i32>().expect("i32 here");
@@ -33,13 +52,13 @@ pub fn test(arr: &str) {
             if q == 0 {
                 left_in_cycle = -1;
                 // call function at end of cycle
-                matchingStrings(&strings, &queries);
+                input_arr.push(Input {strings: strings.to_owned() , queries: queries.to_owned()});
                 strings = vec![];
                 queries = vec![];
             }
         }
     }
-    
+    input_arr
 }
 
 #[allow (non_snake_case)]
@@ -56,4 +75,25 @@ fn matchingStrings(strings: &[String], queries: &[String]) -> Vec<i32> {
     }
     println!("{:?}",return_vec);
     return_vec
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::fs;
+
+    #[test]
+    fn does_it_work() {
+        let answer: Vec<Vec<i32>> = vec![
+            vec![2, 1, 0],
+            vec![1, 0, 1],
+            vec![1, 3, 4, 3, 2],
+        ];
+        
+        // load file or panic
+        let path = String::from("input/week1/sparse_arrays.txt");
+        let input = fs::read_to_string(&path).expect("Should have been able to read the file");
+
+        assert_eq!(answer, the_thing_itself(&input));
+    }
 }
