@@ -1,9 +1,17 @@
 pub fn test(arr: &str) {
+    _ = fn_with_test_output(arr);
+}
+
+fn fn_with_test_output(arr: &str) -> Vec<String> {
     let split: Vec<&str> = arr.split("\n").collect();
+    let mut answers: Vec<String> = vec![];
     
     for ele in split {
-        timeConversion(&ele);
+        answers.push(
+            timeConversion(&ele)
+        )
     }
+    answers
 }
 
 #[allow(non_snake_case)]
@@ -43,7 +51,26 @@ fn timeConversion(s: &str) -> String {
     time_str
 }
 
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::fs;
 
-
-// 19:05:45
-// 00:40:22
+    #[test]
+    fn does_it_work() {
+        let test_location = "input/week1/time_conversion.txt";
+        let answer: Vec<String> = vec![
+            String::from("07:05:45"),
+            String::from("19:05:45"),
+            String::from("00:40:22"),
+            String::from("12:40:22"),
+            String::from("00:00:01"),
+            String::from("12:00:01"), 
+        ];
+        // load file or panic
+        let path = String::from(test_location);
+        let input = fs::read_to_string(&path).expect("Should have been able to read the file");
+        let my_answer = fn_with_test_output(&input);
+        assert_eq!(answer, my_answer);
+    }
+}

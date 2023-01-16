@@ -1,11 +1,20 @@
 pub fn test(arr: &str) {
-    _ = the_thing_itself(arr);
+    _ = fn_with_test_output(arr);
 }
 
-fn the_thing_itself(arr: &str) -> Vec<Vec<i32>> {
+fn fn_with_test_output(arr: &str) -> Vec<Vec<i32>> {    
+    let scores  = read_input(arr);
+    let mut answers: Vec<Vec<i32>> = vec![];
+    for s in scores {
+        answers.push(breakingRecords(&s));
+    };
+    answers
+}
+
+fn read_input(arr: &str) -> Vec<Vec<i32>> {
     let lines: Vec<&str> = arr.split("\n").collect();
-    let mut output: Vec<Vec<i32>> = vec![];
-    
+    let mut output = vec![];
+
     for (i, line) in lines.iter().enumerate() {
         let str_arr: Vec<&str> = line.split(' ').collect();
         let mut i32_arr: Vec<i32> = vec![];
@@ -14,7 +23,7 @@ fn the_thing_itself(arr: &str) -> Vec<Vec<i32>> {
         };
 
         if i%2 == 1 {
-            output.push(breakingRecords(&i32_arr));
+            output.push(i32_arr);
         }
     }
     output
@@ -68,6 +77,6 @@ mod tests {
         let path = String::from("input/week1/breaking_the_records.txt");
         let input = fs::read_to_string(&path).expect("Should have been able to read the file");
 
-        assert_eq!(answer, the_thing_itself(&input));
+        assert_eq!(answer, fn_with_test_output(&input));
     }
 }

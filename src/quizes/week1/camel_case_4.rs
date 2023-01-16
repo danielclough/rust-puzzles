@@ -12,19 +12,22 @@
 // }
 
 pub fn test(arr: &str) {
-    let split: Vec<&str> = arr.split("\n").collect();
-
-    let mut lines: Vec<String> = vec![];
-    
-    for line in split {
-        lines.push(line.to_owned());
-    }
-
-    camel_case_4(lines);
+    _ = fn_with_test_output(arr);
 }
 
-fn camel_case_4(lines: Vec<String>) {
-    for line in lines {
+fn fn_with_test_output(arr: &str) -> Vec<String> {
+    let split: Vec<&str> = arr.split("\n").collect();
+    let mut answers: Vec<String> = vec![];
+    
+    for line in split {
+        answers.push(camel_case_4(line.to_owned()));
+    }
+
+    answers
+}
+
+fn camel_case_4(line: String) -> String {
+    let mut answer: String = String::from("");
         let line_parts:Vec<&str> = line.split(';').collect();
         // let str_final: &str;
         
@@ -44,23 +47,23 @@ fn camel_case_4(lines: Vec<String>) {
 
             // V variable
             if line_parts[1] == "V" {
-                println!("{}", lower_str);
+                answer = lower_str;
             } 
             // M method
             else if line_parts[1] == "M" {
-                println!("{}", &lower_str.replace(&['(',')'], ""));
+                let method_str = &lower_str.replace(&['(',')'], "");
+                answer = method_str.to_owned();
             }
             // C class
-            if line_parts[1] == "C" {
-                println!("{}", lower_str);
+            else if line_parts[1] == "C" {
+                answer = lower_str;
             } 
         }
         // C combine
-        else {
+        else if line_parts[0] == "C" {
             // create arr for mutating
             let mut word_arr = vec![];
             // create str for final
-            let mut combined:String;
             // split space seperated words
             words = line_parts[2].split(' ').collect();
             // V variable
@@ -74,8 +77,7 @@ fn camel_case_4(lines: Vec<String>) {
                         n+=1;
                     }
                 }
-                combined = word_arr.iter().cloned().collect::<String>();
-                println!("{}", combined);
+                answer = word_arr.iter().cloned().collect::<String>();
             } 
             // M method
             else if line_parts[1] == "M" {
@@ -88,22 +90,20 @@ fn camel_case_4(lines: Vec<String>) {
                         n+=1;
                     }
                 }
-                combined = word_arr.iter().cloned().collect::<String>();
-                combined.insert(combined.len(), '(');
-                combined.insert(combined.len(), ')');
-                println!("{}", combined);
+                answer = word_arr.iter().cloned().collect::<String>();
+                answer.insert(answer.len(), '(');
+                answer.insert(answer.len(), ')');
             }
             // C class
             else if line_parts[1] == "C" {
                 for word in words {
                     word_arr.push(caps_first_letter(&word));
                 }
-                combined = word_arr.iter().cloned().collect::<String>();
-                println!("{}", combined);
+                answer = word_arr.iter().cloned().collect::<String>();
             } 
         }
-    }
-    
+    println!("{}", answer);
+    answer
 }
 
 fn caps_first_letter(pt: &str) -> String {
@@ -133,4 +133,28 @@ fn make_lower(str: &str) -> String {
         }
     }
     new.to_owned()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::fs;
+
+    #[test]
+    fn does_it_work() {
+        let test_location = "input/week1/camel_case_4.txt";
+        let answer: Vec<String> = vec![
+            String::from("plastic cup"),
+            String::from("mobilePhone"),
+            String::from("CoffeeMachine"),
+            String::from("large software book"),
+            String::from("whiteSheetOfPaper()"),
+            String::from("picture frame"), 
+        ];
+        // load file or panic
+        let path = String::from(test_location);
+        let input = fs::read_to_string(&path).expect("Should have been able to read the file");
+        let my_answer = fn_with_test_output(&input);
+        assert_eq!(answer, my_answer);
+    }
 }
