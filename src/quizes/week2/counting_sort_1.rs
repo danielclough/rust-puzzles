@@ -1,8 +1,8 @@
-pub fn test(arr: &str) -> Vec<i32> {    
+pub fn test(arr: &str) -> Vec<Vec<i32>> {    
     let ints  = read_input(arr);
-    let mut answers: Vec<i32> = vec![];
+    let mut answers: Vec<Vec<i32>> = vec![];
     for arr in ints {
-        answers.push(counting_sort_1(&arr));
+        answers.push(countingSort(&arr));
     };
     answers
 }
@@ -25,10 +25,10 @@ fn read_input(arr: &str) -> Vec<Vec<i32>> {
     output
 }
 
-
-fn counting_sort_1(a: &[i32]) -> i32 {
-    println!("{:?}", a);
-    let output = 1;
+#[allow(non_snake_case)]
+fn countingSort(arr: &[i32]) -> Vec<i32> {
+    println!("{:?}", arr);
+    let output = vec![];
     output
 }
 
@@ -39,7 +39,12 @@ mod tests {
 
     #[test]
     fn does_it_work(){
-        let answer = vec![ 1,2,2 ];
+        let answer: Vec<Vec<i32>> = vec![
+            "0 2 0 2 0 0 1 0 1 2 1 0 1 1 0 0 2 0 1 0 1 2 1 1 1 3 0 2 0 0 2 0 3 3 1 0 0 0 0 2 2 1 1 1 2 0 2 0 1 0 1 0 0 1 0 0 2 1 0 1 1 1 0 1 0 1 0 2 1 3 2 0 0 2 1 2 1 0 2 2 1 2 1 2 1 1 2 2 0 3 2 1 1 0 1 1 1 0 2 2"
+                .split(" ").map(|x| x.to_owned().parse::<i32>().unwrap()).collect(),
+            "2 0 1 0 0 1 1 1 1 0 0 1 3 2 2 0 4 4 1 1 0 0 0 0 3 0 0 1 0 1 2 0 1 2 2 3 0 2 0 0 1 0 1 1 0 0 1 1 0 2 0 0 1 1 1 0 1 0 1 1 2 3 0 1 2 0 1 2 1 1 4 1 0 1 1 3 0 0 2 1 2 3 2 2 2 0 0 1 0 0 0 0 0 0 2 0 1 3 1 0"
+                .split(" ").map(|x| x.to_owned().parse::<i32>().unwrap()).collect(),
+        ];
 
         // load file or panic
         let path = String::from("input/week2/counting_sort_1.txt");
