@@ -1,8 +1,4 @@
-pub fn test(arr: &str) {
-    _ = fn_with_test_output(arr);
-}
-
-fn fn_with_test_output(arr: &str) -> Vec<Vec<i32>> {
+pub fn test(arr: &str) -> Vec<Vec<i32>> {
         let input_arr = read_input(arr);
         let mut output: Vec<Vec<i32>> = vec![];
     for input in input_arr {
@@ -94,6 +90,6 @@ mod tests {
         let path = String::from("input/week1/sparse_arrays.txt");
         let input = fs::read_to_string(&path).expect("Should have been able to read the file");
 
-        assert_eq!(answer, fn_with_test_output(&input));
+        assert_eq!(answer, test(&input));
     }
 }
