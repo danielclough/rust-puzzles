@@ -1,10 +1,6 @@
-pub fn test(arr: &str) -> Vec<i32> {    
+pub fn test(arr: &str) -> i32 {    
     let ints  = read_input(arr);
-    let mut answers: Vec<i32> = vec![];
-    for arr in ints {
-        answers.push(diagonal_difference(&arr));
-    };
-    answers
+    diagonalDifference(&ints)
 }
 
 fn read_input(arr: &str) -> Vec<Vec<i32>> {
@@ -18,18 +14,24 @@ fn read_input(arr: &str) -> Vec<Vec<i32>> {
             i32_arr.push(ele.parse::<i32>().expect("number here"));
         };
 
-        if i%2 == 1 {
+        if i != 0 {
             output.push(i32_arr);
         }
     }
     output
 }
 
-
-fn diagonal_difference(a: &[i32]) -> i32 {
-    println!("{:?}", a);
-    let output = 1;
-    output
+#[allow(non_snake_case)]
+fn diagonalDifference(arr: &[Vec<i32>]) -> i32 {
+    // println!("{:?}", arr);
+    let mut primary_diag = 0;
+    let mut secondary_diag = 0;
+    for (i,a) in arr.iter().enumerate() {
+        primary_diag = primary_diag + a[i];
+        secondary_diag = secondary_diag + a[a.len() - i - 1];
+    }
+    let output = secondary_diag - primary_diag;
+    output.abs()
 }
 
 #[cfg(test)]
@@ -39,7 +41,7 @@ mod tests {
 
     #[test]
     fn does_it_work(){
-        let answer = vec![ 1,2,2 ];
+        let answer = 15;
 
         // load file or panic
         let path = String::from("input/week2/diagonal_difference.txt");

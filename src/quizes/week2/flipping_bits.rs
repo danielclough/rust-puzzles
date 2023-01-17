@@ -49,7 +49,7 @@ fn flippingBits(n: i64) -> i64 {
     let formated_as_u32 = format!("{:032b}", n as u32);
     let mut flipped: String = String::from("");
 
-    for (i,s) in formated_as_u32.chars().enumerate() {
+    for (_,s) in formated_as_u32.chars().enumerate() {
         if s == '0' {
             flipped = format!("{}{}",flipped, "1");
         } else {

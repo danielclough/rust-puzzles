@@ -12,7 +12,7 @@ pub mod week2;
 use crate::quizes::week2::lonely_integer;
 use crate::quizes::week2::grading_students;
 use crate::quizes::week2::flipping_bits;
-// use crate::quizes::week2::diagonal_difference;
+use crate::quizes::week2::diagonal_difference;
 // use crate::quizes::week2::counting_sort_1;
 // use crate::quizes::week2::counting_valleys;
 // use crate::quizes::week2::pangrams;
@@ -32,7 +32,7 @@ pub fn match_quiz(quiz: Quiz) {
         "lonely_integer" => _ = lonely_integer::test(&quiz.input),
         "grading_students" => _ = grading_students::test(&quiz.input),
         "flipping_bits" => _ = flipping_bits::test(&quiz.input),
-        // "diagonal_difference" => _ = diagonal_difference::test(&quiz.input),
+        "diagonal_difference" => _ = diagonal_difference::test(&quiz.input),
         // "counting_sort_1" => _ = counting_sort_1::test(&quiz.input),
         // "counting_valleys" => _ = counting_valleys::test(&quiz.input),
         // "pangrams" => _ = pangrams::test(&quiz.input),
