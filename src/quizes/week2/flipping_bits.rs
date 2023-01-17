@@ -1,12 +1,13 @@
 pub fn test(arr: &str) -> Vec<Vec<i64>> {    
-    let ints  = read_input(arr);
+    let int_arr_arr  = read_input(arr);
     let mut answers_staging: Vec<i64> = vec![];
     let mut answers: Vec<Vec<i64>> = vec![];
-    for int_arr in ints {
+    for int_arr in int_arr_arr {
         for int64 in int_arr {
             answers_staging.push(flippingBits(int64));
         }
         answers.push(answers_staging.to_owned());
+        answers_staging = vec![];
     };
     answers
 }
@@ -45,8 +46,20 @@ fn read_input(arr: &str) -> Vec<Vec<i64>> {
 
 #[allow(non_snake_case)]
 fn flippingBits(n: i64) -> i64 {
-    println!("{:?}", n);
-    let output = 1;
+    let formated_as_u32 = format!("{:032b}", n as u32);
+    let mut flipped: String = String::from("");
+
+    for (i,s) in formated_as_u32.chars().enumerate() {
+        if s == '0' {
+            flipped = format!("{}{}",flipped, "1");
+        } else {
+            flipped = format!("{}{}",flipped, "0");
+        }
+    }
+
+    // println!("{}", );
+
+    let output: i64 = i64::from_str_radix(&flipped, 2).unwrap();
     output
 }
 
