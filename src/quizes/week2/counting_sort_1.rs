@@ -27,8 +27,10 @@ fn read_input(arr: &str) -> Vec<Vec<i32>> {
 
 #[allow(non_snake_case)]
 fn countingSort(arr: &[i32]) -> Vec<i32> {
-    println!("{:?}", arr);
-    let output = vec![];
+    let mut output = vec![0; 100];
+    for a in arr {
+        output[*a as usize] += 1
+    }
     output
 }
 
