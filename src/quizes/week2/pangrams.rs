@@ -1,35 +1,42 @@
-pub fn test(arr: &str) -> Vec<i32> {    
-    let ints  = read_input(arr);
-    let mut answers: Vec<i32> = vec![];
-    for arr in ints {
-        answers.push(pangrams(&arr));
+pub fn test(arr: &str) -> Vec<String> {    
+    let strings  = read_input(arr);
+    let mut answers: Vec<String> = vec![];
+    for string in strings {
+        answers.push(pangrams(&string));
     };
     answers
 }
 
-fn read_input(arr: &str) -> Vec<Vec<i32>> {
+fn read_input(arr: &str) -> Vec<String> {
     let lines: Vec<&str> = arr.split("\n").collect();
     let mut output = vec![];
-
-    for (i, line) in lines.iter().enumerate() {
-        let str_arr: Vec<&str> = line.split(' ').collect();
-        let mut i32_arr: Vec<i32> = vec![];
-        for ele in str_arr {
-            i32_arr.push(ele.parse::<i32>().expect("number here"));
-        };
-
-        if i%2 == 1 {
-            output.push(i32_arr);
-        }
+    
+    for line in lines {
+        output.push(line.to_string());
     }
     output
 }
 
 
-fn pangrams(a: &[i32]) -> i32 {
-    println!("{:?}", a);
-    let output = 1;
-    output
+fn pangrams(s: &str) -> String {
+    let alphabet: Vec<&str> = "abcdefghijklmnopqrstuvwxyz".split("").collect();
+    let mut count_arr = vec![0;alphabet.len()];
+    let str_arr: Vec<&str> = s.split("").collect();
+    let mut answer: String = String::from("pangram");
+    for str in str_arr {
+        for (i, alpha) in alphabet.iter().map(|x| x.to_owned()).enumerate() {
+            if str.to_lowercase() == alpha {
+                count_arr[i] += 1;
+            };
+        }
+    }
+    for c in &count_arr {
+        if c == &0 {
+            answer = String::from("not pangram");
+            break;
+        }
+    }
+    answer
 }
 
 #[cfg(test)]
@@ -39,7 +46,10 @@ mod tests {
 
     #[test]
     fn does_it_work(){
-        let answer = vec![ 1,2,2 ];
+        let answer = vec![ 
+            String::from("pangram"),
+            String::from("not pangram"),
+           ];
 
         // load file or panic
         let path = String::from("input/week2/pangrams.txt");
