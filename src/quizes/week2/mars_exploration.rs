@@ -1,35 +1,41 @@
 pub fn test(arr: &str) -> Vec<i32> {    
-    let ints  = read_input(arr);
+    let strings  = read_input(arr);
     let mut answers: Vec<i32> = vec![];
-    for arr in ints {
-        answers.push(mars_exploration(&arr));
+    for str in strings {
+        answers.push(marsExploration(&str));
     };
     answers
 }
 
-fn read_input(arr: &str) -> Vec<Vec<i32>> {
+fn read_input(arr: &str) -> Vec<&str> {
     let lines: Vec<&str> = arr.split("\n").collect();
     let mut output = vec![];
 
-    for (i, line) in lines.iter().enumerate() {
-        let str_arr: Vec<&str> = line.split(' ').collect();
-        let mut i32_arr: Vec<i32> = vec![];
-        for ele in str_arr {
-            i32_arr.push(ele.parse::<i32>().expect("number here"));
-        };
-
-        if i%2 == 1 {
-            output.push(i32_arr);
-        }
+    for line in lines {
+        output.push(line);
     }
     output
 }
 
-
-fn mars_exploration(a: &[i32]) -> i32 {
-    println!("{:?}", a);
-    let output = 1;
-    output
+#[allow(non_snake_case)]
+fn marsExploration(s: &str) -> i32 {
+    let str_arr: Vec<&str> = s.split("").collect();
+    let mut deranged = 0;
+    for (i, str) in str_arr.iter().filter(|&x| !x.is_empty()).enumerate() {
+        if i%3 == 0 || i%3 == 2 {
+            if str != &"S" {
+                deranged += 1;
+    println!("NotS {}", str);
+            }
+        }
+        else if i%3 == 1 {
+            if str != &"O" {
+                deranged += 1;
+    println!("NotO {}", str);
+            }
+        }
+    }
+    deranged
 }
 
 #[cfg(test)]
@@ -39,7 +45,7 @@ mod tests {
 
     #[test]
     fn does_it_work(){
-        let answer = vec![ 1,2,2 ];
+        let answer = vec![ 3,1,0 ];
 
         // load file or panic
         let path = String::from("input/week2/mars_exploration.txt");

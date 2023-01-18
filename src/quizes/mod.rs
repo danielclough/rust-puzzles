@@ -16,7 +16,7 @@ use crate::quizes::week2::diagonal_difference;
 use crate::quizes::week2::counting_sort_1;
 use crate::quizes::week2::counting_valleys;
 use crate::quizes::week2::pangrams;
-// use crate::quizes::week2::mars_exploration;
+use crate::quizes::week2::mars_exploration;
 
 pub fn match_quiz(quiz: Quiz) {
     println!("Quiz:\n\t{}\n", &quiz.name);
@@ -36,7 +36,7 @@ pub fn match_quiz(quiz: Quiz) {
         "counting_sort_1" => _ = counting_sort_1::test(&quiz.input),
         "counting_valleys" => _ = counting_valleys::test(&quiz.input),
         "pangrams" => _ = pangrams::test(&quiz.input),
-        // "mars_exploration" => _ = mars_exploration::test(&quiz.input),
+        "mars_exploration" => _ = mars_exploration::test(&quiz.input),
         _ => println!("Need to add match!"),
     }
 }
