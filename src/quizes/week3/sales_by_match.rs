@@ -30,10 +30,36 @@ fn read_input(arr: &str) -> Vec<Input> {
     output
 }
 
+#[derive(Debug)]
+struct SockType {
+    id: i32,
+    found: i32
+}
+
 #[allow(non_snake_case)]
 fn sockMerchant(n: i32, ar: &[i32]) -> i32 {
-    println!("{} {:?}", n, ar);
-    4
+    _ = n;
+    let mut socktypes: Vec<SockType> = Vec::new();
+    for a in ar {
+        let mut counter = 0;
+        for (_, s) in socktypes.iter_mut().enumerate() {
+            println!("{:?} {:?}", a, s.id);
+            if &s.id == a {
+                s.found += 1;
+            } else {
+                counter += 1;
+            };
+        }
+        
+        if counter == socktypes.len() || socktypes.len() == 0 {
+            socktypes.push(SockType { id: *a, found: 1});
+        }
+    }
+    let mut pairs = 0;
+    for s in socktypes {
+        pairs += s.found / 2;
+    }
+    pairs
 }
 
 #[cfg(test)]

@@ -28,6 +28,43 @@ use crate::quizes::week3::maximum_perimeter_triangle;
 use crate::quizes::week3::zig_zag_sequence;
 use crate::quizes::week3::drawing_book;
 
+// pub mod week4;
+// use crate::quizes::week4::picking_numbers;
+// use crate::quizes::week4::left_rotation;
+// use crate::quizes::week4::number_line_jumps;
+// use crate::quizes::week4::separate_the_numbers;
+// use crate::quizes::week4::closest_numbers;
+// use crate::quizes::week4::tower_breakers;
+// use crate::quizes::week4::minimum_absolute_difference_in_an_array;
+// use crate::quizes::week4::caesar_cipher;
+
+// pub mod week5;
+// use crate::quizes::week5::max_min;
+// use crate::quizes::week5::strong_password;
+// use crate::quizes::week5::dynamic_array;
+// use crate::quizes::week5::smart_number_2;
+// use crate::quizes::week5::missing_numbers;
+// use crate::quizes::week5::the_full_counting_sort;
+// use crate::quizes::week5::grid_challenge;
+// use crate::quizes::week5::sansa_and_xor;
+
+// pub mod week6;
+// use crate::quizes::week6::prime_dates;
+// use crate::quizes::week6::sherlock_and_array;
+// use crate::quizes::week6::misère_nim;
+// use crate::quizes::week6::gaming_array_1;
+// use crate::quizes::week6::forming_a_magic_square;
+// use crate::quizes::week6::recursive_digit_sum;
+// use crate::quizes::week6::counter_game;
+// use crate::quizes::week6::sum_vs_xor;
+
+// pub mod week7;
+// use crate::quizes::week7::climbing_the_leaderboard;
+// use crate::quizes::week7::the_bomberman_game;
+// use crate::quizes::week7::new_year_chaos;
+// use crate::quizes::week7::goodland_electricity;
+// use crate::quizes::week7::sherlock_and_the_valid_string;
+
 pub fn match_quiz(quiz: Quiz) {
     println!("Quiz:\n\t{}\n", &quiz.name);
 

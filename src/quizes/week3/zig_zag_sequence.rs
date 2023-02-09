@@ -1,3 +1,15 @@
+// use std::io;
+// fn main() {
+//     let lines = readlines();
+//     test(&lines);
+// }
+// fn readlines() -> String {
+//     use io::prelude::*;
+//     let stdin = io::stdin();
+//     let v: Vec<String> = stdin.lock().lines().map(|x| x.unwrap()).collect();
+//     v.join("\n")
+// }
+
 pub fn test(arr: &str) -> Vec<String> {    
     let inputs  = read_input(arr);
     let mut answers: Vec<String> = vec![];
@@ -40,11 +52,45 @@ fn read_input(arr: &str) -> Vec<Input> {
     output
 }
 
-fn zig_zag_sequence(input: Input) -> String {
+fn sort_asc(vec: &mut Vec<i32>) -> Vec<i32> {
+    for i in 0..vec.len() {
+        for j in 0..vec.len()-i-1 {
+            if j > j+1 {
+                vec.swap(j,j+1)
+            }
+        }
+    }
+    vec.to_owned()
+}
+fn sort_dec(vec: &mut Vec<i32>) -> Vec<i32> {
+    for i in 0..vec.len() {
+        for j in 0..vec.len()-i-1 {
+            if j < j+1 {
+                vec.swap(j,j+1)
+            }
+        }
+    }
+    vec.to_owned()
+}
 
-    let output = String::from("");
-    println!("{} {} {:?}", input.t, input.n, input.a);
-    output
+fn zig_zag_sequence(input: Input) -> String {
+    let asc = sort_asc(&mut input.a.to_owned());
+    let dec = sort_dec(&mut input.a.to_owned());
+    let half1 = input.a.len()/2;
+    let half2 = if input.a.len() % 2 == 0 {
+        input.a.len()/2
+    } else {
+        (input.a.len()/2) + 1
+    };
+    let mut combined = asc[..half1].to_owned();
+    combined.append(&mut dec[..half2].to_owned());
+    let mut output: Vec<String> = vec![];
+    for elem in combined {
+        output.push(elem.to_string())
+    };
+    let output_str = format!("{}", output.join(" "));
+    print!("{}",output_str);
+    output_str
 }
 
 #[cfg(test)]

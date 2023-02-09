@@ -13,34 +13,64 @@ struct Input {
     d: i32,
     m: i32,
 }
+impl Input {
+    fn new() -> Input {
+        Input {ar: vec![], d: 0, m: 0}
+    }
+}
 
-// line1 == n squares of chocolate bar
-// line2 == i32_arr
-// line3 == d (birth day) and m (birth month)
 fn read_input(arr: &str) -> Vec<Input> {
     let lines: Vec<&str> = arr.split("\n").collect();
-    let mut output = vec![Input {ar: vec![], d: 0, m: 0}];
+    let mut output: Vec<Input> = vec![Input::new()];
     let mut output_n = 0;
 
     for (i, line) in lines.iter().enumerate() {
-        if i % 4 == 1 {
+        if i % 3 == 1 {
             output[output_n].ar = line.split(" ").map(|x| x.parse::<i32>().expect("number")).collect();
         }
-        else if i % 4 == 2 {
-            output[output_n].d = line.parse::<i32>().expect("number");
-        }
-        else if i % 4 == 3 {
-            output[output_n].m = line.parse::<i32>().expect("number");
+        else if i % 3 == 2 {
+            let tmp: Vec<i32> = line.split(" ").map(|x| x.parse::<i32>().expect("number")).collect();
+            output[output_n].d = tmp[0];
+            output[output_n].m = tmp[1];
             output_n += 1;
+            if i < lines.len() -1 {
+                output.push(Input::new());
+            }
         }
     }
     output
 }
 
-#[allow(non_snake_case)]
+// line1 == n squares of chocolate bar
+// line2 == i32_arr
+// line3 == d (birth day) and m (birth month)
+
+// length of segment == birth month
+// sum of ints on squares == birth day.
+
 fn birthday(s: &[i32], d: i32, m: i32) -> i32 {
+    let mut answer = 0;
     println!("{} {} {:?}", d, m, s);
-    5
+    // divide s into parts with m length
+    for i in 0..s.len() {
+        let mut collector: Vec<i32> = vec![];
+        let n: usize = i+m as usize;
+        if n <= s.len() {
+            for j in i..n {
+                collector.push(s[j] as i32);
+            }
+            let mut sum = 0;
+            for k in collector {
+                sum += k;
+            }
+            // IF sum of parts == d => answer++
+            if sum == d {
+                answer += 1;
+            }
+        }
+    }
+    println!("{:?}", answer);
+    answer
 }
 
 #[cfg(test)]

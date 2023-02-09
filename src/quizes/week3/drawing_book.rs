@@ -38,8 +38,36 @@ fn read_input(arr: &str) -> Vec<Input> {
 // counting starts at 1 or n
 #[allow(non_snake_case)]
 fn pageCount(n: i32, p: i32) -> i32 {
-    println!("{} {}", n, p);
-    3
+    let book_length = n;
+    let book: Vec<i32> = (0..n).collect();
+    let start_from_back = if book_length as f32-p as f32 >= book_length as f32/2 as f32 {
+        false
+    } else { true };
+
+    let mut current = (0,1);
+    let mut count = 0;
+    if start_from_back {
+        // weirdness for page only starts on front rule
+        if book_length % 2 == 0 {
+            // even pages start on black back
+            current = (book_length,book_length+1);
+        } else {
+            // odd pages start on two readable pages
+            current = (book_length-1,book_length);
+        }
+        while current.0 != p && current.1 != p {
+            current = (current.0-2,current.1-2);
+            count += 1;
+        }
+    } else {
+        while current.0 != p && current.1 != p {
+            current = (current.0+2,current.1+2);
+            count += 1;
+        }
+    }
+    
+    println!("{:?} {} {} {}", current, count, n, p);
+    count
 }
 
 #[cfg(test)]
@@ -49,7 +77,7 @@ mod tests {
 
     #[test]
     fn does_it_work(){
-        let answer = vec![ 1,0 ];
+        let answer = vec![ 1,0,1,1 ];
 
         // load file or panic
         let path = String::from("input/week3/drawing_book.txt");
