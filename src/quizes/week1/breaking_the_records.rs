@@ -1,9 +1,9 @@
-pub fn test(arr: &str) -> Vec<Vec<i32>> {    
-    let scores  = read_input(arr);
+pub fn test(arr: &str) -> Vec<Vec<i32>> {
+    let scores = read_input(arr);
     let mut answers: Vec<Vec<i32>> = vec![];
     for s in scores {
         answers.push(breakingRecords(&s));
-    };
+    }
     answers
 }
 
@@ -16,9 +16,9 @@ fn read_input(arr: &str) -> Vec<Vec<i32>> {
         let mut i32_arr: Vec<i32> = vec![];
         for ele in str_arr {
             i32_arr.push(ele.parse::<i32>().expect("number here"));
-        };
+        }
 
-        if i%2 == 1 {
+        if i % 2 == 1 {
             output.push(i32_arr);
         }
     }
@@ -32,29 +32,27 @@ fn breakingRecords(scores: &[i32]) -> Vec<i32> {
     let mut min = 0;
     let mut current_max = 0;
     let mut max = 0;
-    for (i,score) in scores.iter().enumerate() {
+    for (i, score) in scores.iter().enumerate() {
         if i == 0 {
             current_min = score.to_owned();
             current_max = score.to_owned();
-        }
-        else if score < &current_min {
-            min+=1;
+        } else if score < &current_min {
+            min += 1;
             current_min = score.to_owned();
-    println!("min: {} {} {}",score,min,current_min);
+            println!("min: {} {} {}", score, min, current_min);
         } else if score > &current_max {
-            max+=1;
+            max += 1;
             current_max = score.to_owned();
-    println!("max: {} {} {}",score,max,current_max);
+            println!("max: {} {} {}", score, max, current_max);
         }
     }
     let mut return_vec: Vec<i32> = vec![];
     return_vec.push(max);
     return_vec.push(min);
 
-    println!("{} {}",max,min);
-    println!("{:?}",return_vec);
+    println!("{} {}", max, min);
+    println!("{:?}", return_vec);
     return_vec
-
 }
 
 #[cfg(test)]
@@ -64,11 +62,8 @@ mod tests {
 
     #[test]
     fn does_it_work() {
-        let answer: Vec<Vec<i32>> = vec![
-            vec![2, 4],
-            vec![4, 0],
-        ];
-        
+        let answer: Vec<Vec<i32>> = vec![vec![2, 4], vec![4, 0]];
+
         // load file or panic
         let path = String::from("input/week1/breaking_the_records.txt");
         let input = fs::read_to_string(&path).expect("Should have been able to read the file");

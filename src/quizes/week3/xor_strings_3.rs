@@ -10,7 +10,7 @@
 //         }
 //         if i % 2 == 1 {
 //             output_n += 1;
-//         }       
+//         }
 //     }
 //     for input in output {
 //         xor_strings_3(input);
@@ -23,12 +23,12 @@
 //     v
 // }
 
-pub fn test(arr: &str) -> Vec<String> {    
-    let inputs  = read_input(arr);
+pub fn test(arr: &str) -> Vec<String> {
+    let inputs = read_input(arr);
     let mut answers: Vec<String> = vec![];
     for input in inputs {
         answers.push(xor_strings_3(input));
-    };
+    }
     answers
 }
 
@@ -43,7 +43,7 @@ fn read_input(arr: &str) -> Vec<Vec<&str>> {
         }
         if i % 2 == 1 {
             output_n += 1;
-        }       
+        }
     }
     output
 }
@@ -55,7 +55,14 @@ fn xor_strings_3(input: Vec<&str>) -> String {
     for i in 0..input[0].len() {
         collector.push(v0[i] ^ v1[i]);
     }
-    let answer = format!("{}", collector.iter().map(|x| x.to_string()).collect::<Vec<String>>().join(""));
+    let answer = format!(
+        "{}",
+        collector
+            .iter()
+            .map(|x| x.to_string())
+            .collect::<Vec<String>>()
+            .join("")
+    );
     println!("{}", answer);
     answer
 }
@@ -66,16 +73,13 @@ mod tests {
     use std::fs;
 
     #[test]
-    fn does_it_work(){
-        let answer = vec![ 
-            "10000",
-        ];
+    fn does_it_work() {
+        let answer = vec!["10000"];
 
         // load file or panic
         let path = String::from("input/week3/xor_strings_3.txt");
         let input = fs::read_to_string(&path).expect("Should have been able to read the file");
-        
+
         assert_eq!(answer, test(&input));
-        
     }
 }

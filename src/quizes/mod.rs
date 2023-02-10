@@ -1,32 +1,32 @@
 use crate::Quiz;
 pub mod week1;
-use crate::quizes::week1::plus_minus;
-use crate::quizes::week1::mini_max_sum;
-use crate::quizes::week1::time_conversion;
 use crate::quizes::week1::breaking_the_records;
 use crate::quizes::week1::camel_case_4;
 use crate::quizes::week1::divisible_sum_pairs;
+use crate::quizes::week1::mini_max_sum;
+use crate::quizes::week1::plus_minus;
 use crate::quizes::week1::sparse_arrays;
+use crate::quizes::week1::time_conversion;
 
 pub mod week2;
-use crate::quizes::week2::lonely_integer;
-use crate::quizes::week2::grading_students;
-use crate::quizes::week2::flipping_bits;
-use crate::quizes::week2::diagonal_difference;
 use crate::quizes::week2::counting_sort_1;
 use crate::quizes::week2::counting_valleys;
-use crate::quizes::week2::pangrams;
+use crate::quizes::week2::diagonal_difference;
+use crate::quizes::week2::flipping_bits;
+use crate::quizes::week2::grading_students;
+use crate::quizes::week2::lonely_integer;
 use crate::quizes::week2::mars_exploration;
+use crate::quizes::week2::pangrams;
 
 pub mod week3;
+use crate::quizes::week3::drawing_book;
+use crate::quizes::week3::maximum_perimeter_triangle;
+use crate::quizes::week3::migratory_birds;
 use crate::quizes::week3::permuting_two_arrays;
+use crate::quizes::week3::sales_by_match;
 use crate::quizes::week3::subarray_division_2;
 use crate::quizes::week3::xor_strings_3;
-use crate::quizes::week3::sales_by_match;
-use crate::quizes::week3::migratory_birds;
-use crate::quizes::week3::maximum_perimeter_triangle;
 use crate::quizes::week3::zig_zag_sequence;
-use crate::quizes::week3::drawing_book;
 
 // pub mod week4;
 // use crate::quizes::week4::picking_numbers;

@@ -1,11 +1,9 @@
 pub fn test(arr: &str) -> Vec<String> {
     let split: Vec<&str> = arr.split("\n").collect();
     let mut answers: Vec<String> = vec![];
-    
+
     for ele in split {
-        answers.push(
-            timeConversion(&ele)
-        )
+        answers.push(timeConversion(&ele))
     }
     answers
 }
@@ -24,7 +22,7 @@ fn timeConversion(s: &str) -> String {
         } else {
             hours = hours_i32.to_string();
             if hours.len() == 1 {
-                hours = format!("{}{}",'0', hours)
+                hours = format!("{}{}", '0', hours)
             }
         }
 
@@ -34,16 +32,16 @@ fn timeConversion(s: &str) -> String {
         if hours_i32 == 24 {
             hours = String::from("12");
         } else {
-            hours = hours_i32.to_string();    
+            hours = hours_i32.to_string();
             if hours.len() == 1 {
-                hours = format!("{}{}",'0', hours)
+                hours = format!("{}{}", '0', hours)
             }
         }
 
         seconds_str = time_split[2][0..2].parse::<String>().unwrap();
     }
     let time_str = format!("{hours}:{minutes}:{seconds_str}");
-    println!("{:?}",time_str);
+    println!("{:?}", time_str);
     time_str
 }
 
@@ -61,7 +59,7 @@ mod tests {
             String::from("00:40:22"),
             String::from("12:40:22"),
             String::from("00:00:01"),
-            String::from("12:00:01"), 
+            String::from("12:00:01"),
         ];
         // load file or panic
         let path = String::from(test_location);

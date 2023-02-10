@@ -1,5 +1,5 @@
-pub fn test(arr: &str) -> Vec<Vec<i32>> {    
-    let ints  = read_input(arr);
+pub fn test(arr: &str) -> Vec<Vec<i32>> {
+    let ints = read_input(arr);
     let mut answers: Vec<Vec<i32>> = vec![];
     answers.push(gradingStudents(&ints));
     answers
@@ -31,13 +31,11 @@ fn gradingStudents(grades: &[i32]) -> Vec<i32> {
     for grade in grades {
         if grade < &38 {
             final_grades.push(*grade);
-        }
-        else {
+        } else {
             let rounded = round_up_5(*grade);
             if (rounded - grade) < 3 {
                 final_grades.push(rounded);
-            }
-            else {
+            } else {
                 final_grades.push(*grade);
             }
         }
@@ -61,14 +59,13 @@ mod tests {
     use std::fs;
 
     #[test]
-    fn does_it_work(){
-        let answer = vec![vec![75,67,40,33]];
+    fn does_it_work() {
+        let answer = vec![vec![75, 67, 40, 33]];
 
         // load file or panic
         let path = String::from("input/week2/grading_students.txt");
         let input = fs::read_to_string(&path).expect("Should have been able to read the file");
-        
+
         assert_eq!(answer, test(&input));
-        
     }
 }

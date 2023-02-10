@@ -1,9 +1,9 @@
-pub fn test(arr: &str) -> Vec<Vec<i32>> {    
-    let ints  = read_input(arr);
+pub fn test(arr: &str) -> Vec<Vec<i32>> {
+    let ints = read_input(arr);
     let mut answers: Vec<Vec<i32>> = vec![];
     for arr in ints {
         answers.push(countingSort(&arr));
-    };
+    }
     answers
 }
 
@@ -16,9 +16,9 @@ fn read_input(arr: &str) -> Vec<Vec<i32>> {
         let mut i32_arr: Vec<i32> = vec![];
         for ele in str_arr {
             i32_arr.push(ele.parse::<i32>().expect("number here"));
-        };
+        }
 
-        if i%2 == 1 {
+        if i % 2 == 1 {
             output.push(i32_arr);
         }
     }
@@ -40,7 +40,7 @@ mod tests {
     use std::fs;
 
     #[test]
-    fn does_it_work(){
+    fn does_it_work() {
         let answer: Vec<Vec<i32>> = vec![
             "0 2 0 2 0 0 1 0 1 2 1 0 1 1 0 0 2 0 1 0 1 2 1 1 1 3 0 2 0 0 2 0 3 3 1 0 0 0 0 2 2 1 1 1 2 0 2 0 1 0 1 0 0 1 0 0 2 1 0 1 1 1 0 1 0 1 0 2 1 3 2 0 0 2 1 2 1 0 2 2 1 2 1 2 1 1 2 2 0 3 2 1 1 0 1 1 1 0 2 2"
                 .split(" ").map(|x| x.to_owned().parse::<i32>().unwrap()).collect(),
@@ -51,8 +51,7 @@ mod tests {
         // load file or panic
         let path = String::from("input/week2/counting_sort_1.txt");
         let input = fs::read_to_string(&path).expect("Should have been able to read the file");
-        
+
         assert_eq!(answer, test(&input));
-        
     }
 }

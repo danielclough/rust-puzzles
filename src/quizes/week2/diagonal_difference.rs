@@ -1,5 +1,5 @@
-pub fn test(arr: &str) -> i32 {    
-    let ints  = read_input(arr);
+pub fn test(arr: &str) -> i32 {
+    let ints = read_input(arr);
     diagonalDifference(&ints)
 }
 
@@ -12,7 +12,7 @@ fn read_input(arr: &str) -> Vec<Vec<i32>> {
         let mut i32_arr: Vec<i32> = vec![];
         for ele in str_arr {
             i32_arr.push(ele.parse::<i32>().expect("number here"));
-        };
+        }
 
         if i != 0 {
             output.push(i32_arr);
@@ -26,7 +26,7 @@ fn diagonalDifference(arr: &[Vec<i32>]) -> i32 {
     // println!("{:?}", arr);
     let mut primary_diag = 0;
     let mut secondary_diag = 0;
-    for (i,a) in arr.iter().enumerate() {
+    for (i, a) in arr.iter().enumerate() {
         primary_diag = primary_diag + a[i];
         secondary_diag = secondary_diag + a[a.len() - i - 1];
     }
@@ -40,14 +40,13 @@ mod tests {
     use std::fs;
 
     #[test]
-    fn does_it_work(){
+    fn does_it_work() {
         let answer = 15;
 
         // load file or panic
         let path = String::from("input/week2/diagonal_difference.txt");
         let input = fs::read_to_string(&path).expect("Should have been able to read the file");
-        
+
         assert_eq!(answer, test(&input));
-        
     }
 }

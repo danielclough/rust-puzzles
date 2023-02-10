@@ -10,42 +10,50 @@
 //     v.join("\n")
 // }
 
-pub fn test(arr: &str) -> Vec<String> {    
-    let inputs  = read_input(arr);
+pub fn test(arr: &str) -> Vec<String> {
+    let inputs = read_input(arr);
     let mut answers: Vec<String> = vec![];
     for input in inputs {
         answers.push(zig_zag_sequence(input));
-    };
+    }
     answers
 }
 
 #[derive(Clone)]
 struct Input {
-// t == n_of_tests
+    // t == n_of_tests
     t: i32,
-// n == lenght of arr_a
+    // n == lenght of arr_a
     n: i32,
-// a == array of 132
+    // a == array of 132
     a: Vec<i32>,
 }
 
 fn read_input(arr: &str) -> Vec<Input> {
     let lines: Vec<&str> = arr.split("\n").collect();
-    let mut output: Vec<Input> = vec![Input {t:0,n:0,a:vec![]};lines.len()/3];
+    let mut output: Vec<Input> = vec![
+        Input {
+            t: 0,
+            n: 0,
+            a: vec![]
+        };
+        lines.len() / 3
+    ];
     let mut output_i = 0;
 
     for (i, line) in lines.iter().enumerate() {
         if i % 3 == 0 {
             // t == n_of_tests
             output[output_i].t = line.parse::<i32>().expect("number");
-        }
-        else if i % 3 == 1 {
+        } else if i % 3 == 1 {
             // n == lenght of arr_a
             output[output_i].n = line.parse::<i32>().expect("number");
-        }
-        else if i % 3 == 2 {
+        } else if i % 3 == 2 {
             // a == array of 132
-            output[output_i].a = line.split(" ").map(|x| x.parse::<i32>().expect("number")).collect();
+            output[output_i].a = line
+                .split(" ")
+                .map(|x| x.parse::<i32>().expect("number"))
+                .collect();
             output_i += 1;
         }
     }
@@ -54,9 +62,9 @@ fn read_input(arr: &str) -> Vec<Input> {
 
 fn sort_asc(vec: &mut Vec<i32>) -> Vec<i32> {
     for i in 0..vec.len() {
-        for j in 0..vec.len()-i-1 {
-            if j > j+1 {
-                vec.swap(j,j+1)
+        for j in 0..vec.len() - i - 1 {
+            if j > j + 1 {
+                vec.swap(j, j + 1)
             }
         }
     }
@@ -64,9 +72,9 @@ fn sort_asc(vec: &mut Vec<i32>) -> Vec<i32> {
 }
 fn sort_dec(vec: &mut Vec<i32>) -> Vec<i32> {
     for i in 0..vec.len() {
-        for j in 0..vec.len()-i-1 {
-            if j < j+1 {
-                vec.swap(j,j+1)
+        for j in 0..vec.len() - i - 1 {
+            if j < j + 1 {
+                vec.swap(j, j + 1)
             }
         }
     }
@@ -76,20 +84,20 @@ fn sort_dec(vec: &mut Vec<i32>) -> Vec<i32> {
 fn zig_zag_sequence(input: Input) -> String {
     let asc = sort_asc(&mut input.a.to_owned());
     let dec = sort_dec(&mut input.a.to_owned());
-    let half1 = input.a.len()/2;
+    let half1 = input.a.len() / 2;
     let half2 = if input.a.len() % 2 == 0 {
-        input.a.len()/2
+        input.a.len() / 2
     } else {
-        (input.a.len()/2) + 1
+        (input.a.len() / 2) + 1
     };
     let mut combined = asc[..half1].to_owned();
     combined.append(&mut dec[..half2].to_owned());
     let mut output: Vec<String> = vec![];
     for elem in combined {
         output.push(elem.to_string())
-    };
+    }
     let output_str = format!("{}", output.join(" "));
-    print!("{}",output_str);
+    print!("{}", output_str);
     output_str
 }
 
@@ -99,14 +107,13 @@ mod tests {
     use std::fs;
 
     #[test]
-    fn does_it_work(){
-        let answer = vec![ String::from("1 2 3 7 6 5 4") ];
+    fn does_it_work() {
+        let answer = vec![String::from("1 2 3 7 6 5 4")];
 
         // load file or panic
         let path = String::from("input/week3/zig_zag_sequence.txt");
         let input = fs::read_to_string(&path).expect("Should have been able to read the file");
-        
+
         assert_eq!(answer, test(&input));
-        
     }
 }

@@ -1,9 +1,9 @@
-pub fn test(arr: &str) -> Vec<i32> {    
-    let ints  = read_input(arr);
+pub fn test(arr: &str) -> Vec<i32> {
+    let ints = read_input(arr);
     let mut answers: Vec<i32> = vec![];
     for arr in ints {
         answers.push(lonelyinteger(&arr));
-    };
+    }
     answers
 }
 
@@ -16,9 +16,9 @@ fn read_input(arr: &str) -> Vec<Vec<i32>> {
         let mut i32_arr: Vec<i32> = vec![];
         for ele in str_arr {
             i32_arr.push(ele.parse::<i32>().expect("number here"));
-        };
+        }
 
-        if i%2 == 1 {
+        if i % 2 == 1 {
             output.push(i32_arr);
         }
     }
@@ -35,13 +35,21 @@ struct Has {
 fn lonelyinteger(a: &[i32]) -> i32 {
     let mut a_has: Vec<Has> = vec![];
     for int_from_a in a {
-        if a_has.contains(&Has {int: int_from_a.to_owned(), n: 1}) {
-            let index = a_has.iter().position(|x| x.int == int_from_a.to_owned()).unwrap();
+        if a_has.contains(&Has {
+            int: int_from_a.to_owned(),
+            n: 1,
+        }) {
+            let index = a_has
+                .iter()
+                .position(|x| x.int == int_from_a.to_owned())
+                .unwrap();
             a_has[index].n += 1;
             println!("Index: {}", index);
-        }
-        else {
-            a_has.push(Has {int: int_from_a.to_owned(), n: 1});
+        } else {
+            a_has.push(Has {
+                int: int_from_a.to_owned(),
+                n: 1,
+            });
             println!("a_has: {:?}", a_has);
         }
     }
@@ -56,14 +64,13 @@ mod tests {
     use std::fs;
 
     #[test]
-    fn does_it_work(){
-        let answer = vec![ 1,2,2 ];
+    fn does_it_work() {
+        let answer = vec![1, 2, 2];
 
         // load file or panic
         let path = String::from("input/week2/lonely_integer.txt");
         let input = fs::read_to_string(&path).expect("Should have been able to read the file");
-        
+
         assert_eq!(answer, test(&input));
-        
     }
 }

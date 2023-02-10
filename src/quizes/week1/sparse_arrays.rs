@@ -1,9 +1,9 @@
 pub fn test(arr: &str) -> Vec<Vec<i32>> {
-        let input_arr = read_input(arr);
-        let mut output: Vec<Vec<i32>> = vec![];
+    let input_arr = read_input(arr);
+    let mut output: Vec<Vec<i32>> = vec![];
     for input in input_arr {
         output.push(matchingStrings(&input.strings, &input.queries));
-    };
+    }
     output
 }
 
@@ -30,25 +30,25 @@ fn read_input(arr: &str) -> Vec<Input> {
         if left_in_cycle == -1 {
             n = line.parse::<i32>().expect("i32 here");
             left_in_cycle = n;
-        }
-        else if n > 0 {
+        } else if n > 0 {
             strings.push(line.to_string());
             n -= 1;
             if n == 0 {
                 left_in_cycle = -2;
             }
-        }
-        else if left_in_cycle == -2 {
+        } else if left_in_cycle == -2 {
             q = line.parse::<i32>().expect("i32 here");
             left_in_cycle = q;
-        }
-        else if q > 0 {
+        } else if q > 0 {
             queries.push(line.to_string());
             q -= 1;
             if q == 0 {
                 left_in_cycle = -1;
                 // call function at end of cycle
-                input_arr.push(Input {strings: strings.to_owned() , queries: queries.to_owned()});
+                input_arr.push(Input {
+                    strings: strings.to_owned(),
+                    queries: queries.to_owned(),
+                });
                 strings = vec![];
                 queries = vec![];
             }
@@ -57,19 +57,19 @@ fn read_input(arr: &str) -> Vec<Input> {
     input_arr
 }
 
-#[allow (non_snake_case)]
+#[allow(non_snake_case)]
 fn matchingStrings(strings: &[String], queries: &[String]) -> Vec<i32> {
     let length = queries.len();
-    let mut return_vec:Vec<i32> = vec![0; length];
+    let mut return_vec: Vec<i32> = vec![0; length];
     for (i, q) in queries.iter().enumerate() {
         for s in strings {
             if q == s {
                 return_vec[i] += 1;
                 // println!("{:?}{:?} {} {}",q, s, i, j);
-            }                        
+            }
         }
     }
-    println!("{:?}",return_vec);
+    println!("{:?}", return_vec);
     return_vec
 }
 
@@ -80,12 +80,8 @@ mod tests {
 
     #[test]
     fn does_it_work() {
-        let answer: Vec<Vec<i32>> = vec![
-            vec![2, 1, 0],
-            vec![1, 0, 1],
-            vec![1, 3, 4, 3, 2],
-        ];
-        
+        let answer: Vec<Vec<i32>> = vec![vec![2, 1, 0], vec![1, 0, 1], vec![1, 3, 4, 3, 2]];
+
         // load file or panic
         let path = String::from("input/week1/sparse_arrays.txt");
         let input = fs::read_to_string(&path).expect("Should have been able to read the file");

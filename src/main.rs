@@ -1,14 +1,13 @@
-use std::{env,fs,path::Path,ffi::OsStr};
 use dotenv::dotenv;
+use std::{env, ffi::OsStr, fs, path::Path};
 
 use puzzles::{test, Quiz};
 
 fn main() {
-    let input;
     let week: String;
     let path: String;
     let name: String;
-    
+
     // check args for current path
     // check .env if not found
     let args: Vec<String> = env::args().collect();
@@ -16,7 +15,7 @@ fn main() {
         dotenv().expect("Failed to load .env file");
         let filename = env::var("CURRENT_FILE").unwrap();
         let filename_parts: Vec<&str> = filename.split('.').collect();
-        name = filename_parts[0].to_owned().clone();
+        name = filename_parts[0].to_owned();
         week = env::var("CURRENT_WEEK").unwrap();
         path = format!("input/{week}/{name}.txt");
     } else {
@@ -25,13 +24,12 @@ fn main() {
         week = path_parts[1].to_owned();
         let filename = filename(&path).to_str().expect("to_str");
         let filename_parts: Vec<&str> = filename.split('.').collect();
-        name = filename_parts[0].to_owned().clone();
+        name = filename_parts[0].to_owned();
     }
     println!("{}", path);
 
     // load file or panic
-    input = fs::read_to_string(&path).expect("Should have been able to read the file");
-   
+    let input = fs::read_to_string(&path).expect("Should have been able to read the file");
 
     let quiz = Quiz::new(&name, &input, &week);
     test(quiz);
