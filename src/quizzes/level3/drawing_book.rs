@@ -38,7 +38,6 @@ fn read_input(arr: &str) -> Vec<Input> {
 #[allow(non_snake_case)]
 fn pageCount(n: i32, p: i32) -> i32 {
     let book_length = n;
-    let book: Vec<i32> = (0..n).collect();
     let start_from_back = if book_length as f32 - p as f32 >= book_length as f32 / 2 as f32 {
         false
     } else {

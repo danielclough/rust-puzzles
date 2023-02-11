@@ -124,9 +124,9 @@ fn twoArrays(k: i32, A: &[i32], B: &[i32]) -> String {
 
     let mut answer: String = String::new();
     if answer_vec.contains(&"NO") {
-        answer = "NO".to_string();
+        answer.push_str("NO");
     } else {
-        answer = "YES".to_string();
+        answer.push_str("YES");
     };
     println!("{} {:?} {:?}", answer, asc, dec);
     answer

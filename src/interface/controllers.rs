@@ -1,6 +1,5 @@
 use crate::interface::types::{Error, QuizResults};
 // use chrono::Utc;
-use rand::{Rng};
 use std::fs;
 use tui::widgets::ListState;
 
@@ -12,13 +11,8 @@ pub fn read_db(path: &str) -> Result<Vec<QuizResults>, Error> {
 }
 
 pub fn log_user_results(path: &str) -> Result<Vec<QuizResults>, Error> {
-    let mut rng = rand::thread_rng();
     let db_content = fs::read_to_string(path)?;
     let mut parsed: Vec<QuizResults> = serde_json::from_str(&db_content)?;
-    let quiz_types = match rng.gen_range(0..1) {
-        0 => "Indian",
-        _ => "Chinese",
-    };
 
     let random_quiz = QuizResults {
         enum_name: "".to_string(),
