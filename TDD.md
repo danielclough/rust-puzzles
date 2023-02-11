@@ -90,11 +90,30 @@ Cleanup and exit.
 
 
 ### Quizzes
-
-
-
-Adding additional quizzes?
 * Will quizzes be able to use additional libraries?
+
+Quizzes are made of the `quiz file`, an `input file`, and an entry in `quizzes.json`.
+
+`quiz file`
+Includes:
+ - `quiz()`
+    Calls `read_input()` and `arbitrary_name()`
+ - `read_input()`
+   Reads file from `./input/levellevel#/file_name.rs` and returns structured data.
+ - `arbitrary_name()`
+   Logic for testing user quizes against.
+ - `does_it_work()`
+   Unit Test.
+
+`input file`
+Simple line seperated data in arbtrary format (depending on quiz needs).
+
+`quizzes.json`
+List of all quizzes and string data for explaining how to answer the quiz.
+
+
+Adding additional quizzes is possible by adding/updating these files as is approapriate.
+
 
 ### TUI
 

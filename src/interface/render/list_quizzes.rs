@@ -14,7 +14,7 @@ pub fn render<'a>(quiz_list_state: &ListState) -> (List<'a>, Table<'a>) {
         .title("Quizzes")
         .border_type(BorderType::Plain);
 
-    let quiz_list = read_db("./input/quiz.json").expect("can fetch quiz list");
+    let quiz_list = read_db("./input/quizzes.json").expect("can fetch quiz list");
     let items: Vec<_> = quiz_list
         .iter()
         .map(|quiz| {
@@ -43,7 +43,7 @@ pub fn render<'a>(quiz_list_state: &ListState) -> (List<'a>, Table<'a>) {
 
     let quiz_detail = Table::new(vec![Row::new(vec![
         Cell::from(Span::raw(selected_quiz.enum_name)),
-        Cell::from(Span::raw(selected_quiz.week)),
+        Cell::from(Span::raw(selected_quiz.level)),
         Cell::from(Span::raw(selected_quiz.path_name)),
     ])])
     .header(Row::new(vec![
@@ -52,7 +52,7 @@ pub fn render<'a>(quiz_list_state: &ListState) -> (List<'a>, Table<'a>) {
             Style::default().add_modifier(Modifier::BOLD),
         )),
         Cell::from(Span::styled(
-            "Week",
+            "Level",
             Style::default().add_modifier(Modifier::BOLD),
         )),
         Cell::from(Span::styled(

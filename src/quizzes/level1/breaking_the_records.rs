@@ -65,7 +65,7 @@ mod tests {
         let answer: Vec<Vec<i32>> = vec![vec![2, 4], vec![4, 0]];
 
         // load file or panic
-        let path = "input/week1/breaking_the_records.txt";
+        let path = "input/level1/breaking_the_records.txt";
         let input = fs::read_to_string(path).unwrap();
 
         assert_eq!(answer, quiz(&input));

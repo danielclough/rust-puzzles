@@ -44,7 +44,7 @@ mod tests {
         let answer = 15;
 
         // load file or panic
-        let path = "input/week2/diagonal_difference.txt";
+        let path = "input/level2/diagonal_difference.txt";
         let input = fs::read_to_string(path).unwrap();
 
         assert_eq!(answer, quiz(&input));

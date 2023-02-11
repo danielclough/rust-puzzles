@@ -138,7 +138,7 @@ mod tests {
 
     #[test]
     fn does_it_work() {
-        let test_location = "input/week1/camel_case_4.txt";
+        let test_location = "input/level1/camel_case_4.txt";
         let answer: Vec<String> = vec![
             String::from("plastic cup"),
             String::from("mobilePhone"),

@@ -74,7 +74,7 @@ mod tests {
         let answer = vec![3, 4];
 
         // load file or panic
-        let path = "input/week3/sales_by_match.txt";
+        let path = "input/level3/sales_by_match.txt";
         let input = fs::read_to_string(path).unwrap();
 
         assert_eq!(answer, quiz(&input));

@@ -27,11 +27,11 @@ The end goal of this project is for me to have a time trial for practicing commo
 
 ### Run indivdual test files
 #### CLI path
-`cargo run input/week1/plus_minus.txt`
+`cargo run input/level1/plus_minus.txt`
 
 #### .env path
 Or, add path variables to `.env` and use `cargo run`
 ```
-CURRENT_WEEK="week1"
+CURRENT_WEEK="level1"
 CURRENT_FILE="plus_minus.txt"
 ```

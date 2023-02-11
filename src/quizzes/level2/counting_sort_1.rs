@@ -49,7 +49,7 @@ mod tests {
         ];
 
         // load file or panic
-        let path = "input/week2/counting_sort_1.txt";
+        let path = "input/level2/counting_sort_1.txt";
         let input = fs::read_to_string(path).unwrap();
 
         assert_eq!(answer, quiz(&input));

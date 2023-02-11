@@ -51,7 +51,7 @@ mod tests {
 
     #[test]
     fn does_it_work() {
-        let test_location = "input/week1/divisible_sum_pairs.txt";
+        let test_location = "input/level1/divisible_sum_pairs.txt";
         let answer: Vec<i32> = vec![5];
         // load file or panic
         let path = String::from(test_location);

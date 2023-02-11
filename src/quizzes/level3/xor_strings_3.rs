@@ -77,7 +77,7 @@ mod tests {
         let answer = vec!["10000"];
 
         // load file or panic
-        let path = "input/week3/xor_strings_3.txt";
+        let path = "input/level3/xor_strings_3.txt";
         let input = fs::read_to_string(path).unwrap();
 
         assert_eq!(answer, quiz(&input));

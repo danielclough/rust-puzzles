@@ -78,7 +78,7 @@ mod tests {
         let answer = vec![4, 3];
 
         // load file or panic
-        let path = "input/week3/migratory_birds.txt";
+        let path = "input/level3/migratory_birds.txt";
         let input = fs::read_to_string(path).unwrap();
 
         assert_eq!(answer, quiz(&input));

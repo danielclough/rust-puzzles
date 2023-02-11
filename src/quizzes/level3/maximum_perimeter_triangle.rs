@@ -104,7 +104,7 @@ mod tests {
         let answer = vec![vec![1, 3, 3], vec![-1], vec![1, 1, 1], vec![2, 3, 3]];
 
         // load file or panic
-        let path = "input/week3/maximum_perimeter_triangle.txt";
+        let path = "input/level3/maximum_perimeter_triangle.txt";
         let input = fs::read_to_string(path).unwrap();
 
         assert_eq!(answer, quiz(&input));

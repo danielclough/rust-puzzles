@@ -24,13 +24,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     //     let filename_parts: Vec<&str> = filename.split('.').collect();
     //     let quiz = Quiz {
     //         name: filename_parts[0].to_owned(),
-    //         week: env::var("CURRENT_WEEK").unwrap(),
-    //         path: format!("input/{week}/{name}.txt"),
+    //         level: env::var("CURRENT_WEEK").unwrap(),
+    //         path: format!("input/{level}/{name}.txt"),
     //     }
     // } else {
     //     path = args[1].to_owned();
     //     let path_parts: Vec<&str> = path.split('/').collect();
-    //     week = path_parts[1].to_owned();
+    //     level = path_parts[1].to_owned();
     //     let filename = filename(&path).to_str().expect("to_str");
     //     let filename_parts: Vec<&str> = filename.split('.').collect();
     //     name = filename_parts[0].to_owned();
@@ -39,7 +39,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // // load file or panic
     // let input = fs::read_to_string(&path).expect("Should have been able to read the file");
 
-    // let quiz = Quiz::new(&name, &input, &week);
+    // let quiz = Quiz::new(&name, &input, &level);
     // utils::test(quiz);
 
 

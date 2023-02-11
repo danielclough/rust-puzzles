@@ -43,7 +43,7 @@ pub fn render<'a>(result_list_state: &ListState) -> (List<'a>, Table<'a>) {
 
     let result_detail = Table::new(vec![Row::new(vec![
         Cell::from(Span::raw(selected_result.enum_name.to_string())),
-        Cell::from(Span::raw(selected_result.week.to_string())),
+        Cell::from(Span::raw(selected_result.level.to_string())),
         Cell::from(Span::raw(selected_result.path_name.to_string())),
     ])])
     .header(Row::new(vec![
@@ -52,7 +52,7 @@ pub fn render<'a>(result_list_state: &ListState) -> (List<'a>, Table<'a>) {
             Style::default().add_modifier(Modifier::BOLD),
         )),
         Cell::from(Span::styled(
-            "Week",
+            "Level",
             Style::default().add_modifier(Modifier::BOLD),
         )),
         Cell::from(Span::styled(

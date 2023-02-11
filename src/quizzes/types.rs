@@ -1,15 +1,15 @@
 pub struct Quiz {
     pub name: QuizOption,
-    pub week: String,
+    pub level: String,
     pub input: String,
     pub path: String,
 }
 
 impl Quiz {
-    pub fn new(path: &String, input: &String, week: &String) -> Quiz {
+    pub fn new(path: &String, input: &String, level: &String) -> Quiz {
         Quiz {
             name: QuizOption::PlusMinus,
-            week: week.clone(),
+            level: level.clone(),
             input: input.clone(),
             path: path.clone(),
         }

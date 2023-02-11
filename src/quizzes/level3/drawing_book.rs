@@ -81,7 +81,7 @@ mod tests {
         let answer = vec![1, 0, 1, 1];
 
         // load file or panic
-        let path = "input/week3/drawing_book.txt";
+        let path = "input/level3/drawing_book.txt";
         let input = fs::read_to_string(path).unwrap();
 
         assert_eq!(answer, quiz(&input));

@@ -68,7 +68,7 @@ mod tests {
         let answer = vec![1, 2, 2];
 
         // load file or panic
-        let path = "input/week2/lonely_integer.txt";
+        let path = "input/level2/lonely_integer.txt";
         let input = fs::read_to_string(path).unwrap();
 
         assert_eq!(answer, quiz(&input));

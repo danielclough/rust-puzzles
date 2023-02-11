@@ -1,7 +1,7 @@
 use std::ffi::OsStr;
 use std::path::Path;
 
-use crate::quizzes::week1::{
+use crate::quizzes::level1::{
     breaking_the_records,
     camel_case_4,
     divisible_sum_pairs,
@@ -10,7 +10,7 @@ use crate::quizzes::week1::{
     sparse_arrays,
     time_conversion,
 };
-use crate::quizzes::week2::{
+use crate::quizzes::level2::{
     counting_sort_1,
     counting_valleys,
     diagonal_difference,
@@ -20,7 +20,7 @@ use crate::quizzes::week2::{
     mars_exploration,
     pangrams,
 };
-use crate::quizzes::week3::{
+use crate::quizzes::level3::{
     drawing_book,
     maximum_perimeter_triangle,
     migratory_birds,
@@ -32,7 +32,7 @@ use crate::quizzes::week3::{
 };
 
 use super::types::{Quiz, QuizOption};
-// use crate::quizzes::week4::{
+// use crate::quizzes::level4::{
 //     picking_numbers,
 //     left_rotation,
 //     number_line_jumps,
@@ -42,7 +42,7 @@ use super::types::{Quiz, QuizOption};
 //     minimum_absolute_difference_in_an_array,
 //     caesar_cipher,
 // };
-// use crate::quizzes::week5::{
+// use crate::quizzes::level5::{
 //     max_min,
 //     strong_password,
 //     dynamic_array,
@@ -52,7 +52,7 @@ use super::types::{Quiz, QuizOption};
 //     grid_challenge,
 //     sansa_and_xor,
 // };
-// use crate::quizzes::week6::{
+// use crate::quizzes::level6::{
 //     prime_dates,
 //     sherlock_and_array,
 //     misère_nim,
@@ -62,7 +62,7 @@ use super::types::{Quiz, QuizOption};
 //     counter_game,
 //     sum_vs_xor,
 // };
-// use crate::quizzes::week7::{
+// use crate::quizzes::level7::{
 //     climbing_the_leaderboard,
 //     the_bomberman_game,
 //     new_year_chaos,

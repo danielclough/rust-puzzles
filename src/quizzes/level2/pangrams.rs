@@ -48,7 +48,7 @@ mod tests {
         let answer = vec![String::from("pangram"), String::from("not pangram")];
 
         // load file or panic
-        let path = "input/week2/pangrams.txt";
+        let path = "input/level2/pangrams.txt";
         let input = fs::read_to_string(path).unwrap();
 
         assert_eq!(answer, quiz(&input));

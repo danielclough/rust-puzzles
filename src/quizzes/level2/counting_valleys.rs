@@ -70,7 +70,7 @@ mod tests {
         let answer = vec![1, 2];
 
         // load file or panic
-        let path = "input/week2/counting_valleys.txt";
+        let path = "input/level2/counting_valleys.txt";
         let input = fs::read_to_string(path).unwrap();
 
         assert_eq!(answer, quiz(&input));

@@ -52,7 +52,7 @@ mod tests {
 
     #[test]
     fn does_it_work() {
-        let test_location = "input/week1/time_conversion.txt";
+        let test_location = "input/level1/time_conversion.txt";
         let answer: Vec<String> = vec![
             String::from("07:05:45"),
             String::from("19:05:45"),

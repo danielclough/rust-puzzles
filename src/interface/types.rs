@@ -5,7 +5,7 @@ use thiserror::Error;
 #[derive(Serialize, Deserialize, Clone)]
 pub struct QuizResults {
     pub enum_name: String,
-    pub week: String,
+    pub level: String,
     pub path_name: String,
 }
 #[derive(Error, Debug)]

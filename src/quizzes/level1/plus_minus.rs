@@ -49,7 +49,7 @@ mod tests {
 
     #[test]
     fn does_it_work() {
-        let test_location = "input/week1/plus_minus.txt";
+        let test_location = "input/level1/plus_minus.txt";
         let answer: Vec<(f32, f32, f32)> = vec![(0.500000, 0.333333, 0.166667)];
         // load file or panic
         let path = String::from(test_location);

@@ -63,7 +63,7 @@ mod tests {
         let answer = vec![vec![75, 67, 40, 33]];
 
         // load file or panic
-        let path = "input/week2/grading_students.txt";
+        let path = "input/level2/grading_students.txt";
         let input = fs::read_to_string(path).unwrap();
 
         assert_eq!(answer, quiz(&input));

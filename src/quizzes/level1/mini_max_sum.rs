@@ -40,7 +40,7 @@ mod tests {
 
     #[test]
     fn does_it_work() {
-        let test_location = "input/week1/mini_max_sum.txt";
+        let test_location = "input/level1/mini_max_sum.txt";
         let answer: Vec<String> = vec![String::from("20 20")];
         // load file or panic
         let path = String::from(test_location);

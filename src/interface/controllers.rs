@@ -22,7 +22,7 @@ pub fn log_user_results(path: &str) -> Result<Vec<QuizResults>, Error> {
 
     let random_quiz = QuizResults {
         enum_name: "".to_string(),
-        week: "".to_string(),
+        level: "".to_string(),
         path_name: "".to_string(),
     };
 

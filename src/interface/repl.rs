@@ -106,7 +106,7 @@ pub fn interface(rx: Receiver<Event<KeyEvent>>) -> Result<(), Box<dyn std::error
                 }
                 KeyCode::Down => {
                     if let Some(selected) = quiz_list_state.selected() {
-                        let amount_quizzes = read_db("./input/quiz.json").expect("can fetch quiz list").len();
+                        let amount_quizzes = read_db("./input/quizzes.json").expect("can fetch quiz list").len();
                         if selected >= amount_quizzes - 1 {
                             quiz_list_state.select(Some(0));
                         } else {
@@ -116,7 +116,7 @@ pub fn interface(rx: Receiver<Event<KeyEvent>>) -> Result<(), Box<dyn std::error
                 }
                 KeyCode::Up => {
                     if let Some(selected) = quiz_list_state.selected() {
-                        let amount_quizzes = read_db("./input/quiz.json").expect("can fetch quiz list").len();
+                        let amount_quizzes = read_db("./input/quizzes.json").expect("can fetch quiz list").len();
                         if selected > 0 {
                             quiz_list_state.select(Some(selected - 1));
                         } else {

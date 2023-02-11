@@ -111,7 +111,7 @@ mod tests {
         let answer = vec![String::from("1 2 3 7 6 5 4")];
 
         // load file or panic
-        let path = "input/week3/zig_zag_sequence.txt";
+        let path = "input/level3/zig_zag_sequence.txt";
         let input = fs::read_to_string(path).unwrap();
 
         assert_eq!(answer, quiz(&input));
