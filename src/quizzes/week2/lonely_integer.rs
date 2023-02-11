@@ -1,4 +1,4 @@
-pub fn test(arr: &str) -> Vec<i32> {
+pub fn quiz(arr: &str) -> Vec<i32> {
     let ints = read_input(arr);
     let mut answers: Vec<i32> = vec![];
     for arr in ints {
@@ -68,9 +68,9 @@ mod tests {
         let answer = vec![1, 2, 2];
 
         // load file or panic
-        let path = String::from("input/week2/lonely_integer.txt");
-        let input = fs::read_to_string(&path).expect("Should have been able to read the file");
+        let path = "input/week2/lonely_integer.txt";
+        let input = fs::read_to_string(path).unwrap();
 
-        assert_eq!(answer, test(&input));
+        assert_eq!(answer, quiz(&input));
     }
 }

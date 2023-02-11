@@ -1,4 +1,4 @@
-pub fn test(arr: &str) -> Vec<(f32, f32, f32)> {
+pub fn quiz(arr: &str) -> Vec<(f32, f32, f32)> {
     let split: Vec<&str> = arr.split("\n").collect();
     let mut answers: Vec<(f32, f32, f32)> = vec![];
 
@@ -53,8 +53,8 @@ mod tests {
         let answer: Vec<(f32, f32, f32)> = vec![(0.500000, 0.333333, 0.166667)];
         // load file or panic
         let path = String::from(test_location);
-        let input = fs::read_to_string(&path).expect("Should have been able to read the file");
-        let my_answer = test(&input);
-        assert_eq!(answer, my_answer);
+        let input = fs::read_to_string(path).unwrap();
+        
+        assert_eq!(answer, quiz(&input));
     }
 }

@@ -1,4 +1,4 @@
-pub fn test(arr: &str) -> i32 {
+pub fn quiz(arr: &str) -> i32 {
     let ints = read_input(arr);
     diagonalDifference(&ints)
 }
@@ -44,9 +44,9 @@ mod tests {
         let answer = 15;
 
         // load file or panic
-        let path = String::from("input/week2/diagonal_difference.txt");
-        let input = fs::read_to_string(&path).expect("Should have been able to read the file");
+        let path = "input/week2/diagonal_difference.txt";
+        let input = fs::read_to_string(path).unwrap();
 
-        assert_eq!(answer, test(&input));
+        assert_eq!(answer, quiz(&input));
     }
 }

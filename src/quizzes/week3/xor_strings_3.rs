@@ -23,7 +23,7 @@
 //     v
 // }
 
-pub fn test(arr: &str) -> Vec<String> {
+pub fn quiz(arr: &str) -> Vec<String> {
     let inputs = read_input(arr);
     let mut answers: Vec<String> = vec![];
     for input in inputs {
@@ -77,9 +77,9 @@ mod tests {
         let answer = vec!["10000"];
 
         // load file or panic
-        let path = String::from("input/week3/xor_strings_3.txt");
-        let input = fs::read_to_string(&path).expect("Should have been able to read the file");
+        let path = "input/week3/xor_strings_3.txt";
+        let input = fs::read_to_string(path).unwrap();
 
-        assert_eq!(answer, test(&input));
+        assert_eq!(answer, quiz(&input));
     }
 }

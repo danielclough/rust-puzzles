@@ -1,4 +1,4 @@
-pub fn test(arr: &str) -> Vec<String> {
+pub fn quiz(arr: &str) -> Vec<String> {
     let strings = read_input(arr);
     let mut answers: Vec<String> = vec![];
     for string in strings {
@@ -48,9 +48,9 @@ mod tests {
         let answer = vec![String::from("pangram"), String::from("not pangram")];
 
         // load file or panic
-        let path = String::from("input/week2/pangrams.txt");
-        let input = fs::read_to_string(&path).expect("Should have been able to read the file");
+        let path = "input/week2/pangrams.txt";
+        let input = fs::read_to_string(path).unwrap();
 
-        assert_eq!(answer, test(&input));
+        assert_eq!(answer, quiz(&input));
     }
 }

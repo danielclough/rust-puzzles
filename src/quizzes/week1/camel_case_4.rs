@@ -11,7 +11,7 @@
 //     v
 // }
 
-pub fn test(arr: &str) -> Vec<String> {
+pub fn quiz(arr: &str) -> Vec<String> {
     let split: Vec<&str> = arr.split("\n").collect();
     let mut answers: Vec<String> = vec![];
 
@@ -149,8 +149,8 @@ mod tests {
         ];
         // load file or panic
         let path = String::from(test_location);
-        let input = fs::read_to_string(&path).expect("Should have been able to read the file");
-        let my_answer = test(&input);
-        assert_eq!(answer, my_answer);
+        let input = fs::read_to_string(path).unwrap();
+        
+        assert_eq!(answer, quiz(&input));
     }
 }

@@ -70,34 +70,34 @@ use super::types::{Quiz, QuizOption};
 //     sherlock_and_the_valid_string,
 // };
 
-pub fn test(quiz: Quiz) {
+pub fn quiz(quiz: Quiz) {
     match quiz.name {
         // WEEK 1
-        QuizOption::PlusMinus => _ = plus_minus::test(&quiz.input),
-        QuizOption::MiniMaxSum => _ = mini_max_sum::test(&quiz.input),
-        QuizOption::TimeConversion => _ = time_conversion::test(&quiz.input),
-        QuizOption::BreakingTheRecords => _ = breaking_the_records::test(&quiz.input),
-        QuizOption::CamelCase4 => _ = camel_case_4::test(&quiz.input),
-        QuizOption::DivisibleSumPairs => _ = divisible_sum_pairs::test(&quiz.input),
-        QuizOption::SparseArrays => _ = sparse_arrays::test(&quiz.input),
+        QuizOption::PlusMinus => _ = plus_minus::quiz(&quiz.input),
+        QuizOption::MiniMaxSum => _ = mini_max_sum::quiz(&quiz.input),
+        QuizOption::TimeConversion => _ = time_conversion::quiz(&quiz.input),
+        QuizOption::BreakingTheRecords => _ = breaking_the_records::quiz(&quiz.input),
+        QuizOption::CamelCase4 => _ = camel_case_4::quiz(&quiz.input),
+        QuizOption::DivisibleSumPairs => _ = divisible_sum_pairs::quiz(&quiz.input),
+        QuizOption::SparseArrays => _ = sparse_arrays::quiz(&quiz.input),
         // WEEK 2
-        QuizOption::LonelyInteger => _ = lonely_integer::test(&quiz.input),
-        QuizOption::GradingStudents => _ = grading_students::test(&quiz.input),
-        QuizOption::FlippingBits => _ = flipping_bits::test(&quiz.input),
-        QuizOption::DiagonalDifference => _ = diagonal_difference::test(&quiz.input),
-        QuizOption::CountingSort1 => _ = counting_sort_1::test(&quiz.input),
-        QuizOption::CountingValleys => _ = counting_valleys::test(&quiz.input),
-        QuizOption::Pangrams => _ = pangrams::test(&quiz.input),
-        QuizOption::MarsExploration => _ = mars_exploration::test(&quiz.input),
+        QuizOption::LonelyInteger => _ = lonely_integer::quiz(&quiz.input),
+        QuizOption::GradingStudents => _ = grading_students::quiz(&quiz.input),
+        QuizOption::FlippingBits => _ = flipping_bits::quiz(&quiz.input),
+        QuizOption::DiagonalDifference => _ = diagonal_difference::quiz(&quiz.input),
+        QuizOption::CountingSort1 => _ = counting_sort_1::quiz(&quiz.input),
+        QuizOption::CountingValleys => _ = counting_valleys::quiz(&quiz.input),
+        QuizOption::Pangrams => _ = pangrams::quiz(&quiz.input),
+        QuizOption::MarsExploration => _ = mars_exploration::quiz(&quiz.input),
         // WEEK 3
-        QuizOption::PermutingTwoArrays => _ = permuting_two_arrays::test(&quiz.input),
-        QuizOption::SubarrayDivision2 => _ = subarray_division_2::test(&quiz.input),
-        QuizOption::XorStrings3 => _ = xor_strings_3::test(&quiz.input),
-        QuizOption::SalesByMatch => _ = sales_by_match::test(&quiz.input),
-        QuizOption::MigratoryBirds => _ = migratory_birds::test(&quiz.input),
-        QuizOption::MaximumPerimeterTriangle => _ = maximum_perimeter_triangle::test(&quiz.input),
-        QuizOption::ZigZagSequence => _ = zig_zag_sequence::test(&quiz.input),
-        QuizOption::DrawingBook => _ = drawing_book::test(&quiz.input),
+        QuizOption::PermutingTwoArrays => _ = permuting_two_arrays::quiz(&quiz.input),
+        QuizOption::SubarrayDivision2 => _ = subarray_division_2::quiz(&quiz.input),
+        QuizOption::XorStrings3 => _ = xor_strings_3::quiz(&quiz.input),
+        QuizOption::SalesByMatch => _ = sales_by_match::quiz(&quiz.input),
+        QuizOption::MigratoryBirds => _ = migratory_birds::quiz(&quiz.input),
+        QuizOption::MaximumPerimeterTriangle => _ = maximum_perimeter_triangle::quiz(&quiz.input),
+        QuizOption::ZigZagSequence => _ = zig_zag_sequence::quiz(&quiz.input),
+        QuizOption::DrawingBook => _ = drawing_book::quiz(&quiz.input),
     }
 }
 

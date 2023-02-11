@@ -1,4 +1,4 @@
-pub fn test(arr: &str) -> Vec<Vec<i32>> {
+pub fn quiz(arr: &str) -> Vec<Vec<i32>> {
     let input_arr = read_input(arr);
     let mut output: Vec<Vec<i32>> = vec![];
     for input in input_arr {
@@ -83,9 +83,9 @@ mod tests {
         let answer: Vec<Vec<i32>> = vec![vec![2, 1, 0], vec![1, 0, 1], vec![1, 3, 4, 3, 2]];
 
         // load file or panic
-        let path = String::from("input/week1/sparse_arrays.txt");
-        let input = fs::read_to_string(&path).expect("Should have been able to read the file");
+        let path = "input/week1/sparse_arrays.txt";
+        let input = fs::read_to_string(path).unwrap();
 
-        assert_eq!(answer, test(&input));
+        assert_eq!(answer, quiz(&input));
     }
 }

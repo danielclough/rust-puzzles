@@ -1,10 +1,8 @@
 # Rust Quizzes - Technical Design Document
 
-Author: Daniel Clough
+Author: *Daniel Clough*
 
-## Introduction
-
-### Rationale
+## Rationale
 
 > Companies building large teams of Rust users report that the typical onboarding time for a Rust engineer is around 3-6 months.
 > -- [rust-lang.org](https://blog.rust-lang.org/inside-rust/2022/04/04/lang-roadmap-2024.html)
@@ -20,37 +18,49 @@ This project was inspired by Hacker Rank, but offers...
  - live feedback
  - code benchmarking
 
-### Background
+## Background/Dependencies
 
-Describe any historical context that would be needed to understand the document, including legacy considerations.
+There are three options for running the app.
 
-### Terminology
+### Binary Download
+The entire project compiles to a single executable binary, which can be downloaded from [Github Releases](), and run the application with `/path/to/rq`.
+
+### Crates.io
+Users can also download and compile using [crates.io]().
+
+`cargo install rust_quizzes && rq`
+
+### Github
+`git clone git@github.com:danielclough/rust-puzzles.git`
+
+## Terminology
 
  - TUI == Text User Interface
  - Rustacean == Someone who codes in Rust
 
-### Non-Goals
+## Non-Goals
+0 interest goals:
+ - This is not a platform for competition, or head hunting (benchmarks are anonymous).
 
- - This is not a platform for competition, or head hunting.
- - There will not be any user accounts.
- - Benchmarks are anonymous.
+Possible future goals:
+ - Support for languages other than Rust.
+ - User accounts for collecting more interesting anonymous metrics.
 
+## Proposed Design
 
-### Proposed Design
+### Layout/Interaction
 
-#### Layout/Interaction
-
-##### Home (wide layout)
+#### Home (wide layout)
 Page for displaying everything but lists.
 Including:
  - welcome
  - help
  - log trial in progress
 
-##### Start (no layout)
+#### Start (no layout)
 Start Time Trial
 
-##### List (2 col layout)
+#### List (2 col layout)
 
 List all Quizzes:
 | Name | Lvl. | Desc. | Example | Constraints | Input | Output |
@@ -58,7 +68,7 @@ List all Quizzes:
 | Name that corrosponds to Enum | Not a very accurate ranking | Description of Quiz | What you need to get from input to output | Constraints on input data | Input Example | Output Example |
 
 
-##### Results (2 col layout)
+#### Results (2 col layout)
 
 List all Results:
 | Attempt | Results |
@@ -72,43 +82,52 @@ List all Results:
 
 *Benchmarks Submenu TBD*
 
-##### Quit (no layout)
+#### Quit (no layout)
 Cleanup and exit.
 
-### System Architecture
+## System Architecture
 
-#### Quizzes
 
-#### TUI
 
-#### API
+### Quizzes
 
-### Data Model
+
+
+Adding additional quizzes?
+* Will quizzes be able to use additional libraries?
+
+### TUI
+
+User attempt historical data be stored at `./user-data/results.json`.
+
+### API
+
+## Data Model
 
 Describe how the data is stored. This could include a description of the database schema.
 
-### Interface/API Definitions
+## Interface/API Definitions
 
 Describe how the various components talk to each other. For example, if there are REST endpoints, describe the endpoint URL and the format of the data and parameters used.
 
-### Business Logic
+## Business Logic
 
 If the design requires any non-trivial algorithms or logic, describe them.
 
-### Impact
+## Impact
 
 Describe the potential impacts of the design on overall performance, security, and other aspects of the system.
 
-### Risks
+## Risks
 
 If there are any risks or unknowns, list them here. Also if there is additional research to be done, mention that as well.
 
-### Alternatives
+## Alternatives
 
-#### Coding Challanges
+### Coding Challanges
  - [Project Euler](https://projecteuler.net)
  - [Advent of Code](https://adventofcode.com)
  - [Hacker Rank](https://https://www.hackerrank.com/challenges)
 
-#### Interactive Rust Education
+### Interactive Rust Education
  - [Rustlings](https://github.com/rust-lang/rustlings/)

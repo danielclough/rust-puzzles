@@ -1,4 +1,4 @@
-pub fn test(arr: &str) -> Vec<Vec<i64>> {
+pub fn quiz(arr: &str) -> Vec<Vec<i64>> {
     let int_arr_arr = read_input(arr);
     let mut answers_staging: Vec<i64> = vec![];
     let mut answers: Vec<Vec<i64>> = vec![];
@@ -75,9 +75,9 @@ mod tests {
         ];
 
         // load file or panic
-        let path = String::from("input/week2/flipping_bits.txt");
-        let input = fs::read_to_string(&path).expect("Should have been able to read the file");
+        let path = "input/week2/flipping_bits.txt";
+        let input = fs::read_to_string(path).unwrap();
 
-        assert_eq!(answer, test(&input));
+        assert_eq!(answer, quiz(&input));
     }
 }

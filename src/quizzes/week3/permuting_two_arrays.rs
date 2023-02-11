@@ -1,4 +1,4 @@
-pub fn test(arr: &str) -> Vec<String> {
+pub fn quiz(arr: &str) -> Vec<String> {
     let inputs = read_input(arr);
     let mut answers: Vec<String> = vec![];
     for input in inputs {
@@ -142,9 +142,9 @@ mod tests {
         let answer = vec!["YES".to_owned(), "NO".to_owned(), "NO".to_owned()];
 
         // load file or panic
-        let path = String::from("input/week3/permuting_two_arrays.txt");
-        let input = fs::read_to_string(&path).expect("Should have been able to read the file");
+        let path = "input/week3/permuting_two_arrays.txt";
+        let input = fs::read_to_string(path).unwrap();
 
-        assert_eq!(answer, test(&input));
+        assert_eq!(answer, quiz(&input));
     }
 }
