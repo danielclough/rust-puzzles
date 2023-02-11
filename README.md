@@ -1,6 +1,6 @@
-# rust-puzzles
+# Rust Quizzes
 
-My implementation of Hacker Rank puzzles in rust.
+My implementation of Hacker Rank challanges in rust.
 
 ## Motivation
 After reading the first half of [The Rust Programing Language (w/ quizzes by brown.edu)](https://rust-book.cs.brown.edu/) and doing about half of [Rustlings](https://github.com/rust-lang/rustlings/) I don't know all the language features, but I know enough to practice the bare bone basics.
@@ -16,6 +16,9 @@ I don't think this is in violation of copyright.
 > They have a copy of all of my code and **will catch you if you are cheating.**
 
 The end goal of this project is for me to have a time trial for practicing common challenges using my preffered toolchain.
+
+## Technical Design Document
+[Read the TDD]()
 
 ## Use 
 

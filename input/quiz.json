@@ -1,0 +1,209 @@
+[
+  {
+    "name": "PlusMinus",
+    "lvl": "1",
+    "desc": "Calculate ratios as positive, negative, or zero.",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "MiniMaxSum",
+    "lvl": "1",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "TimeConversion",
+    "lvl": "1",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "BreakingTheRecords",
+    "lvl": "1",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "CamelCase4",
+    "lvl": "1",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "DivisibleSumPairs",
+    "lvl": "1",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "SparseArrays",
+    "lvl": "1",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "LonelyInteger",
+    "lvl": "2",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "GradingStudents",
+    "lvl": "2",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "FlippingBits",
+    "lvl": "2",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "DiagonalDifference",
+    "lvl": "2",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "CountingSort1",
+    "lvl": "2",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "CountingValleys",
+    "lvl": "2",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "Pangrams",
+    "lvl": "2",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "MarsExploration",
+    "lvl": "2",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "PermutingTwoArrays",
+    "lvl": "3",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "SubarrayDivision2",
+    "lvl": "3",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "XorStrings3",
+    "lvl": "3",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "SalesByMatch",
+    "lvl": "3",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "MigratoryBirds",
+    "lvl": "3",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "MaximumPerimeterTriangle",
+    "lvl": "3",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "ZigZagSequence",
+    "lvl": "3",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  },
+  {
+    "name": "DrawingBook",
+    "lvl": "3",
+    "desc": "",
+    "example": "",
+    "constraints": [""],
+    "in": "",
+    "out" : ""
+  }
+]
