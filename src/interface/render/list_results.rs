@@ -5,7 +5,7 @@ use tui::{
     widgets::{Block, BorderType, Borders, Cell, List, ListItem, ListState, Row, Table},
 };
 
-use crate::interface::controllers::read_results;
+use crate::interface::controllers::read::read_results;
 
 pub fn render<'a>(result_list_state: &ListState) -> (List<'a>, Table<'a>) {
     let results = Block::default()

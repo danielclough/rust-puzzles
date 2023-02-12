@@ -3,7 +3,7 @@
     "name": "PlusMinus",
     "level": "1",
     "desc": "Calculate ratios as positive, negative, or zero.",
-    "example": "Calculate ratios as positive, negative, or zero.Calculate ratios as positive, negative, or zero.Calculate ratios as positive, negative, or zero.Calculate ratios as positive, negative, or zero.Calculate ratios as positive, negative, or zero.Calculate ratios as positive, negative, or zero.Calculate ratios as positive, negative, or zero.Calculate ratios as positive, negative, or zero.",
+    "example": "Given n integers, find the ratio of the total which are positive, negative, or zero with a precision of 6 decimal places.",
     "constraints": ["0 < n <= 100", "-100 <= arr[i] <= 100"],
     "input": ["6", "-4 3 -9 0 4 1"],
     "output": ["0.5", "0.333333", "0.166667"]
