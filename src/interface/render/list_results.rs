@@ -5,7 +5,7 @@ use tui::{
     widgets::{Block, BorderType, Borders, Cell, List, ListItem, ListState, Row, Table},
 };
 
-use crate::interface::controllers::read_db;
+use crate::interface::controllers::read_results;
 
 pub fn render<'a>(result_list_state: &ListState) -> (List<'a>, Table<'a>) {
     let results = Block::default()
@@ -14,12 +14,13 @@ pub fn render<'a>(result_list_state: &ListState) -> (List<'a>, Table<'a>) {
         .title("Attempt")
         .border_type(BorderType::Plain);
 
-    let result_list = read_db("./input/result.json").expect("can fetch result list");
+    let result_list = read_results().expect("can fetch result list");
+    
     let items: Vec<_> = result_list
         .iter()
         .map(|result| {
             ListItem::new(Spans::from(vec![Span::styled(
-                result.enum_name.clone(),
+                result.name.clone(),
                 Style::default(),
             )]))
         })
@@ -42,7 +43,7 @@ pub fn render<'a>(result_list_state: &ListState) -> (List<'a>, Table<'a>) {
     );
 
     let result_detail = Table::new(vec![Row::new(vec![
-        Cell::from(Span::raw(selected_result.enum_name.to_string())),
+        Cell::from(Span::raw(selected_result.name.to_string())),
         Cell::from(Span::raw(selected_result.level.to_string())),
         Cell::from(Span::raw(selected_result.path_name.to_string())),
     ])])

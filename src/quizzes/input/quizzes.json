@@ -1,209 +1,209 @@
 [
   {
     "name": "PlusMinus",
-    "lvl": "1",
+    "level": "1",
     "desc": "Calculate ratios as positive, negative, or zero.",
-    "example": "",
-    "constraints": [""],
-    "in": "",
-    "out" : ""
+    "example": "Calculate ratios as positive, negative, or zero.Calculate ratios as positive, negative, or zero.Calculate ratios as positive, negative, or zero.Calculate ratios as positive, negative, or zero.Calculate ratios as positive, negative, or zero.Calculate ratios as positive, negative, or zero.Calculate ratios as positive, negative, or zero.Calculate ratios as positive, negative, or zero.",
+    "constraints": ["0 < n <= 100", "-100 <= arr[i] <= 100"],
+    "input": ["6", "-4 3 -9 0 4 1"],
+    "output": ["0.5", "0.333333", "0.166667"]
   },
   {
     "name": "MiniMaxSum",
-    "lvl": "1",
+    "level": "1",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "TimeConversion",
-    "lvl": "1",
+    "level": "1",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "BreakingTheRecords",
-    "lvl": "1",
+    "level": "1",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "CamelCase4",
-    "lvl": "1",
+    "level": "1",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "DivisibleSumPairs",
-    "lvl": "1",
+    "level": "1",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "SparseArrays",
-    "lvl": "1",
+    "level": "1",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "LonelyInteger",
-    "lvl": "2",
+    "level": "2",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "GradingStudents",
-    "lvl": "2",
+    "level": "2",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "FlippingBits",
-    "lvl": "2",
+    "level": "2",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "DiagonalDifference",
-    "lvl": "2",
+    "level": "2",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "CountingSort1",
-    "lvl": "2",
+    "level": "2",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "CountingValleys",
-    "lvl": "2",
+    "level": "2",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "Pangrams",
-    "lvl": "2",
+    "level": "2",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "MarsExploration",
-    "lvl": "2",
+    "level": "2",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "PermutingTwoArrays",
-    "lvl": "3",
+    "level": "3",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "SubarrayDivision2",
-    "lvl": "3",
+    "level": "3",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "XorStrings3",
-    "lvl": "3",
+    "level": "3",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "SalesByMatch",
-    "lvl": "3",
+    "level": "3",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "MigratoryBirds",
-    "lvl": "3",
+    "level": "3",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "MaximumPerimeterTriangle",
-    "lvl": "3",
+    "level": "3",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "ZigZagSequence",
-    "lvl": "3",
+    "level": "3",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   },
   {
     "name": "DrawingBook",
-    "lvl": "3",
+    "level": "3",
     "desc": "",
     "example": "",
     "constraints": [""],
-    "in": "",
-    "out" : ""
+    "input": [""],
+    "output": [""]
   }
 ]

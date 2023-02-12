@@ -3,10 +3,37 @@ use crate::interface::types::{Error, QuizResults};
 use std::fs;
 use tui::widgets::ListState;
 
-pub fn read_db(path: &str) -> Result<Vec<QuizResults>, Error> {
+use super::types::QuizList;
 
-    let db_content = fs::read_to_string(path)?;
+pub fn read_results() -> Result<Vec<QuizResults>, Error> {
+
+    let db_content = fs::read_to_string("./user-data/results.json")?;
     let parsed: Vec<QuizResults> = serde_json::from_str(&db_content)?;
+    Ok(parsed)
+}
+pub fn read_quiz_list() -> Result<Vec<QuizList>, Error> {
+
+    let db_content = fs::read_to_string("./src/quizzes/input/quizzes.json")?;
+    let parsed: Vec<QuizList> = serde_json::from_str(&db_content)?;
+    Ok(parsed)
+}
+
+pub fn log_quiz_list(path: &str) -> Result<Vec<QuizList>, Error> {
+    let db_content = fs::read_to_string(path)?;
+    let mut parsed: Vec<QuizList> = serde_json::from_str(&db_content)?;
+
+    let random_quiz = QuizList {
+        name: String::new(),
+        level: String::new(),
+        desc: String::new(),
+        example: String::new(),
+        constraints: vec![String::new()],
+        input: vec![String::new()],
+        output: vec![String::new()],
+    };
+
+    parsed.push(random_quiz);
+    fs::write(path, serde_json::to_vec(&parsed)?)?;
     Ok(parsed)
 }
 
@@ -15,7 +42,7 @@ pub fn log_user_results(path: &str) -> Result<Vec<QuizResults>, Error> {
     let mut parsed: Vec<QuizResults> = serde_json::from_str(&db_content)?;
 
     let random_quiz = QuizResults {
-        enum_name: "".to_string(),
+        name: "".to_string(),
         level: "".to_string(),
         path_name: "".to_string(),
     };

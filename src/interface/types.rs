@@ -3,8 +3,18 @@ use std::io;
 use thiserror::Error;
 
 #[derive(Serialize, Deserialize, Clone)]
+pub struct QuizList {
+    pub name: String,
+    pub level: String,
+    pub desc: String,
+    pub example: String,
+    pub constraints: Vec<String>,
+    pub input: Vec<String>,
+    pub output: Vec<String>,
+}
+#[derive(Serialize, Deserialize, Clone)]
 pub struct QuizResults {
-    pub enum_name: String,
+    pub name: String,
     pub level: String,
     pub path_name: String,
 }
