@@ -23,11 +23,7 @@ pub fn for_export() -> QuizOutput {
 pub fn input_from_file() -> String {
     let for_export = for_export();
     // load file or panic
-    let path = format!(
-        "./src/quizzes/{}/{}.txt",
-        for_export.level,
-        for_export.name
-    );
+    let path = format!("./src/quizzes/{}/{}.txt", for_export.level, for_export.name);
     let input = read_from_input_file(&path);
     input
 }
@@ -119,7 +115,6 @@ fn birthday(s: &[i32], d: i32, m: i32) -> i32 {
 #[cfg(test)]
 mod tests {
     use super::*;
-
 
     #[test]
     fn does_it_work() {

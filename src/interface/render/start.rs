@@ -14,27 +14,21 @@ use tui::{
 
 use crate::interface::{controllers::read::read_quiz_list, types::QuizList};
 
-pub fn test_quiz() -> Result<Output, Error> {
+pub fn test_quiz(file: &str) -> Result<Output, Error> {
     let mut rng = rand::thread_rng();
     let rand: [f32; 6] = rng.gen();
     let program = "./target/debug/rq";
-    let dir = "src/quizzes/level1/plus_minus.txt";
     let result = Command::new(program)
-        .arg(dir)
+        .arg(file)
         .stdout(Stdio::piped())
         .output()?;
     Ok(result)
 }
-
-fn compare_results() -> Result<String, Error> {
-    let test_location = "src/quizzes/level1/plus_minus.txt";
-    let answer: Vec<(f32, f32, f32)> = vec![(0.500000, 0.333333, 0.166667)];
+fn get_quiz_params(path: &str) -> (String, String) {
     // load file or panic
-    let path = String::from(test_location);
     let input = fs::read_to_string(path).unwrap();
 
-    let result = test_quiz();
-
+    let result = test_quiz(path);
     let result_output;
     if result.is_ok() {
         // : Vec<(i32, i32, i32)>
@@ -43,7 +37,12 @@ fn compare_results() -> Result<String, Error> {
     } else {
         result_output = format!("{:?}", result.err());
     }
-    Ok(result_output)
+    (input, result_output)
+}
+fn compare_results() -> (String, String) {
+    let path = "src/quizzes/level1/plus_minus.txt";
+    let result_output = get_quiz_params(path);
+    result_output
 }
 
 pub fn render<'a>(quiz_list_state: &ListState) -> Paragraph<'a> {
@@ -58,27 +57,11 @@ pub fn render<'a>(quiz_list_state: &ListState) -> Paragraph<'a> {
         .expect("exists")
         .clone();
 
-    let output_str: String;
     let result_output = compare_results();
-    if result_output.is_ok() {
-        output_str = result_output.unwrap();
-    } else {
-        output_str = format!("{:?}", result_output.err());
-    }
-
-    // let timestamp = time::Instant::now();
-    // format!("{:?}",timestamp)
-    // let ten_secs = time::Duration::from_secs(10);
-    // let count_s = 0;
-
-    // let mut result_output: Vec<Span> = vec![];
-
-    // let result_str = format!("{:?}", result);
-    // let result_vec = result_str.split("\n");
-    // for r in result_vec {
-    //     result_output.push(Span::raw(r.to_string()));
-    // }
-    // println!("{}",result_output.len());
+    let output_vec: &Vec<String> = &result_output.1.split("\n").map(|x| x.to_string()).collect();
+    let input_vec: &Vec<String> = &result_output.0.split("\n").map(|x| x.to_string()).collect();
+    let output_str = output_vec.join("; ");
+    let input_str = input_vec.join("; ");
 
     // Render Container
     let container = Paragraph::new(vec![
@@ -88,14 +71,13 @@ pub fn render<'a>(quiz_list_state: &ListState) -> Paragraph<'a> {
             "Constraints: {};",
             selected_quiz.constraints.join("; ")
         ))]),
-        Spans::from(vec![Span::raw(format!(
-            "Input: {};",
-            selected_quiz.input.join("; ")
-        ))]),
+        Spans::from(vec![Span::raw(format!("Input: {};", input_str))]),
         Spans::from(vec![Span::raw(format!(
             "Output: {};",
             selected_quiz.output.join("; ")
         ))]),
+        Spans::from(vec![Span::raw("")]),
+        Spans::from(vec![Span::raw("User Output:")]),
         Spans::from(output_str),
         // Spans::from(vec![Span::raw(format!("{:?}",result))]),
     ])

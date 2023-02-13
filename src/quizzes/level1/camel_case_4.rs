@@ -26,11 +26,7 @@ S;V;pictureFrame";
 pub fn input_from_file() -> String {
     let for_export = for_export();
     // load file or panic
-    let path = format!(
-        "./src/quizzes/{}/{}.txt",
-        for_export.level,
-        for_export.name
-    );
+    let path = format!("./src/quizzes/{}/{}.txt", for_export.level, for_export.name);
     let input = read_from_input_file(&path);
     input
 }
@@ -171,7 +167,6 @@ fn make_lower(str: &str) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
-
 
     #[test]
     fn does_it_work() {
