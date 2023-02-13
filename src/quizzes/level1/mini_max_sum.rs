@@ -1,3 +1,33 @@
+use crate::quizzes::{
+    types::{OutputType, QuizOutput},
+    utils::read_from_input_file,
+};
+
+pub fn for_export() -> QuizOutput {
+    let output = QuizOutput {
+        name: "mini_max_sum".to_string(),
+        desc: "String".to_string(),
+        example: "String".to_string(),
+        level: "level1".to_string(),
+        constraints: "String".to_string(),
+        input: "String".to_string(),
+        output: "String".to_string(),
+        output_type: OutputType::VecString,
+    };
+    output
+}
+
+pub fn input_from_file() -> String {
+    // load file or panic
+    let path = format!(
+        "./src/quizzes/{}/{}.txt",
+        for_export().level,
+        for_export().name
+    );
+    let input = read_from_input_file(&path);
+    input
+}
+
 pub fn quiz(arr: &str) -> Vec<String> {
     let split: Vec<&str> = arr.split("\n").collect();
     let mut answers: Vec<String> = vec![];
@@ -36,16 +66,13 @@ fn miniMaxSum(arr: &[i64]) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::fs;
+
 
     #[test]
     fn does_it_work() {
-        let test_location = "input/level1/mini_max_sum.txt";
         let answer: Vec<String> = vec![String::from("20 20")];
-        // load file or panic
-        let path = String::from(test_location);
-        let input = fs::read_to_string(path).unwrap();
-        
+        let input = input_from_file();
+
         assert_eq!(answer, quiz(&input));
     }
 }

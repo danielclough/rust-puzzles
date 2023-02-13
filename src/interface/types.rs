@@ -34,7 +34,8 @@ pub enum Event<I> {
 pub enum MenuItem {
     Home,
     List,
-    Results
+    Start,
+    Results,
 }
 
 impl From<MenuItem> for usize {
@@ -42,7 +43,8 @@ impl From<MenuItem> for usize {
         match input {
             MenuItem::Home => 0,
             MenuItem::List => 1,
-            MenuItem::Results => 2,
+            MenuItem::Start => 2,
+            MenuItem::Results => 3,
         }
     }
 }
@@ -54,7 +56,7 @@ pub struct MenuConfig {
 impl MenuConfig {
     pub fn new() -> MenuConfig {
         MenuConfig {
-            titles: vec!["Home", "Start", "List", "Results", "Quit"],
+            titles: vec!["Home", "List", "Start", "Results", "Quit"],
             active_item: MenuItem::Home,
         }
     }

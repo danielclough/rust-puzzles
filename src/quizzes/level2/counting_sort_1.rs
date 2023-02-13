@@ -1,3 +1,33 @@
+use crate::quizzes::{
+    types::{OutputType, QuizOutput},
+    utils::read_from_input_file,
+};
+
+pub fn for_export() -> QuizOutput {
+    let output = QuizOutput {
+        name: "counting_sort_1".to_string(),
+        desc: "String".to_string(),
+        example: "String".to_string(),
+        level: "level2".to_string(),
+        constraints: "String".to_string(),
+        input: "String".to_string(),
+        output: "String".to_string(),
+        output_type: OutputType::VecString,
+    };
+    output
+}
+
+pub fn input_from_file() -> String {
+    // load file or panic
+    let path = format!(
+        "./src/quizzes/{}/{}.txt",
+        for_export().level,
+        for_export().name
+    );
+    let input = read_from_input_file(&path);
+    input
+}
+
 pub fn quiz(arr: &str) -> Vec<Vec<i32>> {
     let ints = read_input(arr);
     let mut answers: Vec<Vec<i32>> = vec![];
@@ -37,7 +67,7 @@ fn countingSort(arr: &[i32]) -> Vec<i32> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::fs;
+
 
     #[test]
     fn does_it_work() {
@@ -47,10 +77,7 @@ mod tests {
             "2 0 1 0 0 1 1 1 1 0 0 1 3 2 2 0 4 4 1 1 0 0 0 0 3 0 0 1 0 1 2 0 1 2 2 3 0 2 0 0 1 0 1 1 0 0 1 1 0 2 0 0 1 1 1 0 1 0 1 1 2 3 0 1 2 0 1 2 1 1 4 1 0 1 1 3 0 0 2 1 2 3 2 2 2 0 0 1 0 0 0 0 0 0 2 0 1 3 1 0"
                 .split(" ").map(|x| x.to_owned().parse::<i32>().unwrap()).collect(),
         ];
-
-        // load file or panic
-        let path = "input/level2/counting_sort_1.txt";
-        let input = fs::read_to_string(path).unwrap();
+        let input = input_from_file();
 
         assert_eq!(answer, quiz(&input));
     }

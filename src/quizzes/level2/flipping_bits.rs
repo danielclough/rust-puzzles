@@ -1,3 +1,33 @@
+use crate::quizzes::{
+    types::{OutputType, QuizOutput},
+    utils::read_from_input_file,
+};
+
+pub fn for_export() -> QuizOutput {
+    let output = QuizOutput {
+        name: "flipping_bits".to_string(),
+        desc: "String".to_string(),
+        example: "String".to_string(),
+        level: "level2".to_string(),
+        constraints: "String".to_string(),
+        input: "String".to_string(),
+        output: "String".to_string(),
+        output_type: OutputType::VecString,
+    };
+    output
+}
+
+pub fn input_from_file() -> String {
+    // load file or panic
+    let path = format!(
+        "./src/quizzes/{}/{}.txt",
+        for_export().level,
+        for_export().name
+    );
+    let input = read_from_input_file(&path);
+    input
+}
+
 pub fn quiz(arr: &str) -> Vec<Vec<i64>> {
     let int_arr_arr = read_input(arr);
     let mut answers_staging: Vec<i64> = vec![];
@@ -64,7 +94,7 @@ fn flippingBits(n: i64) -> i64 {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::fs;
+
 
     #[test]
     fn does_it_work() {
@@ -73,10 +103,7 @@ mod tests {
             vec![4294967291, 4294843839],
             vec![4294967295, 3492223820, 4259365872],
         ];
-
-        // load file or panic
-        let path = "input/level2/flipping_bits.txt";
-        let input = fs::read_to_string(path).unwrap();
+        let input = input_from_file();
 
         assert_eq!(answer, quiz(&input));
     }

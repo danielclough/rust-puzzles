@@ -1,2 +1,2 @@
-pub mod quizzes;
 pub mod interface;
+pub mod quizzes;

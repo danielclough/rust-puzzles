@@ -15,7 +15,7 @@ pub fn render<'a>(result_list_state: &ListState) -> (List<'a>, Table<'a>) {
         .border_type(BorderType::Plain);
 
     let result_list = read_results().expect("can fetch result list");
-    
+
     let items: Vec<_> = result_list
         .iter()
         .map(|result| {

@@ -1,3 +1,33 @@
+use crate::quizzes::{
+    types::{OutputType, QuizOutput},
+    utils::read_from_input_file,
+};
+
+pub fn for_export() -> QuizOutput {
+    let output = QuizOutput {
+        name: "camel_case_4".to_string(),
+        desc: "String".to_string(),
+        example: "String".to_string(),
+        level: "level1".to_string(),
+        constraints: "String".to_string(),
+        input: "String".to_string(),
+        output: "String".to_string(),
+        output_type: OutputType::VecString,
+    };
+    output
+}
+
+pub fn input_from_file() -> String {
+    // load file or panic
+    let path = format!(
+        "./src/quizzes/{}/{}.txt",
+        for_export().level,
+        for_export().name
+    );
+    let input = read_from_input_file(&path);
+    input
+}
+
 // // Use to get stdin in HackerRank
 // use std::io;
 // fn main() {
@@ -134,11 +164,10 @@ fn make_lower(str: &str) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::fs;
+
 
     #[test]
     fn does_it_work() {
-        let test_location = "input/level1/camel_case_4.txt";
         let answer: Vec<String> = vec![
             String::from("plastic cup"),
             String::from("mobilePhone"),
@@ -147,10 +176,8 @@ mod tests {
             String::from("whiteSheetOfPaper()"),
             String::from("picture frame"),
         ];
-        // load file or panic
-        let path = String::from(test_location);
-        let input = fs::read_to_string(path).unwrap();
-        
+        let input = input_from_file();
+
         assert_eq!(answer, quiz(&input));
     }
 }

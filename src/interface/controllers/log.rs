@@ -1,6 +1,5 @@
+use crate::interface::types::{Error, QuizResults};
 use std::fs;
-use crate::interface::types::{QuizResults, Error};
-
 
 pub fn log_user_results(path: &str) -> Result<Vec<QuizResults>, Error> {
     let db_content = fs::read_to_string(path)?;

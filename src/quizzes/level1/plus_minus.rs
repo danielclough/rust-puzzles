@@ -1,3 +1,33 @@
+use crate::quizzes::{
+    types::{OutputType, QuizOutput},
+    utils::read_from_input_file,
+};
+
+pub fn for_export() -> QuizOutput {
+    let output = QuizOutput {
+        name: "plus_minus".to_string(),
+        desc: "String".to_string(),
+        example: "String".to_string(),
+        level: "level1".to_string(),
+        constraints: "String".to_string(),
+        input: "String".to_string(),
+        output: "String".to_string(),
+        output_type: OutputType::VecString,
+    };
+    output
+}
+
+pub fn input_from_file() -> String {
+    // load file or panic
+    let path = format!(
+        "./src/quizzes/{}/{}.txt",
+        for_export().level,
+        for_export().name
+    );
+    let input = read_from_input_file(&path);
+    input
+}
+
 pub fn quiz(arr: &str) -> Vec<(f32, f32, f32)> {
     let split: Vec<&str> = arr.split("\n").collect();
     let mut answers: Vec<(f32, f32, f32)> = vec![];
@@ -30,9 +60,9 @@ fn plusMinus(arr: &[i32]) -> (f32, f32, f32) {
     let pos_str = format!("{0:.6}", pos as f32 / *n as f32);
     let neg_str = format!("{0:.6}", neg as f32 / *n as f32);
     let zer_str = format!("{0:.6}", zer as f32 / *n as f32);
-    println!("{}", pos_str);
-    println!("{}", neg_str);
-    println!("{}", zer_str);
+    // println!("{}", pos_str);
+    // println!("{}", neg_str);
+    // println!("{}", zer_str);
 
     let answer = (
         pos_str.parse::<f32>().expect("f32"),
@@ -45,16 +75,13 @@ fn plusMinus(arr: &[i32]) -> (f32, f32, f32) {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::fs;
+
 
     #[test]
     fn does_it_work() {
-        let test_location = "input/level1/plus_minus.txt";
         let answer: Vec<(f32, f32, f32)> = vec![(0.500000, 0.333333, 0.166667)];
-        // load file or panic
-        let path = String::from(test_location);
-        let input = fs::read_to_string(path).unwrap();
-        
+        let input = input_from_file();
+
         assert_eq!(answer, quiz(&input));
     }
 }

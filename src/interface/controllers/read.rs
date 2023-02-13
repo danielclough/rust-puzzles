@@ -1,4 +1,4 @@
-use crate::interface::types::{Error, QuizResults, QuizList};
+use crate::interface::types::{Error, QuizList, QuizResults};
 use std::fs;
 
 pub fn read_results() -> Result<Vec<QuizResults>, Error> {

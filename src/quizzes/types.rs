@@ -41,3 +41,23 @@ pub enum QuizOption {
     ZigZagSequence,
     DrawingBook,
 }
+
+pub struct QuizOutput {
+    pub name: String,
+    pub desc: String,
+    pub example: String,
+    pub level: String,
+    pub constraints: String,
+    pub input: String,
+    pub output: String,
+    pub output_type: OutputType,
+}
+
+pub enum OutputType {
+    VecVecI32,
+    VecString,
+    VecI32,
+    VecTupleF32F32F32,
+    I32,
+    VecVecI64,
+}

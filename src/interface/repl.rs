@@ -1,19 +1,12 @@
-use std::{
-    io,
-    sync::mpsc::Receiver,
-};
+use std::{io, sync::mpsc::Receiver};
 
 use crossterm::{
     event::{KeyCode, KeyEvent},
     terminal::disable_raw_mode,
 };
-use tui::{
-    backend::CrosstermBackend,
-    widgets::ListState,
-    Terminal,
-};
+use tui::{backend::CrosstermBackend, widgets::ListState, Terminal};
 
-use crate::interface::controllers::{key_up, key_down, start_quiz};
+use crate::interface::controllers::{key_down, key_up, start_quiz};
 use crate::interface::types::{Event, MenuConfig, MenuItem};
 
 use super::render::draw_terminal;
@@ -33,7 +26,12 @@ pub fn interface(rx: Receiver<Event<KeyEvent>>) -> Result<(), Box<dyn std::error
     quiz_result_state.select(Some(0));
 
     loop {
-        _ = draw_terminal::exec(&mut terminal, &menu_config, &mut quiz_list_state, &mut quiz_result_state);
+        _ = draw_terminal::exec(
+            &mut terminal,
+            &menu_config,
+            &mut quiz_list_state,
+            &mut quiz_result_state,
+        );
 
         match rx.recv()? {
             Event::Input(event) => match event.code {
@@ -46,7 +44,7 @@ pub fn interface(rx: Receiver<Event<KeyEvent>>) -> Result<(), Box<dyn std::error
                 KeyCode::Char('h') => menu_config.active_item = MenuItem::Home,
                 KeyCode::Char('l') => menu_config.active_item = MenuItem::List,
                 KeyCode::Char('r') => menu_config.active_item = MenuItem::Results,
-                KeyCode::Char('s') => start_quiz::exec(),
+                KeyCode::Char('s') => menu_config.active_item = MenuItem::Start,
                 KeyCode::Down => key_down::exec(&menu_config, &mut quiz_list_state),
                 KeyCode::Up => key_up::exec(&menu_config, &mut quiz_list_state),
                 _ => {}

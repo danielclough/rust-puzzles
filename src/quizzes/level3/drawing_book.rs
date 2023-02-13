@@ -1,3 +1,33 @@
+use crate::quizzes::{
+    types::{OutputType, QuizOutput},
+    utils::read_from_input_file,
+};
+
+pub fn for_export() -> QuizOutput {
+    let output = QuizOutput {
+        name: "drawing_book".to_string(),
+        desc: "String".to_string(),
+        example: "String".to_string(),
+        level: "level3".to_string(),
+        constraints: "String".to_string(),
+        input: "String".to_string(),
+        output: "String".to_string(),
+        output_type: OutputType::VecString,
+    };
+    output
+}
+
+pub fn input_from_file() -> String {
+    // load file or panic
+    let path = format!(
+        "./src/quizzes/{}/{}.txt",
+        for_export().level,
+        for_export().name
+    );
+    let input = read_from_input_file(&path);
+    input
+}
+
 pub fn quiz(arr: &str) -> Vec<i32> {
     let inputs = read_input(arr);
     let mut answers: Vec<i32> = vec![];
@@ -73,15 +103,12 @@ fn pageCount(n: i32, p: i32) -> i32 {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::fs;
+
 
     #[test]
     fn does_it_work() {
         let answer = vec![1, 0, 1, 1];
-
-        // load file or panic
-        let path = "input/level3/drawing_book.txt";
-        let input = fs::read_to_string(path).unwrap();
+        let input = input_from_file();
 
         assert_eq!(answer, quiz(&input));
     }

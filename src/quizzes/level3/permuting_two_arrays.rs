@@ -1,3 +1,33 @@
+use crate::quizzes::{
+    types::{OutputType, QuizOutput},
+    utils::read_from_input_file,
+};
+
+pub fn for_export() -> QuizOutput {
+    let output = QuizOutput {
+        name: "permuting_two_arrays".to_string(),
+        desc: "String".to_string(),
+        example: "String".to_string(),
+        level: "level3".to_string(),
+        constraints: "String".to_string(),
+        input: "String".to_string(),
+        output: "String".to_string(),
+        output_type: OutputType::VecString,
+    };
+    output
+}
+
+pub fn input_from_file() -> String {
+    // load file or panic
+    let path = format!(
+        "./src/quizzes/{}/{}.txt",
+        for_export().level,
+        for_export().name
+    );
+    let input = read_from_input_file(&path);
+    input
+}
+
 pub fn quiz(arr: &str) -> Vec<String> {
     let inputs = read_input(arr);
     let mut answers: Vec<String> = vec![];
@@ -135,15 +165,12 @@ fn twoArrays(k: i32, A: &[i32], B: &[i32]) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::fs;
+
 
     #[test]
     fn does_it_work() {
         let answer = vec!["YES".to_owned(), "NO".to_owned(), "NO".to_owned()];
-
-        // load file or panic
-        let path = "input/level3/permuting_two_arrays.txt";
-        let input = fs::read_to_string(path).unwrap();
+        let input = input_from_file();
 
         assert_eq!(answer, quiz(&input));
     }

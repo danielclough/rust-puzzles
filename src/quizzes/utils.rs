@@ -2,33 +2,16 @@ use std::ffi::OsStr;
 use std::path::Path;
 
 use crate::quizzes::level1::{
-    breaking_the_records,
-    camel_case_4,
-    divisible_sum_pairs,
-    mini_max_sum,
-    plus_minus,
-    sparse_arrays,
-    time_conversion,
+    breaking_the_records, camel_case_4, divisible_sum_pairs, mini_max_sum, plus_minus,
+    sparse_arrays, time_conversion,
 };
 use crate::quizzes::level2::{
-    counting_sort_1,
-    counting_valleys,
-    diagonal_difference,
-    flipping_bits,
-    grading_students,
-    lonely_integer,
-    mars_exploration,
-    pangrams,
+    counting_sort_1, counting_valleys, diagonal_difference, flipping_bits, grading_students,
+    lonely_integer, mars_exploration, pangrams,
 };
 use crate::quizzes::level3::{
-    drawing_book,
-    maximum_perimeter_triangle,
-    migratory_birds,
-    permuting_two_arrays,
-    sales_by_match,
-    subarray_division_2,
-    xor_strings_3,
-    zig_zag_sequence,
+    drawing_book, maximum_perimeter_triangle, migratory_birds, permuting_two_arrays,
+    sales_by_match, subarray_division_2, xor_strings_3, zig_zag_sequence,
 };
 
 use super::types::{Quiz, QuizOption};
@@ -105,4 +88,10 @@ pub fn filename(file: &str) -> &OsStr {
     let path_from_dotenv = Path::new(file);
     let filename = path_from_dotenv.file_name().expect("works");
     filename
+}
+
+use std::fs;
+pub fn read_from_input_file(path: &str) -> String {
+    let file = fs::read_to_string(path).unwrap();
+    file
 }
