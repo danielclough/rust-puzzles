@@ -4,13 +4,14 @@ use crate::quizzes::{
 };
 
 pub fn for_export() -> QuizOutput {
+    let input = "SOSSPSSQSSOR";
     let output = QuizOutput {
         name: "mars_exploration".to_string(),
         desc: "String".to_string(),
         example: "String".to_string(),
         level: "level2".to_string(),
         constraints: "String".to_string(),
-        input: "String".to_string(),
+        input: format!("{:?}", input),
         output: "String".to_string(),
         output_type: OutputType::VecString,
     };
@@ -18,11 +19,12 @@ pub fn for_export() -> QuizOutput {
 }
 
 pub fn input_from_file() -> String {
+    let for_export = for_export();
     // load file or panic
     let path = format!(
         "./src/quizzes/{}/{}.txt",
-        for_export().level,
-        for_export().name
+        for_export.level,
+        for_export.name
     );
     let input = read_from_input_file(&path);
     input

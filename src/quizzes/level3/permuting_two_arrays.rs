@@ -4,13 +4,20 @@ use crate::quizzes::{
 };
 
 pub fn for_export() -> QuizOutput {
+    let input = "2
+3 10
+2 1 3
+7 8 9
+4 5
+1 2 2 1
+3 3 3 4";
     let output = QuizOutput {
         name: "permuting_two_arrays".to_string(),
         desc: "String".to_string(),
         example: "String".to_string(),
         level: "level3".to_string(),
         constraints: "String".to_string(),
-        input: "String".to_string(),
+        input: format!("{:?}", input),
         output: "String".to_string(),
         output_type: OutputType::VecString,
     };
@@ -18,11 +25,12 @@ pub fn for_export() -> QuizOutput {
 }
 
 pub fn input_from_file() -> String {
+    let for_export = for_export();
     // load file or panic
     let path = format!(
         "./src/quizzes/{}/{}.txt",
-        for_export().level,
-        for_export().name
+        for_export.level,
+        for_export.name
     );
     let input = read_from_input_file(&path);
     input
