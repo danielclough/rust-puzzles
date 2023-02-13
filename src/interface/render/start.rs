@@ -4,7 +4,7 @@ use std::{
     process::{Command, Output, Stdio},
 };
 
-use rand::Rng;
+// use rand::Rng;
 use tui::{
     layout::Alignment,
     style::{Color, Style},
@@ -15,8 +15,8 @@ use tui::{
 use crate::interface::{controllers::read::read_quiz_list, types::QuizList};
 
 pub fn test_quiz(file: &str) -> Result<Output, Error> {
-    let mut rng = rand::thread_rng();
-    let rand: [f32; 6] = rng.gen();
+    // let mut rng = rand::thread_rng();
+    // let rand: [f32; 6] = rng.gen();
     let program = "./target/debug/rq";
     let result = Command::new(program)
         .arg(file)

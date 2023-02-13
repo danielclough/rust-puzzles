@@ -6,7 +6,7 @@ use crossterm::{
 };
 use tui::{backend::CrosstermBackend, widgets::ListState, Terminal};
 
-use crate::interface::controllers::{key_down, key_up, start_quiz};
+use crate::interface::controllers::{key_down, key_up};
 use crate::interface::types::{Event, MenuConfig, MenuItem};
 
 use super::render::draw_terminal;
