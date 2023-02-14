@@ -1,6 +1,6 @@
 [
   {
-    "name": "PlusMinus",
+    "name": "plus_minus",
     "level": "1",
     "desc": "Calculate ratios as positive, negative, or zero.",
     "example": "Given n integers, find the ratio of the total which are positive, negative, or zero with a precision of 6 decimal places.",
@@ -9,7 +9,7 @@
     "output": ["0.500000", "0.333333", "0.166667"]
   },
   {
-    "name": "MiniMaxSum",
+    "name": "mini_max_sum",
     "level": "1",
     "desc": "",
     "example": "",
@@ -18,7 +18,7 @@
     "output": [""]
   },
   {
-    "name": "TimeConversion",
+    "name": "time_conversion",
     "level": "1",
     "desc": "",
     "example": "",
@@ -27,7 +27,7 @@
     "output": [""]
   },
   {
-    "name": "BreakingTheRecords",
+    "name": "breaking_the_records",
     "level": "1",
     "desc": "",
     "example": "",
@@ -36,7 +36,7 @@
     "output": [""]
   },
   {
-    "name": "CamelCase4",
+    "name": "camel_case_4",
     "level": "1",
     "desc": "",
     "example": "",
@@ -45,7 +45,7 @@
     "output": [""]
   },
   {
-    "name": "DivisibleSumPairs",
+    "name": "divisible_sum_pairs",
     "level": "1",
     "desc": "",
     "example": "",
@@ -54,7 +54,7 @@
     "output": [""]
   },
   {
-    "name": "SparseArrays",
+    "name": "sparse_arrays",
     "level": "1",
     "desc": "",
     "example": "",
