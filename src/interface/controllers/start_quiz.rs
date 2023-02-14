@@ -16,7 +16,6 @@ pub fn exec(menu_config: &MenuConfig) {
     }
 }
 
-
 pub fn get_elapsed() -> String {
         // create timestamp and store it
     let duration_since_epoch = SystemTime::now().duration_since(UNIX_EPOCH).unwrap();
@@ -39,12 +38,6 @@ pub fn get_elapsed() -> String {
 }
 
 pub fn init_compare(selected_quiz: &QuizList) -> Comparison {
-    //     // create random number for attempt
-    // let mut rand_thread = rand::thread_rng();
-    // let rand_n: [i32;6] = rand_thread.gen();
-
-    let elapsed = get_elapsed();
-
     let input_path = &format!(
         "src/quizzes/level{}/{}.txt",
         selected_quiz.level, selected_quiz.name
@@ -61,14 +54,19 @@ pub fn init_compare(selected_quiz: &QuizList) -> Comparison {
         .split("\n")
         .map(|x| x.to_string())
         .collect();
-    let correct_str = correct_vec.join("; ");
-    let user_str = user_vec.join("; ");
+    let correct_tmp = correct_vec.join("; ");
+    let correct_str = correct_tmp.trim();
+    let user_tmp = user_vec.join("; ");
+    let user_str = user_tmp.trim();
+    let is_correct = comparison_tupl.3;
+
+    let elapsed = get_elapsed();
 
     let comparison = Comparison {
         input_str: input_str.to_string(),
-        correct_str,
-        user_str,
-        is_correct: comparison_tupl.3,
+        correct_str: correct_str.to_string(),
+        user_str: user_str.to_string(),
+        is_correct,
         elapsed,
     };
     comparison
@@ -82,9 +80,17 @@ pub fn test_correct_quiz(file: &str) -> Result<Output, Error> {
         .output()?;
     Ok(result)
 }
+fn compile_new_quiz() {
+    let program = "./build.sh";
+    _ = Command::new(program)
+        .stdout(Stdio::piped())
+        .output();
+}
 fn get_new_quiz_output(input: &str) -> Result<Output, Error> {
-    let result = Command::new("bash")
-        .arg("./start.sh")
+    _ = compile_new_quiz();
+    
+    let program = "./user-data/target/debug/user-data";
+    let result = Command::new(program)
         .arg(input)
         .stdout(Stdio::piped())
         .output()?;
@@ -93,9 +99,7 @@ fn get_new_quiz_output(input: &str) -> Result<Output, Error> {
 fn get_params_from_result(result: Result<Output, Error>) -> String {
     let result_output;
     if result.is_ok() {
-        // : Vec<(i32, i32, i32)>
         result_output = String::from_utf8(result.unwrap().stdout).unwrap();
-        // assert_eq!(answer, unwrapped);
     } else {
         result_output = format!("{:?}", result.unwrap_err());
     }
@@ -104,7 +108,6 @@ fn get_params_from_result(result: Result<Output, Error>) -> String {
 
 pub fn compare_results(input_path: &str) -> (String, String, String, bool) {
     // load file or panic
-    _ = create_file_if_needed().expect("file should be created");
     let input = fs::read_to_string(input_path).unwrap();
     let input_vec: &Vec<String> = &input.split("\n").map(|x| x.to_string()).collect();
     let input_str = input_vec.join("; ");
@@ -119,11 +122,11 @@ pub fn compare_results(input_path: &str) -> (String, String, String, bool) {
         input_str,
         correct_output.to_owned(),
         user_output.to_owned(),
-        (correct_output == user_output),
+        correct_output.eq(&user_output),
     )
 }
 
-fn create_file_if_needed() -> Result<String, Error> {
+pub fn create_file_if_needed() -> Result<String, Error> {
     let new_quiz_path = "./user-data/src/main.rs";
     if fs::read(new_quiz_path).is_err() {
         let new_quiz_content = "use std::env;

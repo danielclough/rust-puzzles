@@ -43,21 +43,26 @@ pub fn render<'a>(result_list_state: &ListState) -> (List<'a>, Table<'a>) {
     );
 
     let result_detail = Table::new(vec![Row::new(vec![
-        Cell::from(Span::raw(selected_result.name.to_string())),
         Cell::from(Span::raw(selected_result.level.to_string())),
-        Cell::from(Span::raw(selected_result.path_name.to_string())),
+        Cell::from(Span::raw(selected_result.name.to_string())),
+        Cell::from(Span::raw(selected_result.id.to_string())),
+        Cell::from(Span::raw(selected_result.elapsed.to_string())),
     ])])
     .header(Row::new(vec![
-        Cell::from(Span::styled(
-            "Name",
-            Style::default().add_modifier(Modifier::BOLD),
-        )),
         Cell::from(Span::styled(
             "Level",
             Style::default().add_modifier(Modifier::BOLD),
         )),
         Cell::from(Span::styled(
-            "Path",
+            "Name",
+            Style::default().add_modifier(Modifier::BOLD),
+        )),
+        Cell::from(Span::styled(
+            "Id",
+            Style::default().add_modifier(Modifier::BOLD),
+        )),
+        Cell::from(Span::styled(
+            "Time",
             Style::default().add_modifier(Modifier::BOLD),
         )),
     ]))
@@ -69,9 +74,10 @@ pub fn render<'a>(result_list_state: &ListState) -> (List<'a>, Table<'a>) {
             .border_type(BorderType::Plain),
     )
     .widths(&[
-        Constraint::Percentage(40),
+        Constraint::Percentage(15),
+        Constraint::Percentage(35),
+        Constraint::Percentage(30),
         Constraint::Percentage(20),
-        Constraint::Percentage(40),
     ]);
 
     (list, result_detail)

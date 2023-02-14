@@ -12,9 +12,10 @@ pub struct QuizList {
 }
 #[derive(Serialize, Deserialize, Clone)]
 pub struct QuizResults {
+    pub id: String,
     pub name: String,
     pub level: String,
-    pub path_name: String,
+    pub elapsed: String,
 }
 #[derive(Error, Debug)]
 pub enum Error {
