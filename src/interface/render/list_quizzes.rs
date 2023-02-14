@@ -9,11 +9,9 @@ use tui::{
 
 use crate::interface::{controllers::read::read_quiz_list, types::QuizList};
 
-pub fn render<'a>(
-    quiz_list_state: &ListState,
-) -> (List<'a>, Table<'a>, Paragraph<'a>, Table<'a>, Table<'a>) {
+pub fn render<'a>(quiz_list_state: &ListState) -> (List<'a>, Table<'a>, Paragraph<'a>) {
     let yellow = Color::Rgb(168, 139, 24);
-    let redish = Color::Rgb(117, 52, 113);
+    // let redish = Color::Rgb(117, 52, 113);
     // let bright_yellow = Color::Rgb(224,204,16);
     // let purple = Color::Rgb(113,9,219);
     // let pink = Color::Rgb(168,24,158);
@@ -78,6 +76,7 @@ pub fn render<'a>(
     // Description
     // Example
     let quiz_desc = Paragraph::new(vec![
+        Spans::from(vec![Span::raw("")]),
         Spans::from(vec![Span::raw(selected_quiz.desc)]),
         Spans::from(vec![Span::raw("")]),
         Spans::from(vec![Span::raw(selected_quiz.example)]),
@@ -85,66 +84,11 @@ pub fn render<'a>(
     .wrap(Wrap { trim: false })
     .block(
         Block::default()
-            .borders(Borders::ALL)
-            .style(Style::default().fg(Color::Gray))
-            .title("Description")
-            .border_type(BorderType::Plain),
-    )
-    .block(
-        Block::default()
-            .borders(Borders::ALL)
-            .style(Style::default().fg(Color::Gray))
             .title("How to turn Input to Output")
+            .style(Style::default().fg(Color::Gray))
+            .borders(Borders::ALL)
             .border_type(BorderType::Plain),
     );
 
-    // Constraints
-    let quiz_constraints = Table::new(vec![Row::new(vec![Cell::from(Span::raw(
-        selected_quiz.constraints.join(", "),
-    ))])])
-    .header(Row::new(vec![Cell::from(Span::styled(
-        "Constraints",
-        Style::default().add_modifier(Modifier::BOLD).fg(redish),
-    ))]))
-    .block(
-        Block::default()
-            .borders(Borders::ALL)
-            .style(Style::default().fg(Color::Gray))
-            .title("Constraints")
-            .border_type(BorderType::Plain),
-    )
-    .widths(&[Constraint::Percentage(100)]);
-
-    // Input and Output
-    let quiz_in_out = Table::new(vec![Row::new(vec![
-        Cell::from("selected_quiz.input.join(, "),
-        Cell::from("selected_quiz.output.join(, "),
-    ])])
-    .header(Row::new(vec![
-        Cell::from(Span::styled(
-            "Input",
-            Style::default().add_modifier(Modifier::BOLD).fg(redish),
-        )),
-        Cell::from(Span::styled(
-            "Output",
-            Style::default().add_modifier(Modifier::BOLD).fg(redish),
-        )),
-    ]))
-    .block(
-        Block::default()
-            .borders(Borders::ALL)
-            .style(Style::default().fg(Color::Gray))
-            .title("Input")
-            .border_type(BorderType::Plain),
-    )
-    .block(
-        Block::default()
-            .borders(Borders::ALL)
-            .style(Style::default().fg(Color::Gray))
-            .title("Output")
-            .border_type(BorderType::Plain),
-    )
-    .widths(&[Constraint::Percentage(50), Constraint::Percentage(50)]);
-
-    (list, outline, quiz_desc, quiz_constraints, quiz_in_out)
+    (list, outline, quiz_desc)
 }

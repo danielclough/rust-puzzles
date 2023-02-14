@@ -41,24 +41,13 @@ pub fn exec(
 
                 let quizzes_chunks_right = Layout::default()
                     .direction(Direction::Vertical)
-                    .constraints(
-                        [
-                            Constraint::Percentage(20),
-                            Constraint::Percentage(40),
-                            Constraint::Percentage(20),
-                            Constraint::Percentage(20),
-                        ]
-                        .as_ref(),
-                    )
+                    .constraints([Constraint::Percentage(20), Constraint::Percentage(80)].as_ref())
                     .split(quizzes_chunks[1]);
 
-                let (left, quiz_outline, quiz_desc, quiz_constraints, quiz_in_out) =
-                    list_quizzes::render(&quiz_list_state);
+                let (left, quiz_outline, quiz_desc) = list_quizzes::render(&quiz_list_state);
                 rect.render_stateful_widget(left, quizzes_chunks[0], &mut quiz_list_state);
                 rect.render_widget(quiz_outline, quizzes_chunks_right[0]);
                 rect.render_widget(quiz_desc, quizzes_chunks_right[1]);
-                rect.render_widget(quiz_constraints, quizzes_chunks_right[2]);
-                rect.render_widget(quiz_in_out, quizzes_chunks_right[3]);
             }
             MenuItem::Results => {
                 let results_chunks = Layout::default()

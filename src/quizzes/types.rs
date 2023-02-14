@@ -44,13 +44,7 @@ pub enum QuizOption {
 
 pub struct QuizOutput {
     pub name: String,
-    pub desc: String,
-    pub example: String,
     pub level: String,
-    pub constraints: String,
-    pub input: String,
-    pub output: String,
-    pub output_type: OutputType,
 }
 
 pub enum OutputType {

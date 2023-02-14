@@ -1,22 +1,9 @@
-use crate::quizzes::{
-    types::{OutputType, QuizOutput},
-    utils::read_from_input_file,
-};
+use crate::quizzes::{types::QuizOutput, utils::read_from_input_file};
 
 pub fn for_export() -> QuizOutput {
-    let input = "3
-11 2 4
-4 5 6
-10 8 -12";
     let output = QuizOutput {
         name: "diagonal_difference".to_string(),
-        desc: "String".to_string(),
-        example: "String".to_string(),
         level: "level2".to_string(),
-        constraints: "String".to_string(),
-        input: format!("{:?}", input),
-        output: "String".to_string(),
-        output_type: OutputType::VecString,
     };
     output
 }

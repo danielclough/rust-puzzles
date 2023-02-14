@@ -1,25 +1,10 @@
-use crate::quizzes::{
-    types::{OutputType, QuizOutput},
-    utils::read_from_input_file,
-};
+use crate::quizzes::{types::QuizOutput, utils::read_from_input_file};
 
 pub fn for_export() -> QuizOutput {
-    let input = "2
-3 10
-2 1 3
-7 8 9
-4 5
-1 2 2 1
-3 3 3 4";
     let output = QuizOutput {
         name: "permuting_two_arrays".to_string(),
-        desc: "String".to_string(),
-        example: "String".to_string(),
+
         level: "level3".to_string(),
-        constraints: "String".to_string(),
-        input: format!("{:?}", input),
-        output: "String".to_string(),
-        output_type: OutputType::VecString,
     };
     output
 }

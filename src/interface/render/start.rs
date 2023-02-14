@@ -6,19 +6,27 @@ use tui::{
 };
 
 use crate::interface::{
-    controllers::{
-        read::read_quiz_list,
-        start_quiz::compare_results,
-    },
-    types::{QuizList, Comparison}
+    controllers::{read::read_quiz_list, start_quiz::compare_results},
+    types::{Comparison, QuizList},
 };
 
 pub fn init_compare(selected_quiz: &QuizList) -> Comparison {
-    let input_path = &format!("src/quizzes/level{}/{}.txt", selected_quiz.level, selected_quiz.name);
+    let input_path = &format!(
+        "src/quizzes/level{}/{}.txt",
+        selected_quiz.level, selected_quiz.name
+    );
     let comparison_tupl = compare_results(input_path);
     let input_str = &comparison_tupl.0;
-    let correct_vec: &Vec<String> = &comparison_tupl.1.split("\n").map(|x| x.to_string()).collect();
-    let user_vec: &Vec<String> = &comparison_tupl.2.split("\n").map(|x| x.to_string()).collect();
+    let correct_vec: &Vec<String> = &comparison_tupl
+        .1
+        .split("\n")
+        .map(|x| x.to_string())
+        .collect();
+    let user_vec: &Vec<String> = &comparison_tupl
+        .2
+        .split("\n")
+        .map(|x| x.to_string())
+        .collect();
     let correct_str = correct_vec.join("; ");
     let user_str = user_vec.join("; ");
 

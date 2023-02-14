@@ -1,9 +1,9 @@
+use crate::interface::types::{MenuConfig, MenuItem};
 use std::{
     fs,
     io::Error,
     process::{Command, Output, Stdio},
 };
-use crate::interface::types::{MenuConfig, MenuItem};
 
 pub fn exec(menu_config: &MenuConfig) {
     match menu_config.active_item {
@@ -46,14 +46,19 @@ pub fn compare_results(input_path: &str) -> (String, String, String, bool) {
     let input = fs::read_to_string(input_path).unwrap();
     let input_vec: &Vec<String> = &input.split("\n").map(|x| x.to_string()).collect();
     let input_str = input_vec.join("; ");
-    
-        let user_result =  get_new_quiz_output(&input_str);
-        let user_output = get_params_from_result(user_result);
+
+    let user_result = get_new_quiz_output(&input_str);
+    let user_output = get_params_from_result(user_result);
 
     let correct_result = test_correct_quiz(input_path);
     let correct_output = get_params_from_result(correct_result);
 
-    (input_str, correct_output.to_owned(), user_output.to_owned(), (correct_output == user_output))
+    (
+        input_str,
+        correct_output.to_owned(),
+        user_output.to_owned(),
+        (correct_output == user_output),
+    )
 }
 
 fn create_file_if_needed() -> Result<String, Error> {

@@ -62,7 +62,6 @@ impl MenuConfig {
     }
 }
 
-
 pub struct Comparison {
     pub input_str: String,
     pub correct_str: String,

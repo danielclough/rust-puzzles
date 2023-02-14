@@ -1,20 +1,9 @@
-use crate::quizzes::{
-    types::{OutputType, QuizOutput},
-    utils::read_from_input_file,
-};
+use crate::quizzes::{types::QuizOutput, utils::read_from_input_file};
 
 pub fn for_export() -> QuizOutput {
-    let input = "9
-10 20 20 10 10 30 50 10 20";
     let output = QuizOutput {
         name: "sales_by_match".to_string(),
-        desc: "String".to_string(),
-        example: "String".to_string(),
         level: "level3".to_string(),
-        constraints: "String".to_string(),
-        input: format!("{:?}", input),
-        output: "String".to_string(),
-        output_type: OutputType::VecString,
     };
     output
 }

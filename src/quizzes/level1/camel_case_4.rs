@@ -1,24 +1,9 @@
-use crate::quizzes::{
-    types::{OutputType, QuizOutput},
-    utils::read_from_input_file,
-};
+use crate::quizzes::{types::QuizOutput, utils::read_from_input_file};
 
 pub fn for_export() -> QuizOutput {
-    let input = "S;M;plasticCup()
-C;V;mobile phone
-C;C;coffee machine
-S;C;LargeSoftwareBook
-C;M;white sheet of paper
-S;V;pictureFrame";
     let output = QuizOutput {
         name: "camel_case_4".to_string(),
-        desc: "String".to_string(),
-        example: "String".to_string(),
         level: "level1".to_string(),
-        constraints: "String".to_string(),
-        input: format!("{:?}", input),
-        output: "String".to_string(),
-        output_type: OutputType::VecString,
     };
     output
 }
