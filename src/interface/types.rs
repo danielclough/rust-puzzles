@@ -9,8 +9,6 @@ pub struct QuizList {
     pub desc: String,
     pub example: String,
     pub constraints: Vec<String>,
-    pub input: Vec<String>,
-    pub output: Vec<String>,
 }
 #[derive(Serialize, Deserialize, Clone)]
 pub struct QuizResults {

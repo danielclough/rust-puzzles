@@ -4,206 +4,160 @@
     "level": "1",
     "desc": "Calculate ratios as positive, negative, or zero.",
     "example": "Given n integers, find the ratio of the total which are positive, negative, or zero with a precision of 6 decimal places.",
-    "constraints": ["0 < n <= 100", "-100 <= arr[i] <= 100"],
-    "input": ["6", "-4 3 -9 0 4 1"],
-    "output": ["0.500000", "0.333333", "0.166667"]
+    "constraints": ["0 < n <= 100", "-100 <= arr[i] <= 100"]
   },
   {
     "name": "mini_max_sum",
     "level": "1",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "time_conversion",
     "level": "1",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "breaking_the_records",
     "level": "1",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "camel_case_4",
     "level": "1",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "divisible_sum_pairs",
     "level": "1",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "sparse_arrays",
     "level": "1",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "LonelyInteger",
     "level": "2",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "GradingStudents",
     "level": "2",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "FlippingBits",
     "level": "2",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "DiagonalDifference",
     "level": "2",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "CountingSort1",
     "level": "2",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "CountingValleys",
     "level": "2",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "Pangrams",
     "level": "2",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "MarsExploration",
     "level": "2",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "PermutingTwoArrays",
     "level": "3",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "SubarrayDivision2",
     "level": "3",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "XorStrings3",
     "level": "3",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "SalesByMatch",
     "level": "3",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "MigratoryBirds",
     "level": "3",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "MaximumPerimeterTriangle",
     "level": "3",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "ZigZagSequence",
     "level": "3",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   },
   {
     "name": "DrawingBook",
     "level": "3",
     "desc": "",
     "example": "",
-    "constraints": [""],
-    "input": [""],
-    "output": [""]
+    "constraints": [""]
   }
 ]
