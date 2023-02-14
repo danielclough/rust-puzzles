@@ -1,3 +1,6 @@
+use std::time::{SystemTime, UNIX_EPOCH};
+
+// use rand::Rng;
 use tui::{
     layout::Alignment,
     style::{Color, Style},
@@ -10,7 +13,34 @@ use crate::interface::{
     types::{Comparison, QuizList},
 };
 
+pub fn get_elapsed() -> String {
+        // create timestamp and store it
+    let duration_since_epoch = SystemTime::now().duration_since(UNIX_EPOCH).unwrap();
+    let timestamp: String;
+    let timestamp_path = "./user-data/.timestamp";
+    let read_timestamp = std::fs::read_to_string(timestamp_path);
+    if read_timestamp.is_ok() {
+        timestamp = read_timestamp.unwrap()
+    } else {
+        timestamp = format!("{}",duration_since_epoch.as_secs());
+        _ = std::fs::write(timestamp_path, &timestamp);
+    }
+
+    let elapsed_in_sec = duration_since_epoch.as_secs() as i64 - timestamp.parse::<i64>().unwrap();
+    let elapsed_hrs = elapsed_in_sec / (60*60);
+    let elapsed_mins = elapsed_in_sec % (60*60) / 60;
+    let elapsed_secs = elapsed_in_sec % 60;
+    let elapsed = format!("{}:{}:{}", elapsed_hrs, elapsed_mins, elapsed_secs);
+    elapsed
+}
+
 pub fn init_compare(selected_quiz: &QuizList) -> Comparison {
+    //     // create random number for attempt
+    // let mut rand_thread = rand::thread_rng();
+    // let rand_n: [i32;6] = rand_thread.gen();
+
+    let elapsed = get_elapsed();
+
     let input_path = &format!(
         "src/quizzes/level{}/{}.txt",
         selected_quiz.level, selected_quiz.name
@@ -35,6 +65,7 @@ pub fn init_compare(selected_quiz: &QuizList) -> Comparison {
         correct_str,
         user_str,
         is_correct: comparison_tupl.3,
+        elapsed,
     };
     comparison
 }
@@ -84,7 +115,7 @@ pub fn render<'a>(quiz_list_state: &ListState) -> Paragraph<'a> {
         Block::default()
             .borders(Borders::ALL)
             .style(Style::default().fg(Color::White))
-            .title(format!("Quiz in progress: {} ", selected_quiz.name))
+            .title(format!("Quiz in progress: {} ({:?})", selected_quiz.name, comparison.elapsed))
             .border_type(BorderType::Plain),
     );
     container
