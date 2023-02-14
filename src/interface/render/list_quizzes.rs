@@ -117,8 +117,8 @@ pub fn render<'a>(
 
     // Input and Output
     let quiz_in_out = Table::new(vec![Row::new(vec![
-        Cell::from(Span::raw(selected_quiz.input.join(", "))),
-        Cell::from(Span::raw(selected_quiz.output.join(", "))),
+        Cell::from("selected_quiz.input.join(, "),
+        Cell::from("selected_quiz.output.join(, "),
     ])])
     .header(Row::new(vec![
         Cell::from(Span::styled(

@@ -4,12 +4,7 @@ use crate::quizzes::{
 };
 
 pub fn for_export() -> QuizOutput {
-    let input = "S;M;plasticCup()
-C;V;mobile phone
-C;C;coffee machine
-S;C;LargeSoftwareBook
-C;M;white sheet of paper
-S;V;pictureFrame";
+    let input = "";
     let output = QuizOutput {
         name: "plus_minus".to_string(),
         desc: "String".to_string(),
