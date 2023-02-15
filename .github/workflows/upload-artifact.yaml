@@ -28,10 +28,11 @@ inputs:
       Duration after which artifact will expire in days. 0 means using default retention.
       Minimum 1 day.
       Maximum 90 days unless changed from the repository settings page.
-runs:
-  using: 'node16'
-  main: 'dist/index.js'
-  steps:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/checkout@v3
     - uses: actions/upload-artifact@v3
       with:
