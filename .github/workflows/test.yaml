@@ -13,9 +13,7 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - uses: actions-rs/toolchain@v1
@@ -39,8 +37,8 @@ jobs:
       # uses: codecov/codecov-action@81cd2dc8148241f03f5839d295e000b8f761e378
       uses: codecov/codecov-action@v3.1.0
       with:
-        # Repository upload token - get it from codecov.io. Required only for private repositories
-        # token: # optional
+      env:
+        CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
         # Specify whether the Codecov output should be verbose
         verbose: true
         fail_ci_if_error: true

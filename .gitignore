@@ -1,3 +1,4 @@
 **/target
 **/.timestamp
 .env
+*.profraw
