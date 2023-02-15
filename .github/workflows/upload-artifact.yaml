@@ -3,9 +3,9 @@
 name: 'Upload a Build Artifact'
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 description: 'Upload a build artifact that can be used by subsequent workflow steps'
 author: 'Daniel Clough'
