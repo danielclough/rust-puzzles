@@ -1,6 +1,12 @@
 # MIT License - Copyright (c) 2018 GitHub, Inc. and contributors
 # https://github.com/actions/upload-artifact
 name: 'Upload a Build Artifact'
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
 description: 'Upload a build artifact that can be used by subsequent workflow steps'
 author: 'Daniel Clough'
 inputs: 
