@@ -8,9 +8,8 @@ After reading the first half of [The Rust Programing Language (w/ quizzes by bro
 The end goal of this project is for me to have a time trial for practicing common challenges using my preffered toolchain.
 
 ## Testing
-![Code Coverage](https://codecov.io/gh/danielclough/rust-quizzes/branch/main/graph/badge.svg?token=ZSYEUFAGUV)](https://codecov.io/gh/danielclough/rust-quizzes)
+[![Code Coverage](https://codecov.io/gh/danielclough/rust-quizzes/branch/main/graph/badge.svg?token=ZSYEUFAGUV)](https://codecov.io/gh/danielclough/rust-quizzes)
 ![Code Coverage](https://codecov.io/gh/danielclough/rust-quizzes/branch/main/graphs/sunburst.svg?token=ZSYEUFAGUV)
-![Code Coverage](https://codecov.io/gh/danielclough/rust-quizzes/branch/main/graphs/tree.svg?token=ZSYEUFAGUV)
 
 ## Technical Design Document
 [Read the TDD]()
