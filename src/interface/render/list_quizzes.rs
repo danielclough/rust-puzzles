@@ -80,6 +80,8 @@ pub fn render<'a>(quiz_list_state: &ListState) -> (List<'a>, Table<'a>, Paragrap
         Spans::from(vec![Span::raw(selected_quiz.desc)]),
         Spans::from(vec![Span::raw("")]),
         Spans::from(vec![Span::raw(selected_quiz.example)]),
+        Spans::from(vec![Span::raw("")]),
+        Spans::from(vec![Span::raw(selected_quiz.constraints.join("; "))]),
     ])
     .wrap(Wrap { trim: false })
     .block(

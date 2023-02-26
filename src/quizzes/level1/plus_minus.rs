@@ -5,7 +5,7 @@ pub fn config() -> QuizConfig {
         name: "plus_minus".to_string(),
         desc: "desc".to_string(),
         example: "example".to_string(),
-        constraints: "constraints".to_string(),
+        constraints: vec!["".to_string()],
         level: "level1".to_string(),
         answer: AnswerType::VecTupleF32F32F32 { answer: vec![(0.500000, 0.333333, 0.166667)] },
     };

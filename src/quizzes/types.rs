@@ -1,17 +1,13 @@
 pub struct Quiz {
     pub name: String,
     pub level: String,
-    pub input: String,
-    pub path: String,
 }
 
 impl Quiz {
-    pub fn new(path: &String, input: &String, level: &String) -> Quiz {
+    pub fn new(name: &String, level: &String) -> Quiz {
         Quiz {
-            name: path.clone(),
+            name: name.clone(),
             level: level.clone(),
-            input: input.clone(),
-            path: path.clone(),
         }
     }
 }
@@ -21,7 +17,7 @@ pub struct QuizConfig {
     pub name: String,
     pub desc: String,
     pub example: String,
-    pub constraints: String,
+    pub constraints: Vec<String>,
     pub level: String,
     pub answer: AnswerType,
 }

@@ -16,7 +16,7 @@ use rq::{
 };
 use std::thread;
 use std::time::{Duration, Instant};
-use std::{env, fs, sync::mpsc};
+use std::{env, sync::mpsc};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     // // // check args for current path
@@ -40,10 +40,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         //         path: format!("input/{level}/{name}.txt"),
         //     };
 
-        // load file or panic
-        let input = fs::read_to_string(&path).expect("Should have been able to read the file");
-
-        let quiz = Quiz::new(&name, &input, &level);
+        let quiz = Quiz::new(&name, &level);
         utils::quiz(quiz);
         Ok(())
     } else {

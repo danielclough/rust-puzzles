@@ -13,6 +13,7 @@ use crate::quizzes::level3::{
     drawing_book, maximum_perimeter_triangle, migratory_birds, permuting_two_arrays,
     sales_by_match, subarray_division_2, xor_strings_3, zig_zag_sequence,
 };
+use crate::quizzes::types::QuizConfig;
 
 use super::types::{Quiz};
 // use crate::quizzes::level4::{
@@ -83,6 +84,41 @@ pub fn quiz(quiz: Quiz) {
         "drawing_book" => _ = drawing_book::quiz(),
         &_ => {},
     }
+}
+
+
+pub fn get_config(quiz: Quiz) -> QuizConfig {
+    let config:QuizConfig;
+    match &quiz.name as &str {
+        // WEEK 1
+        "plus_minus" => config = plus_minus::config(),
+        "mini_max_sum" => config = mini_max_sum::config(),
+        "time_conversion" => config = time_conversion::config(),
+        "breaking_the_records" => config = breaking_the_records::config(),
+        "camel_case_4" => config = camel_case_4::config(),
+        "divisible_sum_pairs" => config = divisible_sum_pairs::config(),
+        "sparse_arrays" => config = sparse_arrays::config(),
+        // WEEK 2
+        "lonely_integer" => config = lonely_integer::config(),
+        "grading_students" => config = grading_students::config(),
+        "flipping_bits" => config = flipping_bits::config(),
+        "diagonal_difference" => config = diagonal_difference::config(),
+        "counting_sort_1" => config = counting_sort_1::config(),
+        "counting_valleys" => config = counting_valleys::config(),
+        "pangrams" => config = pangrams::config(),
+        "mars_exploration" => config = mars_exploration::config(),
+        // WEEK 3
+        "permuting_two_arrays" => config = permuting_two_arrays::config(),
+        "subarray_division_2" => config = subarray_division_2::config(),
+        "xor_strings_3" => config = xor_strings_3::config(),
+        "sales_by_match" => config = sales_by_match::config(),
+        "migratory_birds" => config = migratory_birds::config(),
+        "maximum_perimeter_triangle" => config = maximum_perimeter_triangle::config(),
+        "zig_zag_sequence" => config = zig_zag_sequence::config(),
+        "drawing_book" => config = drawing_book::config(),
+        &_ => config = plus_minus::config(),
+    }
+    config
 }
 
 pub fn filename(file: &str) -> &OsStr {

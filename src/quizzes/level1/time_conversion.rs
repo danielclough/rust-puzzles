@@ -5,7 +5,7 @@ pub fn config() -> QuizConfig {
         name: "time_conversion".to_string(),
         desc: "desc".to_string(),
         example: "example".to_string(),
-        constraints: "constraints".to_string(),
+        constraints: vec!["".to_string()],
         level: "level1".to_string(),
         answer: AnswerType::VecString { answer: vec![
             String::from("07:05:45"),

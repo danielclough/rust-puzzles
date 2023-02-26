@@ -5,7 +5,7 @@ pub fn config() -> QuizConfig {
         name: "xor_strings_3".to_string(),
         desc: "desc".to_string(),
         example: "example".to_string(),
-        constraints: "constraints".to_string(),
+        constraints: vec!["".to_string()],
         level: "level3".to_string(),
         answer: AnswerType::VecString { answer: vec!["10000".to_string()] },
     };

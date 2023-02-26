@@ -5,7 +5,7 @@ pub fn config() -> QuizConfig {
         name: "grading_students".to_string(),
         desc: "desc".to_string(),
         example: "example".to_string(),
-        constraints: "constraints".to_string(),
+        constraints: vec!["".to_string()],
         level: "level2".to_string(),
         answer: AnswerType::VecVecI32 { answer: vec![vec![75, 67, 40, 33]] },
     };

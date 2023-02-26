@@ -5,7 +5,7 @@ pub fn config() -> QuizConfig {
         name: "flipping_bits".to_string(),
         desc: "desc".to_string(),
         example: "example".to_string(),
-        constraints: "constraints".to_string(),
+        constraints: vec!["".to_string()],
         level: "level2".to_string(),
         answer: AnswerType::VecVecI64 { answer: vec![
             vec![2147483648, 4294967294, 4294967295],

@@ -5,7 +5,7 @@ pub fn config() -> QuizConfig {
         name: "sparse_arrays".to_string(),
         desc: "desc".to_string(),
         example: "example".to_string(),
-        constraints: "constraints".to_string(),
+        constraints: vec!["".to_string()],
         level: "level1".to_string(),
         answer: AnswerType::VecVecI32 { answer: vec![vec![2, 1, 0], vec![1, 0, 1], vec![1, 3, 4, 3, 2]] },
     };

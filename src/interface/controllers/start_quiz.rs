@@ -1,19 +1,36 @@
 use tui::widgets::ListState;
 
-use crate::{interface::types::{MenuConfig, MenuItem, Comparison, QuizList}};
+use crate::{interface::types::{MenuConfig, MenuItem, Comparison, QuizList, QuizResults}};
 use std::{
     fs,
     io::Error,
     process::{Command, Output, Stdio}, time::{SystemTime, UNIX_EPOCH},
 };
 
-use super::read::read_quiz_list;
+use super::{read::read_quiz_list, log::log_user_results};
 
 pub fn exec(menu_config: &MenuConfig) {
     match menu_config.active_item {
         MenuItem::Home => {}
         _ => {}
     }
+}
+
+pub fn log_results_and_cleanup(selected_quiz: &QuizList) {
+    let id = SystemTime::now().duration_since(UNIX_EPOCH).expect("system time");
+    let result = QuizResults {
+        id: format!("{:?}", id),
+        name: selected_quiz.name.to_string(),
+        level: selected_quiz.level.to_string(),
+        elapsed: get_elapsed(),
+    };
+    _ = log_user_results(result);
+    // change to Results
+    _ = std::fs::rename(
+        "./user-data/src/main.rs",
+        format!("./user-data/archive/{}-{:?}.rs", selected_quiz.name.to_string(), id.as_secs())
+    );
+    _ = std::fs::remove_file("./user-data/.timestamp");
 }
 
 pub fn get_elapsed() -> String {
@@ -44,6 +61,10 @@ pub fn write_timestamp() -> String {
     let timestamp = format!("{}", SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs());
     _ = std::fs::write(timestamp_path, &timestamp);
     timestamp
+}
+pub fn delete_timestamp() {
+    let timestamp_path = dotenv::var("TIMESTAMP_PATH").expect("must have TIMESTAMP_PATH in .env");
+    _ = std::fs::remove_file(timestamp_path);
 }
 
 pub fn init_compare(selected_quiz: &QuizList) -> Comparison {

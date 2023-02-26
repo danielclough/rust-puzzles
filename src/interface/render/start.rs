@@ -1,5 +1,3 @@
-use std::time::{UNIX_EPOCH, SystemTime};
-
 use tui::{
     layout::Alignment,
     style::{Color, Style},
@@ -9,28 +7,9 @@ use tui::{
 
 use crate::interface::{
     controllers::{
-        start_quiz::{init_compare, get_selected_quiz, get_elapsed, create_file_if_needed},
-        log::log_user_results,
+        start_quiz::{init_compare, get_selected_quiz, create_file_if_needed, log_results_and_cleanup},
     },
-    types::{QuizList, QuizResults},
 };
-
-pub fn log_results_and_cleanup(selected_quiz: &QuizList) {
-    let id = SystemTime::now().duration_since(UNIX_EPOCH).expect("system time");
-    let result = QuizResults {
-        id: format!("{:?}", id),
-        name: selected_quiz.name.to_string(),
-        level: selected_quiz.level.to_string(),
-        elapsed: get_elapsed(),
-    };
-    _ = log_user_results(result);
-    // change to Results
-    _ = std::fs::rename(
-        "./user-data/src/main.rs",
-        format!("./user-data/archive/{}-{:?}.rs", selected_quiz.name.to_string(), id.as_secs())
-    );
-    _ = std::fs::remove_file("./user-data/.timestamp");
-}
 
 pub fn render<'a>(quiz_list_state: &ListState) -> Paragraph<'a> {
     // init state

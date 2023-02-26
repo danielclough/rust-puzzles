@@ -1,5 +1,5 @@
 **/target
 **/archive/*
 **/.timestamp
-.env
 *.profraw
+user-data/

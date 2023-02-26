@@ -17,6 +17,6 @@ for f in ${files[@]}; do
 
     # sed -i "${start}s|^|${input//$'\n'/\\$'\n'}|" ${f}
 
-    sed -i 's|answer: AnswerType:: { answer:  }|answer: AnswerType::|' ${f}
+    sed -i 's|constraints: vec!\[""\],|constraints: vec!["".to_string()],|' ${f}
 
 done

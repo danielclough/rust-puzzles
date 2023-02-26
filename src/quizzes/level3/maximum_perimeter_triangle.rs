@@ -5,7 +5,7 @@ pub fn config() -> QuizConfig {
         name: "maximum_perimeter_triangle".to_string(),
         desc: "desc".to_string(),
         example: "example".to_string(),
-        constraints: "constraints".to_string(),
+        constraints: vec!["".to_string()],
         level: "level3".to_string(),
         answer: AnswerType::VecVecI32 { answer: vec![vec![1, 3, 3], vec![-1], vec![1, 1, 1], vec![2, 3, 3]] },
     };

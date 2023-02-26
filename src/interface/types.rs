@@ -10,6 +10,12 @@ pub struct QuizList {
     pub example: String,
     pub constraints: Vec<String>,
 }
+
+#[derive(Serialize, Deserialize, Clone)]
+pub struct QuizJson {
+    pub name: String,
+    pub level: String,
+}
 #[derive(Serialize, Deserialize, Clone)]
 pub struct QuizResults {
     pub id: String,
