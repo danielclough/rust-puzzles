@@ -17,24 +17,33 @@ pub fn exec(menu_config: &MenuConfig) {
 }
 
 pub fn get_elapsed() -> String {
-        // create timestamp and store it
-    let duration_since_epoch = SystemTime::now().duration_since(UNIX_EPOCH).unwrap();
-    let timestamp: String;
-    let timestamp_path = "./user-data/.timestamp";
-    let read_timestamp = std::fs::read_to_string(timestamp_path);
-    if read_timestamp.is_ok() {
-        timestamp = read_timestamp.unwrap()
-    } else {
-        timestamp = format!("{}",duration_since_epoch.as_secs());
-        _ = std::fs::write(timestamp_path, &timestamp);
-    }
+    let start_time = SystemTime::now().duration_since(UNIX_EPOCH).unwrap();
+    let timestamp = read_timestamp();
 
-    let elapsed_in_sec = duration_since_epoch.as_secs() as i64 - timestamp.parse::<i64>().unwrap();
+    let elapsed_in_sec = start_time.as_secs() as i64 - timestamp.parse::<i64>().unwrap();
     let elapsed_hrs = elapsed_in_sec / (60*60);
     let elapsed_mins = elapsed_in_sec % (60*60) / 60;
     let elapsed_secs = elapsed_in_sec % 60;
     let elapsed = format!("{}:{}:{}", elapsed_hrs, elapsed_mins, elapsed_secs);
     elapsed
+}
+
+pub fn read_timestamp() -> String {
+    let timestamp: String;
+    let timestamp_path = dotenv::var("TIMESTAMP_PATH").expect("must have TIMESTAMP_PATH in .env");
+    let read_timestamp = std::fs::read_to_string(timestamp_path);
+    if read_timestamp.is_ok() {
+        timestamp = read_timestamp.unwrap()
+    } else {
+        timestamp = write_timestamp();
+    }
+    timestamp
+}
+pub fn write_timestamp() -> String {
+    let timestamp_path = dotenv::var("TIMESTAMP_PATH").expect("must have TIMESTAMP_PATH in .env");
+    let timestamp = format!("{}", SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs());
+    _ = std::fs::write(timestamp_path, &timestamp);
+    timestamp
 }
 
 pub fn init_compare(selected_quiz: &QuizList) -> Comparison {

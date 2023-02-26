@@ -1,9 +1,17 @@
-use crate::quizzes::{types::QuizConfig, utils::read_from_input_file};
+use crate::quizzes::{types::{QuizConfig, AnswerType}, utils::read_from_input_file};
 
 pub fn config() -> QuizConfig {
     let output = QuizConfig {
         name: "flipping_bits".to_string(),
+        desc: "desc".to_string(),
+        example: "example".to_string(),
+        constraints: "constraints".to_string(),
         level: "level2".to_string(),
+        answer: AnswerType::VecVecI64 { answer: vec![
+            vec![2147483648, 4294967294, 4294967295],
+            vec![4294967291, 4294843839],
+            vec![4294967295, 3492223820, 4259365872],
+        ] },
     };
     output
 }
@@ -80,12 +88,6 @@ mod tests {
 
     #[test]
     fn does_it_work() {
-        let answer: Vec<Vec<i64>> = vec![
-            vec![2147483648, 4294967294, 4294967295],
-            vec![4294967291, 4294843839],
-            vec![4294967295, 3492223820, 4259365872],
-        ];
-
-        assert_eq!(answer, quiz());
+        assert_eq!(config().answer, AnswerType::VecVecI64 { answer: quiz() } );
     }
 }

@@ -1,9 +1,13 @@
-use crate::quizzes::{types::QuizConfig, utils::read_from_input_file};
+use crate::quizzes::{types::{QuizConfig, AnswerType}, utils::read_from_input_file};
 
 pub fn config() -> QuizConfig {
     let output = QuizConfig {
         name: "pangrams".to_string(),
+        desc: "desc".to_string(),
+        example: "example".to_string(),
+        constraints: "constraints".to_string(),
         level: "level2".to_string(),
+        answer: AnswerType::VecString { answer: vec![String::from("pangram"), String::from("not pangram")] },
     };
     output
 }
@@ -57,8 +61,6 @@ mod tests {
 
     #[test]
     fn does_it_work() {
-        let answer = vec![String::from("pangram"), String::from("not pangram")];
-
-        assert_eq!(answer, quiz());
+        assert_eq!(config().answer, AnswerType::VecString { answer: quiz() } );
     }
 }

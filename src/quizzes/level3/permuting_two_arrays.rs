@@ -1,10 +1,14 @@
-use crate::quizzes::{types::QuizConfig, utils::read_from_input_file};
+use crate::quizzes::{types::{QuizConfig, AnswerType}, utils::read_from_input_file};
 
 pub fn config() -> QuizConfig {
     let output = QuizConfig {
         name: "permuting_two_arrays".to_string(),
 
+        desc: "desc".to_string(),
+        example: "example".to_string(),
+        constraints: "constraints".to_string(),
         level: "level3".to_string(),
+        answer: AnswerType::VecString { answer: vec!["YES".to_owned(), "NO".to_owned(), "NO".to_owned()] },
     };
     output
 }
@@ -151,8 +155,6 @@ mod tests {
 
     #[test]
     fn does_it_work() {
-        let answer = vec!["YES".to_owned(), "NO".to_owned(), "NO".to_owned()];
-
-        assert_eq!(answer, quiz());
+        assert_eq!(config().answer, AnswerType::VecString { answer: quiz() } );
     }
 }

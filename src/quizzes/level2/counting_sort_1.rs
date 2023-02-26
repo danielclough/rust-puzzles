@@ -1,9 +1,18 @@
-use crate::quizzes::{types::QuizConfig, utils::read_from_input_file};
+use crate::quizzes::{types::{QuizConfig, AnswerType}, utils::read_from_input_file};
 
 pub fn config() -> QuizConfig {
     let output = QuizConfig {
         name: "counting_sort_1".to_string(),
+        desc: "desc".to_string(),
+        example: "example".to_string(),
+        constraints: "constraints".to_string(),
         level: "level2".to_string(),
+        answer: AnswerType::VecVecI32 { answer: vec![
+            "0 2 0 2 0 0 1 0 1 2 1 0 1 1 0 0 2 0 1 0 1 2 1 1 1 3 0 2 0 0 2 0 3 3 1 0 0 0 0 2 2 1 1 1 2 0 2 0 1 0 1 0 0 1 0 0 2 1 0 1 1 1 0 1 0 1 0 2 1 3 2 0 0 2 1 2 1 0 2 2 1 2 1 2 1 1 2 2 0 3 2 1 1 0 1 1 1 0 2 2"
+                .split(" ").map(|x| x.to_owned().parse::<i32>().unwrap()).collect(),
+            "2 0 1 0 0 1 1 1 1 0 0 1 3 2 2 0 4 4 1 1 0 0 0 0 3 0 0 1 0 1 2 0 1 2 2 3 0 2 0 0 1 0 1 1 0 0 1 1 0 2 0 0 1 1 1 0 1 0 1 1 2 3 0 1 2 0 1 2 1 1 4 1 0 1 1 3 0 0 2 1 2 3 2 2 2 0 0 1 0 0 0 0 0 0 2 0 1 3 1 0"
+                .split(" ").map(|x| x.to_owned().parse::<i32>().unwrap()).collect(),
+        ] },
     };
     output
 }
@@ -53,13 +62,6 @@ mod tests {
 
     #[test]
     fn does_it_work() {
-        let answer: Vec<Vec<i32>> = vec![
-            "0 2 0 2 0 0 1 0 1 2 1 0 1 1 0 0 2 0 1 0 1 2 1 1 1 3 0 2 0 0 2 0 3 3 1 0 0 0 0 2 2 1 1 1 2 0 2 0 1 0 1 0 0 1 0 0 2 1 0 1 1 1 0 1 0 1 0 2 1 3 2 0 0 2 1 2 1 0 2 2 1 2 1 2 1 1 2 2 0 3 2 1 1 0 1 1 1 0 2 2"
-                .split(" ").map(|x| x.to_owned().parse::<i32>().unwrap()).collect(),
-            "2 0 1 0 0 1 1 1 1 0 0 1 3 2 2 0 4 4 1 1 0 0 0 0 3 0 0 1 0 1 2 0 1 2 2 3 0 2 0 0 1 0 1 1 0 0 1 1 0 2 0 0 1 1 1 0 1 0 1 1 2 3 0 1 2 0 1 2 1 1 4 1 0 1 1 3 0 0 2 1 2 3 2 2 2 0 0 1 0 0 0 0 0 0 2 0 1 3 1 0"
-                .split(" ").map(|x| x.to_owned().parse::<i32>().unwrap()).collect(),
-        ];
-
-        assert_eq!(answer, quiz());
+        assert_eq!(config().answer, AnswerType::VecVecI32 { answer: quiz() } );
     }
 }

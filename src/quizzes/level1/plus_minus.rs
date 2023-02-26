@@ -1,9 +1,13 @@
-use crate::quizzes::{types::QuizConfig, utils::read_from_input_file};
+use crate::quizzes::{types::{QuizConfig, AnswerType}, utils::read_from_input_file};
 
 pub fn config() -> QuizConfig {
     let output = QuizConfig {
         name: "plus_minus".to_string(),
+        desc: "desc".to_string(),
+        example: "example".to_string(),
+        constraints: "constraints".to_string(),
         level: "level1".to_string(),
+        answer: AnswerType::VecTupleF32F32F32 { answer: vec![(0.500000, 0.333333, 0.166667)] },
     };
     output
 }
@@ -60,8 +64,6 @@ mod tests {
 
     #[test]
     fn does_it_work() {
-        let answer: Vec<(f32, f32, f32)> = vec![(0.500000, 0.333333, 0.166667)];
-
-        assert_eq!(answer, quiz());
+        assert_eq!(config().answer, AnswerType::VecTupleF32F32F32 { answer: quiz() } );
     }
 }

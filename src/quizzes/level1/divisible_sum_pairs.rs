@@ -1,9 +1,13 @@
-use crate::quizzes::{types::QuizConfig, utils::read_from_input_file};
+use crate::quizzes::{types::{QuizConfig, AnswerType}, utils::read_from_input_file};
 
 pub fn config() -> QuizConfig {
     let output = QuizConfig {
         name: "divisible_sum_pairs".to_string(),
+        desc: "desc".to_string(),
+        example: "example".to_string(),
+        constraints: "constraints".to_string(),
         level: "level1".to_string(),
+        answer: AnswerType::VecI32 { answer: vec![5] },
     };
     output
 }
@@ -63,8 +67,6 @@ mod tests {
 
     #[test]
     fn does_it_work() {
-        let answer: Vec<i32> = vec![5];
-
-        assert_eq!(answer, quiz());
+        assert_eq!(config().answer, AnswerType::VecI32 { answer: quiz()});
     }
 }

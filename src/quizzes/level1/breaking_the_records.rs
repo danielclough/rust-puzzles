@@ -1,9 +1,13 @@
-use crate::quizzes::{types::QuizConfig, utils::read_from_input_file};
+use crate::quizzes::{types::{QuizConfig, AnswerType}, utils::read_from_input_file};
 
 pub fn config() -> QuizConfig {
     let output = QuizConfig {
         name: "breaking_the_records".to_string(),
+        desc: "desc".to_string(),
+        example: "example".to_string(),
+        constraints: "constraints".to_string(),
         level: "level1".to_string(),
+        answer: AnswerType::VecVecI32 { answer: vec![vec![2, 4], vec![4, 0]] },
     };
     output
 }
@@ -73,8 +77,6 @@ mod tests {
 
     #[test]
     fn does_it_work() {
-        let answer: Vec<Vec<i32>> = vec![vec![2, 4], vec![4, 0]];
-
-        assert_eq!(answer, quiz());
+        assert_eq!(config().answer, AnswerType::VecVecI32 { answer: quiz() } );
     }
 }
