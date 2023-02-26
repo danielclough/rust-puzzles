@@ -34,23 +34,26 @@ pub fn config() -> QuizConfig {
 //     v
 // }
 
-pub fn quiz(arr: &str) -> Vec<String> {
-    let inputs = read_input(arr);
+pub fn quiz() -> Vec<String> {
+    let inputs = read_input();
     let mut answers: Vec<String> = vec![];
-    for input in inputs {
-        answers.push(xor_strings_3(input));
+        for input in inputs {
+            let inp: Vec<&str> = input.iter().map(|x| x as &str).collect();
+        answers.push(xor_strings_3(inp));
     }
     answers
 }
 
-fn read_input(arr: &str) -> Vec<Vec<&str>> {
-    let lines: Vec<&str> = arr.split("\n").collect();
-    let mut output: Vec<Vec<&str>> = vec![Vec::new()];
+fn read_input() -> Vec<Vec<String>> {
+    let config = config();
+    let in_from_file = read_from_input_file(&config.level, &config.name).to_owned();
+    let lines:  Vec<&str> = in_from_file.split("\n").collect();
+    let mut output: Vec<Vec<String>> = vec![Vec::new()];
     let mut output_n = 0;
 
     for (i, line) in lines.iter().enumerate() {
         if i < line.len() {
-            output[output_n].push(line);
+            output[output_n].push(line.to_string());
         }
         if i % 2 == 1 {
             output_n += 1;
@@ -85,9 +88,7 @@ mod tests {
     #[test]
     fn does_it_work() {
         let answer = vec!["10000"];
-        let config = config();
-        let input = read_from_input_file(&config.level, &config.name);
 
-        assert_eq!(answer, quiz(&input));
+        assert_eq!(answer, quiz());
     }
 }

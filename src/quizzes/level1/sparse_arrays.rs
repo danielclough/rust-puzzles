@@ -9,8 +9,8 @@ pub fn config() -> QuizConfig {
 }
 
 
-pub fn quiz(arr: &str) -> Vec<Vec<i32>> {
-    let input_arr = read_input(arr);
+pub fn quiz() -> Vec<Vec<i32>> {
+    let input_arr = read_input();
     let mut output: Vec<Vec<i32>> = vec![];
     for input in input_arr {
         output.push(matchingStrings(&input.strings, &input.queries));
@@ -23,8 +23,10 @@ struct Input {
     queries: Vec<String>,
 }
 
-fn read_input(arr: &str) -> Vec<Input> {
-    let lines: Vec<&str> = arr.split("\n").collect();
+fn read_input() -> Vec<Input> {
+    let config = config();
+    let in_from_file = read_from_input_file(&config.level, &config.name).to_owned();
+    let lines:  Vec<&str> = in_from_file.split("\n").collect();
     //  var to indicate beginning of series
     let mut left_in_cycle = -1;
     // prepare n and q vars
@@ -91,9 +93,7 @@ mod tests {
     #[test]
     fn does_it_work() {
         let answer: Vec<Vec<i32>> = vec![vec![2, 1, 0], vec![1, 0, 1], vec![1, 3, 4, 3, 2]];
-        let config = config();
-        let input = read_from_input_file(&config.level, &config.name);
 
-        assert_eq!(answer, quiz(&input));
+        assert_eq!(answer, quiz());
     }
 }

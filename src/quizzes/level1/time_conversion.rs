@@ -9,11 +9,13 @@ pub fn config() -> QuizConfig {
 }
 
 
-pub fn quiz(arr: &str) -> Vec<String> {
-    let split: Vec<&str> = arr.split("\n").collect();
+pub fn quiz() -> Vec<String> {
+    let config = config();
+    let in_from_file = read_from_input_file(&config.level, &config.name).to_owned();
+    let lines:  Vec<&str> = in_from_file.split("\n").collect();
     let mut answers: Vec<String> = vec![];
 
-    for ele in split {
+    for ele in lines {
         answers.push(timeConversion(&ele))
     }
     answers
@@ -70,9 +72,7 @@ mod tests {
             String::from("00:00:01"),
             String::from("12:00:01"),
         ];
-        let config = config();
-        let input = read_from_input_file(&config.level, &config.name);
 
-        assert_eq!(answer, quiz(&input));
+        assert_eq!(answer, quiz());
     }
 }

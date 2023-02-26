@@ -8,9 +8,8 @@ pub fn config() -> QuizConfig {
     output
 }
 
-
-pub fn quiz(arr: &str) -> Vec<i32> {
-    let strings = read_input(arr);
+pub fn quiz() -> Vec<i32> {
+    let strings = read_input();
     let mut answers: Vec<i32> = vec![];
     for str in strings {
         answers.push(marsExploration(&str));
@@ -18,14 +17,16 @@ pub fn quiz(arr: &str) -> Vec<i32> {
     answers
 }
 
-fn read_input(arr: &str) -> Vec<&str> {
-    let lines: Vec<&str> = arr.split("\n").collect();
+fn read_input() -> Vec<String> {
+    let config = config();
+    let in_from_file = read_from_input_file(&config.level, &config.name).to_owned();
+    let lines:  Vec<&str> = in_from_file.split("\n").collect();
     let mut output = vec![];
 
     for line in lines {
-        output.push(line);
+        output.push(line.to_string());
     }
-    output
+    output.to_owned()
 }
 
 #[allow(non_snake_case)]
@@ -55,9 +56,7 @@ mod tests {
     #[test]
     fn does_it_work() {
         let answer = vec![3, 1, 0];
-        let config = config();
-        let input = read_from_input_file(&config.level, &config.name);
 
-        assert_eq!(answer, quiz(&input));
+        assert_eq!(answer, quiz());
     }
 }

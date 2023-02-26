@@ -9,8 +9,8 @@ pub fn config() -> QuizConfig {
 }
 
 
-pub fn quiz(arr: &str) -> Vec<i32> {
-    let inputs = read_input(arr);
+pub fn quiz() -> Vec<i32> {
+    let inputs = read_input();
     let mut answers: Vec<i32> = vec![];
     for input in inputs {
         answers.push(pageCount(input.n, input.p));
@@ -25,8 +25,10 @@ struct Input {
     p: i32,
 }
 
-fn read_input(arr: &str) -> Vec<Input> {
-    let lines: Vec<&str> = arr.split("\n").collect();
+fn read_input() -> Vec<Input> {
+    let config = config();
+    let in_from_file = read_from_input_file(&config.level, &config.name).to_owned();
+    let lines:  Vec<&str> = in_from_file.split("\n").collect();
     let mut output: Vec<Input> = vec![Input { n: 0, p: 0 }; lines.len() / 2];
     let mut output_i = 0;
     for (i, line) in lines.iter().enumerate() {
@@ -88,9 +90,7 @@ mod tests {
     #[test]
     fn does_it_work() {
         let answer = vec![1, 0, 1, 1];
-        let config = config();
-        let input = read_from_input_file(&config.level, &config.name);
 
-        assert_eq!(answer, quiz(&input));
+        assert_eq!(answer, quiz());
     }
 }

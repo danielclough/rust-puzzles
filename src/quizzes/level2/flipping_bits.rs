@@ -9,8 +9,8 @@ pub fn config() -> QuizConfig {
 }
 
 
-pub fn quiz(arr: &str) -> Vec<Vec<i64>> {
-    let int_arr_arr = read_input(arr);
+pub fn quiz() -> Vec<Vec<i64>> {
+    let int_arr_arr = read_input();
     let mut answers_staging: Vec<i64> = vec![];
     let mut answers: Vec<Vec<i64>> = vec![];
     for int_arr in int_arr_arr {
@@ -25,8 +25,10 @@ pub fn quiz(arr: &str) -> Vec<Vec<i64>> {
 
 // line0 contains n of queries.
 // following lines contain integers to process.
-fn read_input(arr: &str) -> Vec<Vec<i64>> {
-    let lines: Vec<&str> = arr.split("\n").collect();
+fn read_input() -> Vec<Vec<i64>> {
+    let config = config();
+    let in_from_file = read_from_input_file(&config.level, &config.name).to_owned();
+    let lines:  Vec<&str> = in_from_file.split("\n").collect();
     // var to collect output
     let mut output: Vec<Vec<i64>> = vec![];
     // var to collect sets of queries
@@ -83,9 +85,7 @@ mod tests {
             vec![4294967291, 4294843839],
             vec![4294967295, 3492223820, 4259365872],
         ];
-        let config = config();
-        let input = read_from_input_file(&config.level, &config.name);
 
-        assert_eq!(answer, quiz(&input));
+        assert_eq!(answer, quiz());
     }
 }

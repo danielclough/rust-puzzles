@@ -1,6 +1,6 @@
 use tui::widgets::ListState;
 
-use crate::{interface::types::{MenuConfig, MenuItem, Comparison, QuizList}, quizzes::types::Quiz};
+use crate::{interface::types::{MenuConfig, MenuItem, Comparison, QuizList}};
 use std::{
     fs,
     io::Error,
