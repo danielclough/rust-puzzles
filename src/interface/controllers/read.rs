@@ -7,7 +7,7 @@ pub fn read_results() -> Result<Vec<QuizResults>, Error> {
     Ok(parsed)
 }
 pub fn read_quiz_list() -> Result<Vec<QuizList>, Error> {
-    let db_content = fs::read_to_string("./src/quizzes/input/quizzes.json")?;
+    let db_content = fs::read_to_string("./src/quizzes/quizzes.json")?;
     let parsed: Vec<QuizList> = serde_json::from_str(&db_content)?;
     Ok(parsed)
 }

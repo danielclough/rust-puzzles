@@ -45,8 +45,8 @@ pub fn interface(rx: Receiver<Event<KeyEvent>>) -> Result<(), Box<dyn std::error
                 KeyCode::Char('l') => menu_config.active_item = MenuItem::List,
                 KeyCode::Char('r') => menu_config.active_item = MenuItem::Results,
                 KeyCode::Char('s') => menu_config.active_item = MenuItem::Start,
-                KeyCode::Down => key_down::exec(&menu_config, &mut quiz_list_state),
-                KeyCode::Up => key_up::exec(&menu_config, &mut quiz_list_state),
+                KeyCode::Down => key_down::exec(&menu_config, &mut quiz_list_state, &mut quiz_result_state),
+                KeyCode::Up => key_up::exec(&menu_config, &mut quiz_list_state, &mut quiz_result_state),
                 _ => {}
             },
             Event::Tick => {}

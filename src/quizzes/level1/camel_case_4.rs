@@ -1,20 +1,13 @@
-use crate::quizzes::{types::QuizOutput, utils::read_from_input_file};
+use crate::quizzes::{types::QuizConfig, utils::read_from_input_file};
 
-pub fn for_export() -> QuizOutput {
-    let output = QuizOutput {
+pub fn config() -> QuizConfig {
+    let output = QuizConfig {
         name: "camel_case_4".to_string(),
         level: "level1".to_string(),
     };
     output
 }
 
-pub fn input_from_file() -> String {
-    let for_export = for_export();
-    // load file or panic
-    let path = format!("./src/quizzes/{}/{}.txt", for_export.level, for_export.name);
-    let input = read_from_input_file(&path);
-    input
-}
 
 // // Use to get stdin in HackerRank
 // use std::io;
@@ -163,7 +156,8 @@ mod tests {
             String::from("whiteSheetOfPaper()"),
             String::from("picture frame"),
         ];
-        let input = input_from_file();
+        let config = config();
+        let input = read_from_input_file(&config.level, &config.name);
 
         assert_eq!(answer, quiz(&input));
     }

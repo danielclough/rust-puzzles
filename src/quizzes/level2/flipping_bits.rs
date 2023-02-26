@@ -1,20 +1,13 @@
-use crate::quizzes::{types::QuizOutput, utils::read_from_input_file};
+use crate::quizzes::{types::QuizConfig, utils::read_from_input_file};
 
-pub fn for_export() -> QuizOutput {
-    let output = QuizOutput {
+pub fn config() -> QuizConfig {
+    let output = QuizConfig {
         name: "flipping_bits".to_string(),
         level: "level2".to_string(),
     };
     output
 }
 
-pub fn input_from_file() -> String {
-    let for_export = for_export();
-    // load file or panic
-    let path = format!("./src/quizzes/{}/{}.txt", for_export.level, for_export.name);
-    let input = read_from_input_file(&path);
-    input
-}
 
 pub fn quiz(arr: &str) -> Vec<Vec<i64>> {
     let int_arr_arr = read_input(arr);
@@ -90,7 +83,8 @@ mod tests {
             vec![4294967291, 4294843839],
             vec![4294967295, 3492223820, 4259365872],
         ];
-        let input = input_from_file();
+        let config = config();
+        let input = read_from_input_file(&config.level, &config.name);
 
         assert_eq!(answer, quiz(&input));
     }

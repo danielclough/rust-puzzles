@@ -1,4 +1,5 @@
-use rand::Rng;
+use std::time::{UNIX_EPOCH, SystemTime};
+
 use tui::{
     layout::Alignment,
     style::{Color, Style},
@@ -15,12 +16,9 @@ use crate::interface::{
 };
 
 pub fn log_results_and_cleanup(selected_quiz: &QuizList) {
-    //     // create random number for attempt
-    let mut rand_thread = rand::thread_rng();
-    let rand_n: [i32;1] = rand_thread.gen();
-    let id: String = rand_n.map(|x| x.to_string()).join("");
+    let id = SystemTime::now().duration_since(UNIX_EPOCH).expect("system time");
     let result = QuizResults {
-        id: id.to_owned(),
+        id: format!("{:?}", id),
         name: selected_quiz.name.to_string(),
         level: selected_quiz.level.to_string(),
         elapsed: get_elapsed(),
@@ -29,7 +27,7 @@ pub fn log_results_and_cleanup(selected_quiz: &QuizList) {
     // change to Results
     _ = std::fs::rename(
         "./user-data/src/main.rs",
-        format!("./user-data/src/{}-{}.rs", selected_quiz.name.to_string(), id)
+        format!("./user-data/archive/{}-{:?}.rs", selected_quiz.name.to_string(), id.as_secs())
     );
     _ = std::fs::remove_file("./user-data/.timestamp");
 }
@@ -43,7 +41,7 @@ pub fn render<'a>(quiz_list_state: &ListState) -> Paragraph<'a> {
     if comparison.is_correct && comparison.elapsed.ne("0:0:0") {
         _ = log_results_and_cleanup(&selected_quiz);
     } else {
-        _ = create_file_if_needed().expect("file should be created");
+        _ = create_file_if_needed(&selected_quiz).expect("file should be created");
     }
 
     // Render Container
@@ -62,6 +60,7 @@ pub fn render<'a>(quiz_list_state: &ListState) -> Paragraph<'a> {
         Spans::from(vec![Span::raw("")]),
         Spans::from(vec![Span::raw("  User Output:")]),
         Spans::from(vec![Span::raw("")]),
+        Spans::from(comparison.user_err),
         Spans::from(comparison.user_str),
         // Spans::from(vec![Span::raw(format!("{:?}",user_vec))]),
         Spans::from(vec![Span::raw("")]),

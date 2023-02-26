@@ -1,6 +1,6 @@
 use tui::widgets::ListState;
 
-use crate::interface::types::{MenuConfig, MenuItem, Comparison, QuizList};
+use crate::{interface::types::{MenuConfig, MenuItem, Comparison, QuizList}, quizzes::types::Quiz};
 use std::{
     fs,
     io::Error,
@@ -49,23 +49,37 @@ pub fn init_compare(selected_quiz: &QuizList) -> Comparison {
         .split("\n")
         .map(|x| x.to_string())
         .collect();
+    // let correct_vec: &Vec<String> = &vec!(comparison_tupl.1;1);
     let user_vec: &Vec<String> = &comparison_tupl
         .2
         .split("\n")
         .map(|x| x.to_string())
         .collect();
+    let err_vec: &Vec<String> = &comparison_tupl
+        .3
+        .split("\n")
+        .map(|x| x.to_string())
+        .collect();
     let correct_tmp = correct_vec.join("; ");
     let correct_str = correct_tmp.trim();
-    let user_tmp = user_vec.join("; ");
-    let user_str = user_tmp.trim();
-    let is_correct = comparison_tupl.3;
+    let err_tmp = err_vec.join("; ");
+    let user_err = err_tmp.trim();
+    let user_str: String;
+    if user_err.len() < 70 {
+        let user_tmp = user_vec.join("; ");
+        user_str = user_tmp.trim().to_string();
+    } else {
+        user_str = "".to_string();
+    }
+    let is_correct = comparison_tupl.4;
 
     let elapsed = get_elapsed();
 
     let comparison = Comparison {
         input_str: input_str.to_string(),
         correct_str: correct_str.to_string(),
-        user_str: user_str.to_string(),
+        user_str: user_str,
+        user_err: user_err.to_string(),
         is_correct,
         elapsed,
     };
@@ -80,15 +94,15 @@ pub fn test_correct_quiz(file: &str) -> Result<Output, Error> {
         .output()?;
     Ok(result)
 }
-fn compile_new_quiz() {
+fn compile_new_quiz() -> Result<Output, Error> {
     let program = "./build.sh";
-    _ = Command::new(program)
+    let result;
+    result = Command::new(program)
         .stdout(Stdio::piped())
-        .output();
+        .output()?;
+    Ok(result)
 }
-fn get_new_quiz_output(input: &str) -> Result<Output, Error> {
-    _ = compile_new_quiz();
-    
+fn get_new_quiz_output(input: &str) -> Result<Output, Error> {    
     let program = "./user-data/target/debug/user-data";
     let result = Command::new(program)
         .arg(input)
@@ -99,19 +113,28 @@ fn get_new_quiz_output(input: &str) -> Result<Output, Error> {
 fn get_params_from_result(result: Result<Output, Error>) -> String {
     let result_output;
     if result.is_ok() {
-        result_output = String::from_utf8(result.unwrap().stdout).unwrap();
+        let another = result.unwrap().clone();
+        let tmp = String::from_utf8(another.stdout).unwrap();
+        if tmp.len() == 1 {
+            result_output = String::from_utf8(another.stderr).unwrap();
+        } else {
+            result_output = tmp;
+        }
     } else {
-        result_output = format!("{:?}", result.unwrap_err());
+        result_output = format!("{:?}", result);
     }
     result_output
 }
 
-pub fn compare_results(input_path: &str) -> (String, String, String, bool) {
+pub fn compare_results(input_path: &str) -> (String, String, String, String, bool) {
     // load file or panic
     let input = fs::read_to_string(input_path).unwrap();
     let input_vec: &Vec<String> = &input.split("\n").map(|x| x.to_string()).collect();
     let input_str = input_vec.join("; ");
 
+
+    let new_quiz_result = compile_new_quiz();
+    let user_err = get_params_from_result(new_quiz_result);
     let user_result = get_new_quiz_output(&input_str);
     let user_output = get_params_from_result(user_result);
 
@@ -122,21 +145,25 @@ pub fn compare_results(input_path: &str) -> (String, String, String, bool) {
         input_str,
         correct_output.to_owned(),
         user_output.to_owned(),
+        user_err.to_owned(),
         correct_output.eq(&user_output),
     )
 }
 
-pub fn create_file_if_needed() -> Result<String, Error> {
+pub fn create_file_if_needed(selected_quiz: &QuizList) -> Result<String, Error> {
     let new_quiz_path = "./user-data/src/main.rs";
     if fs::read(new_quiz_path).is_err() {
-        let new_quiz_content = "use std::env;
+        let main_fn = "use std::env;
 fn main() {
     let args: Vec<String> = env::args().collect();
-    if args.len() > 1 {
-        let input: Vec<String> = args[1].to_owned().split(\"; \").map(|x| x.to_string()).collect();
-        println!(\"Test Input: {:?}\", input);
-    }
+    quiz(args[1].to_owned().split(\"; \").map(|x| x.to_string()).collect());
 }";
+        let comments = format!("// {}\n// {}\n// {:?}\n", selected_quiz.desc, selected_quiz.example, selected_quiz.constraints);
+
+        let quiz_fn = "fn quiz(input: Vec<String>) {
+    println!(\"Input: {:?}\", input);
+}";
+        let new_quiz_content = format!("{}\n{}\n{}", main_fn, comments, quiz_fn );
         fs::write(new_quiz_path, new_quiz_content)?;
     };
     Ok(new_quiz_path.to_string())

@@ -1,20 +1,11 @@
-use crate::quizzes::{types::QuizOutput, utils::read_from_input_file};
+use crate::quizzes::{types::QuizConfig, utils::read_from_input_file};
 
-pub fn for_export() -> QuizOutput {
-    let output = QuizOutput {
+pub fn config() -> QuizConfig {
+    let output = QuizConfig {
         name: "plus_minus".to_string(),
-
         level: "level1".to_string(),
     };
     output
-}
-
-pub fn input_from_file() -> String {
-    let for_export = for_export();
-    // load file or panic
-    let path = format!("./src/quizzes/{}/{}.txt", for_export.level, for_export.name);
-    let input = read_from_input_file(&path);
-    input
 }
 
 pub fn quiz(arr: &str) -> Vec<(f32, f32, f32)> {
@@ -68,7 +59,8 @@ mod tests {
     #[test]
     fn does_it_work() {
         let answer: Vec<(f32, f32, f32)> = vec![(0.500000, 0.333333, 0.166667)];
-        let input = input_from_file();
+        let config = config();
+        let input = read_from_input_file(&config.level, &config.name);
 
         assert_eq!(answer, quiz(&input));
     }

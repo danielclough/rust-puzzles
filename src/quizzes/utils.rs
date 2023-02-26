@@ -14,7 +14,7 @@ use crate::quizzes::level3::{
     sales_by_match, subarray_division_2, xor_strings_3, zig_zag_sequence,
 };
 
-use super::types::{Quiz, QuizOption};
+use super::types::{Quiz};
 // use crate::quizzes::level4::{
 //     picking_numbers,
 //     left_rotation,
@@ -54,33 +54,34 @@ use super::types::{Quiz, QuizOption};
 // };
 
 pub fn quiz(quiz: Quiz) {
-    match quiz.name {
+    match &quiz.name as &str {
         // WEEK 1
-        QuizOption::PlusMinus => _ = plus_minus::quiz(&quiz.input),
-        QuizOption::MiniMaxSum => _ = mini_max_sum::quiz(&quiz.input),
-        QuizOption::TimeConversion => _ = time_conversion::quiz(&quiz.input),
-        QuizOption::BreakingTheRecords => _ = breaking_the_records::quiz(&quiz.input),
-        QuizOption::CamelCase4 => _ = camel_case_4::quiz(&quiz.input),
-        QuizOption::DivisibleSumPairs => _ = divisible_sum_pairs::quiz(&quiz.input),
-        QuizOption::SparseArrays => _ = sparse_arrays::quiz(&quiz.input),
+        "plus_minus" => _ = plus_minus::quiz(&quiz.input),
+        "mini_max_sum" => _ = mini_max_sum::quiz(&quiz.input),
+        "time_conversion" => _ = time_conversion::quiz(&quiz.input),
+        "breaking_the_records" => _ = breaking_the_records::quiz(&quiz.input),
+        "camel_case_4" => _ = camel_case_4::quiz(&quiz.input),
+        "divisible_sum_pairs" => _ = divisible_sum_pairs::quiz(&quiz.input),
+        "sparse_arrays" => _ = sparse_arrays::quiz(&quiz.input),
         // WEEK 2
-        QuizOption::LonelyInteger => _ = lonely_integer::quiz(&quiz.input),
-        QuizOption::GradingStudents => _ = grading_students::quiz(&quiz.input),
-        QuizOption::FlippingBits => _ = flipping_bits::quiz(&quiz.input),
-        QuizOption::DiagonalDifference => _ = diagonal_difference::quiz(&quiz.input),
-        QuizOption::CountingSort1 => _ = counting_sort_1::quiz(&quiz.input),
-        QuizOption::CountingValleys => _ = counting_valleys::quiz(&quiz.input),
-        QuizOption::Pangrams => _ = pangrams::quiz(&quiz.input),
-        QuizOption::MarsExploration => _ = mars_exploration::quiz(&quiz.input),
+        "lonely_integer" => _ = lonely_integer::quiz(&quiz.input),
+        "grading_students" => _ = grading_students::quiz(&quiz.input),
+        "flipping_bits" => _ = flipping_bits::quiz(&quiz.input),
+        "diagonal_difference" => _ = diagonal_difference::quiz(&quiz.input),
+        "counting_sort_1" => _ = counting_sort_1::quiz(&quiz.input),
+        "counting_valleys" => _ = counting_valleys::quiz(&quiz.input),
+        "pangrams" => _ = pangrams::quiz(&quiz.input),
+        "mars_exploration" => _ = mars_exploration::quiz(&quiz.input),
         // WEEK 3
-        QuizOption::PermutingTwoArrays => _ = permuting_two_arrays::quiz(&quiz.input),
-        QuizOption::SubarrayDivision2 => _ = subarray_division_2::quiz(&quiz.input),
-        QuizOption::XorStrings3 => _ = xor_strings_3::quiz(&quiz.input),
-        QuizOption::SalesByMatch => _ = sales_by_match::quiz(&quiz.input),
-        QuizOption::MigratoryBirds => _ = migratory_birds::quiz(&quiz.input),
-        QuizOption::MaximumPerimeterTriangle => _ = maximum_perimeter_triangle::quiz(&quiz.input),
-        QuizOption::ZigZagSequence => _ = zig_zag_sequence::quiz(&quiz.input),
-        QuizOption::DrawingBook => _ = drawing_book::quiz(&quiz.input),
+        "permuting_two_arrays" => _ = permuting_two_arrays::quiz(&quiz.input),
+        "subarray_division_2" => _ = subarray_division_2::quiz(&quiz.input),
+        "xor_strings_3" => _ = xor_strings_3::quiz(&quiz.input),
+        "sales_by_match" => _ = sales_by_match::quiz(&quiz.input),
+        "migratory_birds" => _ = migratory_birds::quiz(&quiz.input),
+        "maximum_perimeter_triangle" => _ = maximum_perimeter_triangle::quiz(&quiz.input),
+        "zig_zag_sequence" => _ = zig_zag_sequence::quiz(&quiz.input),
+        "drawing_book" => _ = drawing_book::quiz(&quiz.input),
+        &_ => {},
     }
 }
 
@@ -91,7 +92,9 @@ pub fn filename(file: &str) -> &OsStr {
 }
 
 use std::fs;
-pub fn read_from_input_file(path: &str) -> String {
+pub fn read_from_input_file(level: &str, name: &str) -> String {
+    // load file or panic
+    let path = format!("./src/quizzes/{}/{}.txt", level, name);
     let file = fs::read_to_string(path).unwrap();
     file
 }

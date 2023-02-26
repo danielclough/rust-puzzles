@@ -65,6 +65,7 @@ pub struct Comparison {
     pub input_str: String,
     pub correct_str: String,
     pub user_str: String,
+    pub user_err: String,
     pub is_correct: bool,
     pub elapsed: String,
 }
